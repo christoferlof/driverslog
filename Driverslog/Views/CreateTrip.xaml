@@ -4,11 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:navigation="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    SupportedOrientations="Portrait"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cmd="clr-namespace:Driverslog.Commands" xmlns:local="clr-namespace:Driverslog.ViewModels" SupportedOrientations="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
-
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+    <navigation:PhoneApplicationPage.Resources>
+        <local:CreateTripViewModel x:Key="ViewModel"/>
+    </navigation:PhoneApplicationPage.Resources>
+    <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>
             <RowDefinition Height="*"/>
@@ -37,7 +38,7 @@
                 
                 <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
                 <TextBox />
-                <Button Content="Save Trip"/>
+                <Button Content="Save Trip" cmd:Click.Command="{Binding SaveTripCommand}"/>
             </StackPanel>
         </Grid>
     </Grid>

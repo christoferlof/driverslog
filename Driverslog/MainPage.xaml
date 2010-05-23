@@ -24,6 +24,7 @@
 
         <!--ContentGrid is empty. Place new content here-->
         <Grid x:Name="ContentGrid" Grid.Row="1">
+            <Button Content="Create Trip" Height="70" HorizontalAlignment="Left" Margin="122,338,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
         </Grid>
     </Grid>
     

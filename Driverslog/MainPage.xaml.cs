@@ -21,5 +21,9 @@ namespace Driverslog
 
             SupportedOrientations = SupportedPageOrientation.Portrait | SupportedPageOrientation.Landscape;
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new Uri("/views/CreateTrip.xaml", UriKind.Relative));
+        }
     }
 }

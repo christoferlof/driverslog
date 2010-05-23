@@ -8,12 +8,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Driverslog.Commands;
 
 namespace Driverslog.ViewModels {
     public class CreateTripViewModel {
 
         public CreateTripViewModel() {
-            //SaveTripCommand = new Action
+            SaveTripCommand = new DelegateCommand(SaveTrip);
+        }
+
+        private void SaveTrip(object obj) {
+            MessageBox.Show("foo");
         }
 
         public string From { get; set; }

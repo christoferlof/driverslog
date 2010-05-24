@@ -19,5 +19,14 @@ namespace Driverslog.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnKeyUp(KeyEventArgs e) {
+            base.OnKeyUp(e);
+            if(e.Key == Key.Enter) {
+                e.Handled = true;
+                btn.Focus();
+            }
+        }
+
     }
 }

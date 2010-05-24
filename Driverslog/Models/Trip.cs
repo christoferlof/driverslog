@@ -18,5 +18,8 @@ namespace Driverslog.Models {
 
         [DataMember]
         public string Notes { get; set; }
+
+        [DataMember]
+        public string Car { get; set; }
     }
 }

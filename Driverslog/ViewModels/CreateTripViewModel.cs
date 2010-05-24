@@ -32,6 +32,8 @@ namespace Driverslog.ViewModels {
 
         public int Distance { get; private set; }
 
+        public string Car { get; set; }
+
         public string Notes { get; set; }
 
         public ICommand SaveTripCommand { get; private set; }
@@ -51,7 +53,14 @@ namespace Driverslog.ViewModels {
                 list = new TripList();
             }
 
-            list.Trips.Add(new Trip());
+            list.Trips.Add(new Trip {
+                                        Car = Car, 
+                                        From = From,
+                                        Notes = Notes,
+                                        OdometerStart = OdometerStart,
+                                        OdometerStop = OdometerStop,
+                                        To = To
+                                    });
 
             file.Seek(0,SeekOrigin.Begin);
             serializer.WriteObject(file, list);

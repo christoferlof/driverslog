@@ -1,9 +1,13 @@
+using System.Collections.ObjectModel;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class Trip {
-        
+    public class Trip : ActiveRecord<Trip> {
+
         [DataMember]
         public string From { get; set; }
 

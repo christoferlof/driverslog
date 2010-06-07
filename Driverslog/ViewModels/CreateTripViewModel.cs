@@ -47,7 +47,7 @@ namespace Driverslog.ViewModels {
                 OdometerStop    = OdometerStop,
                 To              = To
             });
-            Trip.Persist();
+            Trip.SaveChanges();
         }
     }
 }

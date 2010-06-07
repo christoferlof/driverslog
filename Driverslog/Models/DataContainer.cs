@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class DataContainer<TEntity> {
+    public class DataContainer<TRecord> {
 
         public DataContainer() {
-            Records = new List<TEntity>();
+            Records = new List<TRecord>();
         }
 
         [DataMember]
-        public List<TEntity> Records { get; set; }
+        public List<TRecord> Records { get; set; }
     }
 }

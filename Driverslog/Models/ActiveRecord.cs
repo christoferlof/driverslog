@@ -6,32 +6,36 @@ using System.Runtime.Serialization.Json;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class ActiveRecord<TEntity> where TEntity : ActiveRecord<TEntity>, new() {
+    public class ActiveRecord<TRecord> where TRecord : ActiveRecord<TRecord>, new() {
 
-        private static readonly string FileName =  typeof(TEntity).Name.ToLower() + "s.json"; //lame pluralization.. 
+        private static readonly string FileName =  typeof(TRecord).Name.ToLower() + "s.json"; //lame pluralization.. 
 
-        private static readonly ObservableCollection<TEntity> _all = new ObservableCollection<TEntity>();
+        private static readonly ObservableCollection<TRecord> _all = new ObservableCollection<TRecord>();
 
-        public static ObservableCollection<TEntity> All {
+        public static ObservableCollection<TRecord> All {
             get { return _all; }
         }
 
-        public static void Persist() {
-            var data = new DataContainer<TEntity>();
+        public static void Add(TRecord record) {
+            All.Add(record);
+        }
+
+        public static void SaveChanges() {
+            var data = new DataContainer<TRecord>();
             foreach (var trip in All) {
                 data.Records.Add(trip);
             }
             WriteObject(data);
         }
 
-        private static void WriteObject(DataContainer<TEntity> list) {
-            using (var file = GetFile(FileMode.Truncate)) {
+        private static void WriteObject(DataContainer<TRecord> list) {
+            using (var file = GetFile(FileMode.Create)) {
                 GetSerializer().WriteObject(file, list);
             }
         }
 
         private static DataContractJsonSerializer GetSerializer() {
-            return new DataContractJsonSerializer(typeof(DataContainer<TEntity>));
+            return new DataContractJsonSerializer(typeof(DataContainer<TRecord>));
         }
 
         private static IsolatedStorageFileStream GetFile(FileMode fileMode) {
@@ -51,9 +55,9 @@ namespace Driverslog.Models {
             }
         }
 
-        private static DataContainer<TEntity> ReadObject(Stream file) {
+        private static DataContainer<TRecord> ReadObject(Stream file) {
             var serializer = GetSerializer();
-            return serializer.ReadObject(file) as DataContainer<TEntity>;
+            return serializer.ReadObject(file) as DataContainer<TRecord>;
         }
 
     }

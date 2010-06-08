@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Driverslog.Models;
 using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace Driverslog.Views {
     public partial class List : PhoneApplicationPage {
@@ -26,6 +27,21 @@ namespace Driverslog.Views {
 
         private void Button_Click_1(object sender, RoutedEventArgs e) {
             Trip.Load();
+        }
+
+        private void Export_Click(object sender, EventArgs e) { 
+            //since the applicationbaritem isn't a dependencyobject I can't attach a command to it.
+            ((ListViewModel)DataContext).ExportTripsCommand.Execute(null);
+        }
+
+        private void Call_Click(object sender, EventArgs e) {
+            var phone = new PhoneCallTask {DisplayName = "chris", PhoneNumber = "087249311"};    
+            phone.Show();
+        }
+
+        private void CreateSettings_Click(object sender, EventArgs e) {
+            Setting.All.Add(new Setting{ClearOnExport = ClearOnExport.Always,Email = "foo@bar.se"});
+            Setting.SaveChanges();
         }
     }
 }

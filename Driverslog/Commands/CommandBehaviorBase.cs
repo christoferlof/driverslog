@@ -26,7 +26,7 @@ namespace Driverslog.Commands {
     /// <remarks>
     /// CommandBehaviorBase can be used to provide new behaviors similar to <see cref="ButtonBaseClickCommandBehavior"/>.
     /// </remarks>
-    public class CommandBehaviorBase<T>
+    public class CommandBehaviorBase<T> 
         where T : Control {
         private ICommand command;
         private object commandParameter;

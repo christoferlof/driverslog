@@ -4,10 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:navigation="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Driverslog.ViewModels" xmlns:mpc="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" SupportedOrientations="Portrait"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mpc="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone.Shell" SupportedOrientations="Portrait"
+    xmlns:cmd="clr-namespace:Driverslog.Commands" 
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
 	d:DataContext="{d:DesignData /SampleData/ListViewModelSampleData.xaml}"
 	>
+    <navigation:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" />
+                <shell:ApplicationBarMenuItem Text="Call"  Click="Call_Click"/>
+                <shell:ApplicationBarMenuItem Text="Create Settings" Click="CreateSettings_Click"/>
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Images/email.dark.png" Click="Export_Click"/>
+        </shell:ApplicationBar>
+    </navigation:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot"  Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>

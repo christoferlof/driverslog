@@ -8,10 +8,21 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPhoneClassLibrary1", "WindowsPhoneClassLibrary1\WindowsPhoneClassLibrary1.csproj", "{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{ABE18BBA-EF54-4FDA-9C55-5A5D547E08B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28E0AA3D-05EF-4B30-A571-A9579FA5E4FF} = {28E0AA3D-05EF-4B30-A571-A9579FA5E4FF}
+		{3AFFF879-BDED-457A-BF4B-EF123128797F} = {3AFFF879-BDED-457A-BF4B-EF123128797F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightApplication1", "SilverlightApplication1\SilverlightApplication1.csproj", "{28E0AA3D-05EF-4B30-A571-A9579FA5E4FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD899D20-17E6-413C-8FCA-6D4E50C66B0C} = {CD899D20-17E6-413C-8FCA-6D4E50C66B0C}
+		{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27} = {DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightApplication1.Web", "SilverlightApplication1.Web\SilverlightApplication1.Web.csproj", "{3AFFF879-BDED-457A-BF4B-EF123128797F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28E0AA3D-05EF-4B30-A571-A9579FA5E4FF} = {28E0AA3D-05EF-4B30-A571-A9579FA5E4FF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

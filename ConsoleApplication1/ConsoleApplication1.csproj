@@ -34,11 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SilverlightClassLibrary1">
-      <HintPath>..\SilverlightClassLibrary1\Bin\Debug\SilverlightClassLibrary1.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -50,6 +48,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\SilverlightApplication1.Web\ClientBin\SilverlightApplication1.xap">
+      <Link>SilverlightRunner\ClientBin\SilverlightApplication1.xap</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SilverlightApplication1.Web\Silverlight.js">
+      <Link>SilverlightRunner\Silverlight.js</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SilverlightApplication1.Web\SilverlightApplication1TestPage.html">
+      <Link>SilverlightRunner\SilverlightApplication1TestPage.html</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

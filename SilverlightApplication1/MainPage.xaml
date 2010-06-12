@@ -4,9 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="400">
+    d:DesignHeight="300" d:DesignWidth="400"
+    Loaded="MainPage_Loaded">
 
-    <Grid x:Name="LayoutRoot" Background="White">
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="112,113,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-    </Grid>
+    <Grid x:Name="LayoutRoot" Background="White"></Grid>
 </UserControl>

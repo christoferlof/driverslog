@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 using System.Text;
-using SilverlightClassLibrary1;
-
+using System.Windows.Forms;
 
 namespace ConsoleApplication1 {
     class Program {
+        [STAThread]
         static void Main(string[] args) {
 
-            //var asm = @"C:\Code\Driverslog\WindowsPhoneClassLibrary1\Bin\Debug\WindowsPhoneClassLibrary1.dll";
-            //var testAssembly = Assembly.LoadFrom(asm);
+            var browser = new WebBrowser();
+            browser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(browser_DocumentCompleted);
+            var url = Path.GetDirectoryName(typeof(Program).Assembly.CodeBase) +
+                       "/SilverlightRunner/SilverlightApplication1TestPage.html";
+            browser.Navigate(url);
+            Application.Run();
+        }
 
-            
-            //var testClassType = "WindowsPhoneClassLibrary1.Class1";
-            ////var testClass = domain.CreateInstance(testAssembly.FullName, testClassType);
-            //var testClass = testAssembly.CreateInstance(testClassType);
-            //var result = testClass.GetType().InvokeMember("TheTest", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, testClass,
-            //                                 null);
-            
-            //Console.WriteLine(result);
-            //Console.Read();
-
-            var c = new Class1();
-            Console.WriteLine(c.TheTest());
-            Console.Read();
-
+        static void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
+            Application.DoEvents();
+            var browser = (WebBrowser) sender;
+            var testResult = browser.Document.InvokeScript("executeTest");
+            Console.WriteLine(testResult);
+            Application.Exit();
         }
     }
 }

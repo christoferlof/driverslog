@@ -1,7 +1,7 @@
 ﻿using Driverslog.Models;
 using Driverslog.ViewModels;
 
-namespace WindowsPhoneClassLibrary1 {
+namespace Victoria.Test {
     
     public class Class1 {
 

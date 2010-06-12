@@ -8,8 +8,8 @@
     <ProjectGuid>{ABE18BBA-EF54-4FDA-9C55-5A5D547E08B2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <RootNamespace>Victoria.Test.Console</RootNamespace>
+    <AssemblyName>Victoria.Test.Console</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -50,17 +50,18 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\SilverlightApplication1\Bin\Debug\SilverlightApplication1.xap">
-      <Link>SilverlightRunner\ClientBin\SilverlightApplication1.xap</Link>
+    <Content Include="..\Victoria.Test.Runner\Bin\Debug\Victoria.Test.Runner.xap">
+      <Link>Content\ClientBin\Victoria.Test.Runner.xap</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SilverlightRunner\Silverlight.js">
+    <Content Include="Content\Silverlight.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SilverlightRunner\SilverlightApplication1TestPage.html">
+    <Content Include="Content\RunnerPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsPhoneClassLibrary1 {
+namespace Victoria.Test {
     public class AssertException : Exception {
         
         public AssertException() {}

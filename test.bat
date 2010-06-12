@@ -1,4 +1,4 @@
 @echo off
 msbuild /nologo /verbosity:quiet
-ConsoleApplication1\bin\debug\ConsoleApplication1.exe
+Fx\Victoria.Test.Console\bin\debug\Victoria.Test.Console.exe
 @echo on

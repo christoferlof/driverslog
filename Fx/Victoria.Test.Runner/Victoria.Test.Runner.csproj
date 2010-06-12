@@ -63,6 +63,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Driverslog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Driverslog.Tests.Unit">
+      <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Driverslog.Tests.Unit.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -70,9 +73,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="Victoria.Test">
-      <HintPath>..\Fx\Victoria.Test\Bin\Debug\Victoria.Test.dll</HintPath>
-    </Reference>
+    <Reference Include="Victoria.Test, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

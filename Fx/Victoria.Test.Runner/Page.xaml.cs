@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
+using Driverslog.Tests.Unit;
+using Victoria.Test;
 
 namespace Victoria.Test.Runner {
     public partial class Page : UserControl {
@@ -15,7 +17,7 @@ namespace Victoria.Test.Runner {
 
         [ScriptableMember]
         public string ExecuteTest() {
-            var c = new Class1();
+            var c = new ListViewModelTests();
             var pass = false;
             try {
                 c.TheTest();

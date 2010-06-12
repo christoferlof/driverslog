@@ -50,20 +50,48 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Devices" />
-    <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls" />
-    <Reference Include="Microsoft.Phone.Controls.Navigation" />
-    <Reference Include="Microsoft.Phone.Shell" />
-    <Reference Include="Microsoft.Phone.Tasks" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Servicemodel.Web" />
-    <Reference Include="System.Windows" />
-    <Reference Include="mscorlib" />
-    <Reference Include="system" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.Devices">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Navigation">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Shell">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Tasks">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Servicemodel.Web">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="system">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -119,6 +147,8 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\check.light.png" />
+    <Content Include="Images\check.dark.png" />
     <Content Include="Images\email.dark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -126,7 +156,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <DesignData Include="SampleData\ListViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

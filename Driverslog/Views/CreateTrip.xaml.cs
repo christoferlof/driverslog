@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
 
 namespace Driverslog.Views
@@ -22,11 +23,14 @@ namespace Driverslog.Views
 
         protected override void OnKeyUp(KeyEventArgs e) {
             base.OnKeyUp(e);
-            if(e.Key == Key.Enter) {
-                e.Handled = true;
-                btn.Focus();
-            }
+            //if(e.Key == Key.Enter) {
+            //    e.Handled = true;
+            //    btn.Focus();
+            //}
         }
 
+        private void Check_Click(object sender, EventArgs e) {
+            ((CreateTripViewModel)DataContext).SaveTripCommand.Execute(null);
+        }
     }
 }

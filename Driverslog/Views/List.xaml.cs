@@ -40,7 +40,7 @@ namespace Driverslog.Views {
         }
 
         private void CreateSettings_Click(object sender, EventArgs e) {
-            Setting.All.Add(new Setting{ClearOnExport = ClearOnExport.Always,Email = "foo@bar.se"});
+            Setting.All.Add(new Setting{Email = "christofer.lof@gmail.com"});
             Setting.SaveChanges();
         }
     }

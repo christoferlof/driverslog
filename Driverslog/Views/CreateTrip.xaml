@@ -4,13 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:navigation="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:cmd="clr-namespace:Driverslog.Commands" 
-    xmlns:local="clr-namespace:Driverslog.ViewModels" SupportedOrientations="Portrait"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Driverslog.ViewModels" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone.Shell" SupportedOrientations="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
     <navigation:PhoneApplicationPage.Resources>
         <local:CreateTripViewModel x:Key="ViewModel"/>
     </navigation:PhoneApplicationPage.Resources>
+    <navigation:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/check.dark.png" Click="Check_Click"/>
+        </shell:ApplicationBar>
+    </navigation:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>
@@ -20,28 +24,27 @@
         <!--This is the name of the application and page title-->
         <Grid Grid.Row="0" x:Name="TitleGrid">
             <TextBlock x:Name="ApplicationName" Text="Drivers log" Style="{StaticResource PhoneTextPageTitle1Style}"/>
-            <TextBlock x:Name="ListName" Text="Trip" Style="{StaticResource PhoneTextPageTitle2Style}"/>
+            <TextBlock x:Name="ListName" Text="Start trip" Style="{StaticResource PhoneTextPageTitle2Style}"/>
         </Grid>
 
         <!--This section is empty. Place new content here Grid.Row="1"-->
         <Grid Grid.Row="1" x:Name="ContentGrid">
             <StackPanel>
-                <TextBlock Name="from" Text="From" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding From, Mode=TwoWay}" InputScope="Search" />
+                <TextBlock Name="from" Text="From" Style="{StaticResource PhoneTextBodyTextStyle}"/>
+                <TextBox Text="{Binding From, Mode=TwoWay}"  />
 
-                <TextBlock Text="To" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding To, Mode=TwoWay}" InputScope="Search"/>
+                <TextBlock Text="To" Style="{StaticResource PhoneTextBodyTextStyle}"/>
+                <TextBox Text="{Binding To, Mode=TwoWay}" />
 
-                <TextBlock Text="Car" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding Car, Mode=TwoWay}" InputScope="Search"/>
+                <TextBlock Text="Car" Style="{StaticResource PhoneTextBodyTextStyle}"/>
+                <TextBox Text="{Binding Car, Mode=TwoWay}"/>
                 
-                <TextBlock Text="Odometer Start" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding OdometerStart, Mode=TwoWay}" InputScope="Number"/>
+                <TextBlock Text="Odometer" Style="{StaticResource PhoneTextBodyTextStyle}"/>
+                <TextBox Text="{Binding OdometerStart, Mode=TwoWay}" />
                    
-                <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBox Text="{Binding Notes, Mode=OneWay}" InputScope="Search"/>
-
-                <Button Name="btn" Content="Save Trip" cmd:Click.Command="{Binding SaveTripCommand}"/>
+                <TextBlock Text="Notes" Style="{StaticResource PhoneTextBodyTextStyle}"/>
+                <TextBox Text="{Binding Notes, Mode=OneWay}" />
+                
             </StackPanel>
         </Grid>
     </Grid>

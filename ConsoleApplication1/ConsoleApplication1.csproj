@@ -50,16 +50,14 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\SilverlightApplication1.Web\ClientBin\SilverlightApplication1.xap">
+    <Content Include="..\SilverlightApplication1\Bin\Debug\SilverlightApplication1.xap">
       <Link>SilverlightRunner\ClientBin\SilverlightApplication1.xap</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\SilverlightApplication1.Web\Silverlight.js">
-      <Link>SilverlightRunner\Silverlight.js</Link>
+    <Content Include="SilverlightRunner\Silverlight.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\SilverlightApplication1.Web\SilverlightApplication1TestPage.html">
-      <Link>SilverlightRunner\SilverlightApplication1TestPage.html</Link>
+    <Content Include="SilverlightRunner\SilverlightApplication1TestPage.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

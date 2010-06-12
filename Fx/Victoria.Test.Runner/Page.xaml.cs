@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
@@ -17,9 +18,21 @@ namespace Victoria.Test.Runner {
 
         [ScriptableMember]
         public string ExecuteTest() {
-            var c = new ListViewModelTests();
+
+            //var testAssembly = Assembly.Load("Driverslog.Tests.Unit");
+            //var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
+            //var testClass = testAssembly.CreateInstance(testClassType);
+            
             var pass = false;
             try {
+                //testClass.GetType().InvokeMember(
+                //    "TheTest", 
+                //    BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, 
+                //    null, 
+                //    testClass,
+                //    null
+                //);
+                var c = new ListViewModelTests();
                 c.TheTest();
                 pass = true;
             } catch (AssertException) {
@@ -32,11 +45,13 @@ namespace Victoria.Test.Runner {
             return (pass) ? "passed" : "failed";
         }
 
-        //var testAssembly = Assembly.Load("WindowsPhoneClassLibrary1");
-        //var testClassType = "WindowsPhoneClassLibrary1.Class1";
-        //var testClass = testAssembly.CreateInstance(testClassType);
-        //var result = testClass.GetType().InvokeMember("TheTest", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, testClass,
-        //                                 null);
+        //[DataContract(Name = "executionResult")]
+        //public class ExecutionResult {
+        //    [DataMember(Name = "passed")]
+        //    public bool Passed { get; set; }
+        //}
+
+        
 
         //textBox1.Text = result.ToString();
 

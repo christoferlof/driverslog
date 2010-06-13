@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -24,7 +26,23 @@ namespace Victoria.Test.Runner {
             var testAssembly = Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
             var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
             var testClass = testAssembly.CreateInstance(testClassType);
-            var actualMethods = testMethod.Split('|');
+
+            var actualMethods = new List<string>();
+            
+            if(!string.IsNullOrEmpty(testMethod)) {
+                actualMethods.Add(testMethod);
+            }
+
+            if(string.IsNullOrEmpty(testMethod)) {
+                actualMethods.AddRange(
+                    testClass
+                        .GetType()
+                        .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
+                        .Select(m => m.Name)
+                        .Where(s => s.Contains("Test"))
+                    );
+            }
+            
             var testrunPass = true;
             
             foreach (var method in actualMethods) {

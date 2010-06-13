@@ -36,8 +36,9 @@ namespace Victoria.Test.Runner {
                         MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance,
                         (m, f) => m.Name == f.ToString(), method)
                     .Any();
-                Console.WriteLine("exists => " + exists);
+                if (!exists) testrunPass = false;
 
+                //if method exists => ok to execute method
                 if (exists) {
                     var testmethodPass = false;
                     var failedMessage = string.Empty;

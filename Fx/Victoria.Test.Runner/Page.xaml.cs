@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
@@ -23,50 +24,53 @@ namespace Victoria.Test.Runner {
             var testAssembly = Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
             var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
             var testClass = testAssembly.CreateInstance(testClassType);
+            var actualMethods = testMethod.Split('|');
+            var testrunPass = true;
             
-            var pass = false;
-            var failedMessage = string.Empty;
-            try {
-                testClass.GetType().InvokeMember(
-                    testMethod,
-                    BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
-                    null,
-                    testClass,
-                    null
-                );
-                //var c = new ListViewModelTests();
-                //c.TheTest();
-                pass = true;
-            //} catch (AssertException ae) {
-            //    //assertexception
-            //    pass = false;
-            //    failedMessage = ae.Message;
-            } catch (Exception ex) {
-                pass = false;
-                failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+            foreach (var method in actualMethods) {
+
+                //check if method exists
+                var exists = testClass
+                    .GetType()
+                    .FindMembers(
+                        MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance,
+                        (m, f) => m.Name == f.ToString(), method)
+                    .Any();
+                Console.WriteLine("exists => " + exists);
+
+                if (exists) {
+                    var testmethodPass = false;
+                    var failedMessage = string.Empty;
+                    try {
+                        //invoke testmethod
+                        testClass.GetType().InvokeMember(
+                            method,
+                            BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
+                            null,
+                            testClass,
+                            null
+                            );
+                        testmethodPass = true;
+                    }
+                    catch (Exception ex) {
+                        testmethodPass = false;
+                        testrunPass = false;
+                        failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+                    }
+
+                    var testClassTypeForMessage = testClassType.Split('.').Last();
+                    var restultMessage = string.Format("{0} {1}.{2} {3}",
+                                                       (testmethodPass) ? "Passed" : "Failed",
+                                                       testClassTypeForMessage,
+                                                       method,
+                                                       failedMessage);
+                    Console.WriteLine(restultMessage);
+                }
             }
+            var testrunMessage = string.Format("\nTestrun {0}", (testrunPass) ? "succeeded" : "failed");
+            Console.WriteLine(testrunMessage);
 
-            var testClassTypeForMessage = testClassType.Split('.').Last();
-            var restultMessage = string.Format("{0} {1}.{2} {3}",
-                                               (pass) ? "Passed" : "Failed",
-                                               testClassTypeForMessage,
-                                               testMethod,
-                                               failedMessage);
-            Console.WriteLine(restultMessage);
-            return (pass) ? 0 : 1;
+            return (testrunPass) ? 0 : 1;
         }
-
-        //[DataContract(Name = "executionResult")]
-        //public class ExecutionResult {
-        //    [DataMember(Name = "passed")]
-        //    public bool Passed { get; set; }
-        //}
-
-        
-
-        //textBox1.Text = result.ToString();
-
-        ////Console.WriteLine(result);
-        ////Console.Read();
     }
 }

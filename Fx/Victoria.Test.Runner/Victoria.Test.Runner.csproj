@@ -62,7 +62,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Driverslog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Driverslog">
+      <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Driverslog.dll</HintPath>
+    </Reference>
     <Reference Include="Driverslog.Tests.Unit">
       <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Driverslog.Tests.Unit.dll</HintPath>
     </Reference>
@@ -73,7 +75,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="Victoria.Test, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Victoria.Test">
+      <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Victoria.Test.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

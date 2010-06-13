@@ -18,9 +18,9 @@ namespace Victoria.Test.Console {
         static void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
             Application.DoEvents();
             var browser = (WebBrowser) sender;
-            var testResult = browser.Document.InvokeScript("executeTest");
-            System.Console.WriteLine(testResult);
+            var testResult = browser.Document.InvokeScript("executeTest",new []{"TheTest"});
             Application.Exit();
+            Environment.ExitCode = int.Parse(testResult.ToString());
         }
     }
 }

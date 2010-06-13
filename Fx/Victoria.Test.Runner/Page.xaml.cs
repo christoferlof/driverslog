@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Browser;
@@ -17,32 +18,42 @@ namespace Victoria.Test.Runner {
         }
 
         [ScriptableMember]
-        public string ExecuteTest() {
+        public int ExecuteTest(string testMethod) {
 
-            //var testAssembly = Assembly.Load("Driverslog.Tests.Unit");
-            //var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
-            //var testClass = testAssembly.CreateInstance(testClassType);
+            var testAssembly = Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
+            var testClass = testAssembly.CreateInstance(testClassType);
             
             var pass = false;
+            var failedMessage = string.Empty;
             try {
-                //testClass.GetType().InvokeMember(
-                //    "TheTest", 
-                //    BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, 
-                //    null, 
-                //    testClass,
-                //    null
-                //);
-                var c = new ListViewModelTests();
-                c.TheTest();
+                testClass.GetType().InvokeMember(
+                    testMethod,
+                    BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
+                    null,
+                    testClass,
+                    null
+                );
+                //var c = new ListViewModelTests();
+                //c.TheTest();
                 pass = true;
-            } catch (AssertException) {
-                //assertexception
+            //} catch (AssertException ae) {
+            //    //assertexception
+            //    pass = false;
+            //    failedMessage = ae.Message;
+            } catch (Exception ex) {
                 pass = false;
-            } catch (Exception) {
-                pass = false;
+                failedMessage = string.Format("=> {0}", ex.InnerException.Message);
             }
 
-            return (pass) ? "passed" : "failed";
+            var testClassTypeForMessage = testClassType.Split('.').Last();
+            var restultMessage = string.Format("{0} {1}.{2} {3}",
+                                               (pass) ? "Passed" : "Failed",
+                                               testClassTypeForMessage,
+                                               testMethod,
+                                               failedMessage);
+            Console.WriteLine(restultMessage);
+            return (pass) ? 0 : 1;
         }
 
         //[DataContract(Name = "executionResult")]

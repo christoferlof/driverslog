@@ -13,7 +13,8 @@ namespace Driverslog.Tests.Unit {
 
             var viewModel = new ListViewModel();
 
-            Assert.True(viewModel.TripList.Count == 1);
+            //Assert.True(viewModel.TripList.Count == 1);
+            Assert.Equal(1,viewModel.TripList.Count);
 
             return string.Empty;
         }

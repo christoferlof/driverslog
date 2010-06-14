@@ -8,57 +8,48 @@ namespace Victoria.Test.Runner {
         
         public bool Execute(string testPath) {
             
-            var testrunPass = true;
-
-            //var testClassType = "Driverslog.Tests.Unit.ListViewModelTests";
-            
             var methods = GetTestMethods(testPath);
+            if (methods.Count() == 0) return ExitRun(false, "Couldn't find any matching test methods");
+
+            var testrunPass = true;
 
             foreach (var method in methods) {
 
                 var testClass = Activator.CreateInstance(method.DeclaringType);
 
-                ////check if method exists
-                //var exists = testClass
-                //    .GetType()
-                //    .FindMembers(
-                //        MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance,
-                //        (m, f) => m.Name == f.ToString(), method)
-                //    .Any();
-                //if (!exists) testrunPass = false;
+                var testmethodPass = false;
+                var failedMessage = string.Empty;
+                try {
+                    //invoke testmethod
+                    testClass.GetType().InvokeMember(
+                        method.Name,
+                        BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
+                        null,
+                        testClass,
+                        null
+                        );
+                    testmethodPass = true;
+                } catch (Exception ex) {
+                    testmethodPass = false;
+                    testrunPass = false;
+                    failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+                }
 
-                //if method exists => ok to execute method
-                //if (exists) {
-                    var testmethodPass = false;
-                    var failedMessage = string.Empty;
-                    try {
-                        //invoke testmethod
-                        testClass.GetType().InvokeMember(
-                            method.Name,
-                            BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
-                            null,
-                            testClass,
-                            null
-                            );
-                        testmethodPass = true;
-                    } catch (Exception ex) {
-                        testmethodPass = false;
-                        testrunPass = false;
-                        failedMessage = string.Format("=> {0}", ex.InnerException.Message);
-                    }
-
-                    var restultMessage = string.Format("{0} {1}.{2} {3}",
-                                                        (testmethodPass) ? "Passed" : "Failed",
-                                                        method.DeclaringType.Name,
-                                                        method.Name,
-                                                        failedMessage);
-                    Console.WriteLine(restultMessage);
-                //}
+                var restultMessage = string.Format("{0} {1}.{2} {3}",
+                                                    (testmethodPass) ? "Passed" : "Failed",
+                                                    method.DeclaringType.Name,
+                                                    method.Name,
+                                                    failedMessage);
+                Console.WriteLine(restultMessage);
             }
             
-            var testrunMessage = string.Format("\nTestrun {0}", (testrunPass) ? "succeeded" : "failed");
-            Console.WriteLine(testrunMessage);
+            return ExitRun(testrunPass, string.Empty);
 
+        }
+
+        private bool ExitRun(bool testrunPass, string message) {
+            var testrunMessage = string.Format("\nTestrun {0}. {1}", (testrunPass) ? "succeeded" : "failed", message);
+            Console.WriteLine(testrunMessage);
             return testrunPass;
         }
 
@@ -78,8 +69,8 @@ namespace Victoria.Test.Runner {
                 methods.AddRange(GetTestMethodsInRootNamespace(testPath));
             } else if (testPath.IsBlank()) {
                 methods.AddRange(GetAllTestMethods());
-            } else {
-              throw new ArgumentException("Invalid test path");  
+            //} else {
+            //  throw new ArgumentException("Invalid test path");  
             }
 
             return methods;

@@ -78,6 +78,9 @@
     <Reference Include="Victoria.Test">
       <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Victoria.Test.dll</HintPath>
     </Reference>
+    <Reference Include="Victoria.Test.Tests.Unit">
+      <HintPath>..\Victoria.Test.Tests.Unit\Bin\Debug\Victoria.Test.Tests.Unit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

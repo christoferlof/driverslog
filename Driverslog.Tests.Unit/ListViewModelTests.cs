@@ -6,6 +6,11 @@ using Victoria.Test;
 namespace Driverslog.Tests.Unit {
     public class ListViewModelTests {
 
+        public ListViewModelTests() {
+            Trip.All.Clear();
+            Trip.SaveChanges();
+        }
+
         public void TheTest() {
 
             Trip.All.Add(new Trip());
@@ -20,7 +25,7 @@ namespace Driverslog.Tests.Unit {
 
             var viewModel = new ListViewModel();
 
-            Assert.Equal(1, viewModel.TripList.Count);
+            Assert.Equal(0, viewModel.TripList.Count);
 
         }
 

@@ -5,13 +5,17 @@ using System.Reflection;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
-        
+
+        private int _passedCounter;
+        private int _failedCounter;
+
         public bool Execute(string testPath) {
             
             var methods = GetTestMethods(testPath);
             if (methods.Count() == 0) return ExitRun(false, "Couldn't find any matching test methods");
 
             var testrunPass = true;
+            Console.WriteLine(string.Empty); //new line
 
             foreach (var method in methods) {
 
@@ -29,10 +33,12 @@ namespace Victoria.Test.Runner {
                         null
                         );
                     testmethodPass = true;
+                    _passedCounter++;
                 } catch (Exception ex) {
                     testmethodPass = false;
                     testrunPass = false;
                     failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+                    _failedCounter++;
                 }
 
                 var restultMessage = string.Format("{0} {1}.{2} {3}",
@@ -50,12 +56,15 @@ namespace Victoria.Test.Runner {
         private bool ExitRun(bool testrunPass, string message) {
             var testrunMessage = string.Format("\nTestrun {0}. {1}", (testrunPass) ? "succeeded" : "failed", message);
             Console.WriteLine(testrunMessage);
+            Console.WriteLine(string.Format("{0} tests passed",_passedCounter));
+            Console.WriteLine(string.Format("{0} tests failed", _failedCounter));
             return testrunPass;
         }
 
         private static IEnumerable<Assembly> GetTestAssemblies() {
             return new List<Assembly> {
-                Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+                Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
+                Assembly.Load("Victoria.Test.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
             };
         }
 
@@ -69,8 +78,6 @@ namespace Victoria.Test.Runner {
                 methods.AddRange(GetTestMethodsInRootNamespace(testPath));
             } else if (testPath.IsBlank()) {
                 methods.AddRange(GetAllTestMethods());
-            //} else {
-            //  throw new ArgumentException("Invalid test path");  
             }
 
             return methods;
@@ -80,28 +87,18 @@ namespace Victoria.Test.Runner {
             
             Console.WriteLine("Getting single method: " + testPath);
 
-            var typeSegments = testPath.Split('.');
-
-            var methodName = typeSegments.Last();
-            Console.WriteLine(methodName);
-
-            var declaringType = typeSegments[typeSegments.Count() - 2];
-            Console.WriteLine(declaringType);
-
+            var typeSegments    = testPath.Split('.');
+            var methodName      = typeSegments.Last();
+            var declaringType   = typeSegments[typeSegments.Count() - 2];
             var declaringAssembly = testPath.Substring(0, testPath.IndexOf("Unit")+4);
-            Console.WriteLine(declaringAssembly);
-
-            var assemblies = GetTestAssemblies();
-            var testAssembly = assemblies.Where(a => a.FullName.Contains(declaringAssembly)).Single();
-            Console.WriteLine(testAssembly.FullName);
+            var assemblies      = GetTestAssemblies();
+            var testAssembly    = assemblies.Where(a => a.FullName.Contains(declaringAssembly)).Single();
 
             var testClass = testAssembly
                 .GetExportedTypes()
                 .Where(t => t.Name == declaringType)
                 .Single();
-            Console.WriteLine(testClass.Name);
-
-
+            
             return testClass
                 .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
                 .Where(s => s.Name == methodName)

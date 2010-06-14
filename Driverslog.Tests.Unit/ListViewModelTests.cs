@@ -5,8 +5,8 @@ using Victoria.Test;
 
 namespace Driverslog.Tests.Unit {
     public class ListViewModelTests {
-        
-        public string TheTest() {
+
+        public void TheTest() {
 
             Trip.All.Add(new Trip());
             Trip.SaveChanges();
@@ -14,17 +14,22 @@ namespace Driverslog.Tests.Unit {
             var viewModel = new ListViewModel();
 
             Assert.Equal(1,viewModel.TripList.Count);
-
-            return string.Empty;
         }
 
-        public string TheTestAgain() {
+        public void TheTestAgain() {
 
             var viewModel = new ListViewModel();
 
             Assert.Equal(1, viewModel.TripList.Count);
 
-            return string.Empty;
+        }
+
+        public void FailingTest() {
+            Assert.True(false);
+        }
+
+        public void ExplodingTest() {
+            throw new InvalidOperationException("eek");
         }
     }
 }

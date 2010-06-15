@@ -1,4 +1,5 @@
 using System;
+using Victoria.Test.Exceptions;
 
 namespace Victoria.Test.Tests.Unit {
     public class AssertTests {

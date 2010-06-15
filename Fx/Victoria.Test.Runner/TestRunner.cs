@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Victoria.Test.Exceptions;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
@@ -10,46 +11,62 @@ namespace Victoria.Test.Runner {
         private int _failedCounter;
 
         public bool Execute(string testPath) {
-            
-            var methods = GetTestMethods(testPath);
-            if (methods.Count() == 0) return ExitRun(false, "Couldn't find any matching test methods");
+            try {
 
-            var testrunPass = true;
-            Console.WriteLine(string.Empty); //new line
+                LoadTestAssemblies();
 
-            foreach (var method in methods) {
+                var methods = GetTestMethods(testPath);
+                if (methods.Count() == 0) return ExitRun(false, "Couldn't find any matching test methods");
 
-                var testClass = Activator.CreateInstance(method.DeclaringType);
+                var testrunPass = true;
+                Console.WriteLine(string.Empty); //new line
 
-                var testmethodPass = false;
-                var failedMessage = string.Empty;
-                try {
-                    //invoke testmethod
-                    testClass.GetType().InvokeMember(
-                        method.Name,
-                        BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
-                        null,
-                        testClass,
-                        null
-                        );
-                    testmethodPass = true;
-                    _passedCounter++;
-                } catch (Exception ex) {
-                    testmethodPass = false;
-                    testrunPass = false;
-                    failedMessage = string.Format("=> {0}", ex.InnerException.Message);
-                    _failedCounter++;
+                foreach (var method in methods) {
+
+                    var testClass = Activator.CreateInstance(method.DeclaringType);
+
+                    var testmethodPass = false;
+                    var failedMessage = string.Empty;
+                    try {
+                        //invoke testmethod
+                        testClass.GetType().InvokeMember(
+                            method.Name,
+                            BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
+                            null,
+                            testClass,
+                            null
+                            );
+                        testmethodPass = true;
+                        _passedCounter++;
+                    }
+                    catch (Exception ex) {
+                        testmethodPass = false;
+                        testrunPass = false;
+                        _failedCounter++;
+                        if (ex.InnerException is AssertException) {
+                            failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+                        } else {
+                            failedMessage = string.Format("=> {0}: {1}", ex.InnerException.GetType().Name,
+                                                          ex.InnerException.Message);
+                        }
+                    }
+
+                    var restultMessage = string.Format("{0} {1}.{2} {3}",
+                                                       (testmethodPass) ? "Passed" : "Failed",
+                                                       method.DeclaringType.Name,
+                                                       method.Name,
+                                                       failedMessage);
+                    Console.WriteLine(restultMessage);
                 }
 
-                var restultMessage = string.Format("{0} {1}.{2} {3}",
-                                                    (testmethodPass) ? "Passed" : "Failed",
-                                                    method.DeclaringType.Name,
-                                                    method.Name,
-                                                    failedMessage);
-                Console.WriteLine(restultMessage);
+                return ExitRun(testrunPass, string.Empty);
             }
-            
-            return ExitRun(testrunPass, string.Empty);
+            catch(Exception ex) {
+                Console.WriteLine(string.Empty); //new line
+                Console.WriteLine("Catastrophic failure!");
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
 
         }
 
@@ -61,8 +78,10 @@ namespace Victoria.Test.Runner {
             return testrunPass;
         }
 
-        private static IEnumerable<Assembly> GetTestAssemblies() {
-            return new List<Assembly> {
+        private static IEnumerable<Assembly> _testAssemblies;
+
+        private static void LoadTestAssemblies() {
+            _testAssemblies = new List<Assembly> {
                 Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
                 Assembly.Load("Victoria.Test.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
             };
@@ -91,17 +110,15 @@ namespace Victoria.Test.Runner {
             var methodName      = typeSegments.Last();
             var declaringType   = typeSegments[typeSegments.Count() - 2];
             var declaringAssembly = testPath.Substring(0, testPath.IndexOf("Unit")+4);
-            var assemblies      = GetTestAssemblies();
-            var testAssembly    = assemblies.Where(a => a.FullName.Contains(declaringAssembly)).Single();
+            var testAssembly    = _testAssemblies.Where(a => a.FullName.Contains(declaringAssembly)).Single();
 
             var testClass = testAssembly
                 .GetExportedTypes()
                 .Where(t => t.Name == declaringType)
                 .Single();
 
-            return testClass
-                .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                .Where(s => s.Name == methodName && s.IsMarkedWith<FactAttribute>())
+            return GetTestMethodsInClass(testClass)
+                .Where(s => s.Name == methodName)
                 .Single();
         }
 
@@ -109,42 +126,38 @@ namespace Victoria.Test.Runner {
 
             Console.WriteLine("Getting all methods");
 
-            var assemblies = GetTestAssemblies();
             var methods = new List<MemberInfo>();
-            foreach (var assembly in assemblies) {
 
+            foreach (var assembly in _testAssemblies) {
                 var testClasses = assembly.GetExportedTypes().Where(t => t.Name.EndsWith("Tests"));
-
-                foreach (var testClass in testClasses) {
-                    methods.AddRange(
-                        testClass
-                            .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                            .Where(s => s.IsMarkedWith<FactAttribute>())
-                        );
-                }
+                LoadTestMethodsFromClasses(testClasses, methods);
             }
+
             return methods;
         }
 
         private static IEnumerable<MemberInfo> GetTestMethodsInRootNamespace(string testPath) {
             
             Console.WriteLine("Getting all test methods in root namespace: " + testPath);
-            
-            var assemblies = GetTestAssemblies();
-            var testAssembly = assemblies.Where(a => a.FullName.Contains(testPath)).Single();
 
-            //get all types ending with 'tests' => all test classes
-            var testClasses = testAssembly.GetExportedTypes().Where(t => t.IsClass); //get all public classes
+            var testAssembly    = _testAssemblies.Where(a => a.FullName.Contains(testPath)).Single();
+            var testClasses     = testAssembly.GetExportedTypes().Where(t => t.IsClass);
 
             var methods = new List<MemberInfo>();
-            foreach (var testClass in testClasses) {
-                methods.AddRange(
-                    testClass
-                        .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                        .Where(s => s.IsMarkedWith<FactAttribute>())
-                    );
-            }
+            LoadTestMethodsFromClasses(testClasses,methods);
             return methods;
+        }
+
+        private static void LoadTestMethodsFromClasses(IEnumerable<Type> testClasses, List<MemberInfo> methods) {
+            foreach (var testClass in testClasses) {
+                methods.AddRange(GetTestMethodsInClass(testClass));
+            }
+        }
+
+        private static IEnumerable<MemberInfo> GetTestMethodsInClass(Type testClass) {
+            return testClass
+                .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
+                .Where(s => s.IsMarkedWith<FactAttribute>());
         }
     }
 }

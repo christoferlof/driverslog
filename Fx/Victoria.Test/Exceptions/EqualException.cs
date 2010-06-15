@@ -1,4 +1,4 @@
-﻿namespace Victoria.Test {
+﻿namespace Victoria.Test.Exceptions {
     public class EqualException : AssertException {
 
         public EqualException(object expected, object actual) 

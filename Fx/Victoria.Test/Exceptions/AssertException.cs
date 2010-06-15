@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Victoria.Test {
+namespace Victoria.Test.Exceptions {
     public class AssertException : Exception {
         
         public AssertException() {}

@@ -4,7 +4,8 @@ namespace Victoria.Test.Tests.Unit {
     public class AssertTests {
         
         //test using exceptions - the other tests are based on this one so make sure it works without using the fx.. 
-        public void TestTrueThrows() {
+        [Fact]
+        public void TrueThrows() {
             try {
                 Assert.True(false);
             } catch(Exception ex) {
@@ -16,11 +17,13 @@ namespace Victoria.Test.Tests.Unit {
             throw new InvalidProgramException("Assert.True doesn't throw any exception when false is passed in as argument");
         }
 
-        public void TestTrueDoesntThrow() {
+        [Fact]
+        public void TrueDoesntThrow() {
             Assert.True(true);
         }
 
-        public void TestEqualThrowsOnIntegers() {
+        [Fact]
+        public void EqualThrowsOnIntegers() {
             try {
                 Assert.Equal(1,2);
             } catch(Exception ex) {
@@ -30,7 +33,8 @@ namespace Victoria.Test.Tests.Unit {
             Assert.True(false);
         }
 
-        public void TestEqualDoesntThrowOnIntegers() {
+        [Fact]
+        public void EqualDoesntThrowOnIntegers() {
             Assert.Equal(1,1);            
         }
 

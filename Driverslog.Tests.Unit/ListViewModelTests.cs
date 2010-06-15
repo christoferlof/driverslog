@@ -11,6 +11,7 @@ namespace Driverslog.Tests.Unit {
             Trip.SaveChanges();
         }
 
+        [Fact]
         public void TheTest() {
 
             Trip.All.Add(new Trip());
@@ -21,6 +22,7 @@ namespace Driverslog.Tests.Unit {
             Assert.Equal(1,viewModel.TripList.Count);
         }
 
+        [Fact]
         public void TheTestAgain() {
 
             var viewModel = new ListViewModel();
@@ -29,10 +31,12 @@ namespace Driverslog.Tests.Unit {
 
         }
 
+        [Fact]
         public void FailingTest() {
             Assert.True(false);
         }
 
+        [Fact]
         public void ExplodingTest() {
             throw new InvalidOperationException("eek");
         }

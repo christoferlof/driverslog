@@ -98,10 +98,10 @@ namespace Victoria.Test.Runner {
                 .GetExportedTypes()
                 .Where(t => t.Name == declaringType)
                 .Single();
-            
+
             return testClass
                 .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                .Where(s => s.Name == methodName)
+                .Where(s => s.Name == methodName && s.IsMarkedWith<FactAttribute>())
                 .Single();
         }
 
@@ -119,7 +119,7 @@ namespace Victoria.Test.Runner {
                     methods.AddRange(
                         testClass
                             .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                            .Where(s => s.Name.Contains("Test"))
+                            .Where(s => s.IsMarkedWith<FactAttribute>())
                         );
                 }
             }
@@ -134,14 +134,14 @@ namespace Victoria.Test.Runner {
             var testAssembly = assemblies.Where(a => a.FullName.Contains(testPath)).Single();
 
             //get all types ending with 'tests' => all test classes
-            var testClasses = testAssembly.GetExportedTypes().Where(t => t.Name.EndsWith("Tests"));
+            var testClasses = testAssembly.GetExportedTypes().Where(t => t.IsClass); //get all public classes
 
             var methods = new List<MemberInfo>();
             foreach (var testClass in testClasses) {
                 methods.AddRange(
                     testClass
                         .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                        .Where(s => s.Name.Contains("Test"))
+                        .Where(s => s.IsMarkedWith<FactAttribute>())
                     );
             }
             return methods;

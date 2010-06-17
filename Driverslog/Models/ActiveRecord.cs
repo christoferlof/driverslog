@@ -28,6 +28,10 @@ namespace Driverslog.Models {
             WriteObject(data);
         }
 
+        public static void Clear() {
+            All.Clear();
+        }
+
         private static void WriteObject(DataContainer<TRecord> list) {
             using (var file = GetFile(FileMode.Create)) {
                 GetSerializer().WriteObject(file, list);

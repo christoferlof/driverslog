@@ -9,12 +9,27 @@ namespace Driverslog.Models {
 
         public static Setting Current { 
             get {
-                if(_current == null) {
-                    Load();
-                    _current = All.FirstOrDefault();
-                }
+                EnsureCurrent();
                 return _current;
             }
+        }
+
+        private static void EnsureCurrent() {
+            if (_current == null) {
+                LoadCurrent();
+                if(_current == null) {
+                    CreateCurrent();
+                }
+            }
+        }
+
+        private static void LoadCurrent() {
+            Load();
+            _current = All.FirstOrDefault();
+        }
+
+        private static void CreateCurrent() {
+            _current = new Setting();
         }
 
         [DataMember]

@@ -1,18 +1,18 @@
-using Driverslog.Models;
-using Driverslog.ViewModels;
+using Driverslog.Views;
+using Microsoft.Silverlight.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Driverslog.Tests {
     [TestClass]
-    public class CreateTripViewModelTests {
+    public class CreateTripViewModelTests : SilverlightTest {
         
         [TestMethod]
         public void save_adds_trip() {
 
-            var viewModel = new CreateTripViewModel {Car = "rocco"};
-            viewModel.SaveTripCommand.Execute(null);
+            var createTripView = new CreateTrip();
+            
+            
 
-            Assert.AreEqual(1,Trip.All.Count);
         }
 
     }

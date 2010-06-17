@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Models\ActiveRecordTests.cs" />
     <Compile Include="Models\SettingTests.cs" />
+    <Compile Include="ViewModels\CreateTripViewModelTests.cs" />
     <Compile Include="ViewModels\ListViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

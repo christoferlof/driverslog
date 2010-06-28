@@ -48,8 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Phone.Controls" />
-    <Reference Include="Microsoft.Phone.Controls.Navigation" />
     <Reference Include="Microsoft.Silverlight.Testing">
       <HintPath>..\..\z-lib\SL3_UTF_May\Microsoft.Silverlight.Testing.dll</HintPath>
     </Reference>

@@ -50,22 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Devices">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.Phone">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Phone.Controls">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Phone.Controls.Navigation">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Phone.Shell">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Phone.Tasks">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization">

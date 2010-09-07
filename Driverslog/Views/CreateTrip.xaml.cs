@@ -19,6 +19,7 @@ namespace Driverslog.Views
         public CreateTrip()
         {
             InitializeComponent();
+            DataContext = new CreateTripViewModel();
         }
 
         protected override void OnKeyUp(KeyEventArgs e) {

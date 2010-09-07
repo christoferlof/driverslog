@@ -50,9 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Phone">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="Microsoft.Phone" />
     <Reference Include="System.Runtime.Serialization">
       <Private>False</Private>
     </Reference>

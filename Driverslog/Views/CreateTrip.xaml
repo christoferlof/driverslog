@@ -9,15 +9,12 @@
     xmlns:Shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" 
     SupportedOrientations="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
-    <Controls:PhoneApplicationPage.Resources>
-        <local:CreateTripViewModel x:Key="ViewModel"/>
-    </Controls:PhoneApplicationPage.Resources>
     <Controls:PhoneApplicationPage.ApplicationBar>
         <Shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <Shell:ApplicationBarIconButton IconUri="/Images/check.dark.png" Click="Check_Click"/>
+            <Shell:ApplicationBarIconButton Text="Check" IconUri="/Images/check.dark.png" Click="Check_Click"/>
         </Shell:ApplicationBar>
     </Controls:PhoneApplicationPage.ApplicationBar>
-    <Grid x:Name="LayoutRoot" DataContext="{StaticResource ViewModel}" Background="{StaticResource PhoneBackgroundBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>
             <RowDefinition Height="*"/>

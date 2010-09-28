@@ -93,6 +93,7 @@
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CreateTripTests.cs" />
     <Compile Include="ViewModels\CreateTripViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="Views\CreateTrip.xaml.cs">
@@ -144,6 +145,12 @@
     <DesignData Include="SampleData\ListViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fx\Victoria.Test\Victoria.Test.csproj">
+      <Project>{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}</Project>
+      <Name>Victoria.Test</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

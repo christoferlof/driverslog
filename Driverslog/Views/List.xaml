@@ -8,8 +8,8 @@
     xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
     xmlns:Shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" 
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-	d:DataContext="{d:DesignData /SampleData/ListViewModelSampleData.xaml}"
-	>
+    d:DataContext="{d:DesignData /SampleData/ListViewModelSampleData.xaml}"
+    >
     <Controls:PhoneApplicationPage.ApplicationBar>
         <Shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <Shell:ApplicationBar.MenuItems>
@@ -20,7 +20,7 @@
             <Shell:ApplicationBarIconButton Text="Export" IconUri="/Images/email.dark.png" Click="Export_Click"/>
         </Shell:ApplicationBar>
     </Controls:PhoneApplicationPage.ApplicationBar>
-    <Grid x:Name="LayoutRoot"  Background="{StaticResource PhoneBackgroundBrush}">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="170"/>
             <RowDefinition Height="*"/>
@@ -28,13 +28,14 @@
 
         <!--This is the name of the application and page title-->
         <Grid Grid.Row="0" x:Name="TitleGrid">
-            <TextBlock x:Name="ApplicationName" Text="MY APPLICATION" Style="{StaticResource PhoneTextPageTitle1Style}"/>
-            <TextBlock x:Name="ListName" Text="page title" Style="{StaticResource PhoneTextPageTitle2Style}"/>
+            <TextBlock x:Name="ApplicationName" Text="MY APPLICATION" />
+            <TextBlock x:Name="ListName" Text="page title" />
         </Grid>
 
         <!--This section is empty. Place new content here Grid.Row="1"-->
         <Grid Grid.Row="1" x:Name="ContentGrid">
-            <ListBox ItemsSource="{Binding TripList, Mode=OneWay}" Margin="0,0,0,102">
+            <StackPanel>
+            <ListBox ItemsSource="{Binding TripList, Mode=OneWay}" Margin="0,0,0,69">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -46,8 +47,9 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Content="New Trip" Height="43" Margin="5,0,261,20" VerticalAlignment="Bottom" Click="Button_Click" />
-            <Button Content="Refresh" Height="43" Margin="225,0,41,20" VerticalAlignment="Bottom" Click="Button_Click_1" />
+            <Button Content="New Trip"  Click="Button_Click" />
+            <Button Content="Refresh"  Click="Button_Click_1" />
+            </StackPanel>
         </Grid>
     </Grid>
 </Controls:PhoneApplicationPage>

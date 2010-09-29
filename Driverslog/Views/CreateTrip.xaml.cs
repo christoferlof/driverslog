@@ -30,7 +30,7 @@ namespace Driverslog.Views
             //}
         }
 
-        private void Check_Click(object sender, EventArgs e) {
+        public void Check_Click(object sender, EventArgs e) {
             ((CreateTripViewModel)DataContext).SaveTripCommand.Execute(null);
         }
     }

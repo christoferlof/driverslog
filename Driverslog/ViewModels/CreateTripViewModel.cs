@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Windows;
@@ -46,7 +47,7 @@ namespace Driverslog.ViewModels {
                 OdometerStart   = OdometerStart,
                 OdometerStop    = OdometerStop,
                 To              = To
-            });
+            });     
             Trip.SaveChanges();
         }
     }

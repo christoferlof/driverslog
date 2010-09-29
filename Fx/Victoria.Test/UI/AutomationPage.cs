@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -7,11 +8,10 @@ using Microsoft.Phone.Controls;
 namespace Victoria.Test.UI {
     public class AutomationPage {
 
-        private readonly string _page;
-        private readonly PhoneApplicationFrame _applicationFrame;
+        private readonly string                 _page;
+        private readonly PhoneApplicationFrame  _applicationFrame;
 
         private PhoneApplicationFrame Frame {
-            //get { return Application.Current.RootVisual as PhoneApplicationFrame; }
             get { return _applicationFrame; }
         }
 
@@ -26,6 +26,10 @@ namespace Victoria.Test.UI {
 
         public AutomationElement<T> Find<T>(string controlName) where T : Control {
             return new AutomationElement<T>((T)Page.FindName(controlName));
+        }
+
+        public AutomationApplicationBar ApplicationBar {
+            get {return new AutomationApplicationBar(Page);}
         }
 
         public void Ready(Action action) {

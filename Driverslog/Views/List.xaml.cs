@@ -18,7 +18,6 @@ namespace Driverslog.Views {
     public partial class List : PhoneApplicationPage {
         public List() {
             InitializeComponent();
-            DataContext = new ListViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {

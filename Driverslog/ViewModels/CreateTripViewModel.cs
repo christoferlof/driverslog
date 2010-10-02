@@ -13,13 +13,16 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO.IsolatedStorage;
+using Caliburn.Micro;
 using Driverslog.Commands;
 using Driverslog.Models;
 
 namespace Driverslog.ViewModels {
     public class CreateTripViewModel {
+        private readonly INavigationService _navigationService;
 
-        public CreateTripViewModel() {
+        public CreateTripViewModel(INavigationService navigationService) {
+            _navigationService = navigationService;
             SaveTripCommand = new DelegateCommand(SaveTrip);
         }
 
@@ -49,6 +52,7 @@ namespace Driverslog.ViewModels {
                 To              = To
             });     
             Trip.SaveChanges();
+            _navigationService.Navigate(new Uri("/views/List.xaml", UriKind.Relative));
         }
     }
 }

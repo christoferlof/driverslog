@@ -14,7 +14,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
         [Fact]
         public void should_create_new_trip_on_save() {
 
-            var viewModel = new CreateTripViewModel {
+            var viewModel = new CreateTripViewModel(new NavigationServiceStub()) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",

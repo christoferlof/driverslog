@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>C:\code\driverslog\lib\Caliburn.Micro.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -51,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Models\ActiveRecordTests.cs" />
     <Compile Include="Models\SettingTests.cs" />
+    <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="ViewModels\CreateTripViewModelTests.cs" />
     <Compile Include="ViewModels\ListViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

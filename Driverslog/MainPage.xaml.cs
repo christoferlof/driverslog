@@ -26,12 +26,12 @@ namespace Driverslog {
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
-            
-            var testClass = new CreateTripTests {
-                RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
-            };
 
-            ThreadPool.QueueUserWorkItem(d => testClass.should_hold_to_and_car());
+            //var testClass = new CreateTripTests {
+            //    RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
+            //};
+
+            //ThreadPool.QueueUserWorkItem(d => testClass.should_hold_to_and_car());
         }
     }
 }

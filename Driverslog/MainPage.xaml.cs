@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -26,12 +27,30 @@ namespace Driverslog {
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
+#if INTEGRATIONTEST
+            var testClass = new CreateTripTests {
+                RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
+            };
 
-            //var testClass = new CreateTripTests {
-            //    RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
-            //};
+            var handle = new AutoResetEvent(false);
 
-            //ThreadPool.QueueUserWorkItem(d => testClass.should_hold_to_and_car());
+            ThreadPool.QueueUserWorkItem(d => {
+                Debug.WriteLine("test 1 start");
+                testClass.should_hold_to_and_car();
+                handle.Set();
+                Debug.WriteLine("test 1 end");
+            });
+            
+            handle.WaitOne();
+
+            ThreadPool.QueueUserWorkItem(d => {
+                Debug.WriteLine("test 2 start");
+                testClass.should_hold_to_and_car();
+                Debug.WriteLine("test 2 end");
+            });
+
+#endif
+ 
         }
     }
 }

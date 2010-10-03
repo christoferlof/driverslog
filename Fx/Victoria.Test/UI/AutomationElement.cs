@@ -11,13 +11,15 @@ namespace Victoria.Test.UI {
             _wrapped = wrapped;
         }
 
+        public T Control { get { return _wrapped;}}
+
         private TextChangedEventHandler _waitForTextAction;
         public void WaitForText(Action<string> action) {
 
             var textbox = _wrapped as TextBox;
             _waitForTextAction = (s, e) => {
-                action(textbox.Text);
                 textbox.TextChanged -= _waitForTextAction;
+                action(textbox.Text);
             };
             textbox.TextChanged += _waitForTextAction;
 
@@ -36,6 +38,7 @@ namespace Victoria.Test.UI {
         }
 
         public string GetText() {
+
             var peer = new TextBoxAutomationPeer(_wrapped as TextBox);
             var pattern = (IValueProvider)peer.GetPattern(PatternInterface.Value);
             return pattern.Value;

@@ -35,7 +35,7 @@
         <!--This section is empty. Place new content here Grid.Row="1"-->
         <Grid Grid.Row="1" x:Name="ContentGrid">
             <StackPanel>
-            <ListBox ItemsSource="{Binding TripList, Mode=OneWay}" Margin="0,0,0,69">
+            <ListBox x:Name="thelistbox" ItemsSource="{Binding TripList, Mode=OneWay}" Margin="0,0,0,69">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

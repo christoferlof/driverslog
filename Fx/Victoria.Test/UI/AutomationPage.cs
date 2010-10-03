@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -8,8 +9,8 @@ using Microsoft.Phone.Controls;
 namespace Victoria.Test.UI {
     public class AutomationPage {
 
-        private readonly string                 _page;
-        private readonly PhoneApplicationFrame  _applicationFrame;
+        private readonly string _page;
+        private readonly PhoneApplicationFrame _applicationFrame;
 
         private PhoneApplicationFrame Frame {
             get { return _applicationFrame; }
@@ -29,7 +30,7 @@ namespace Victoria.Test.UI {
         }
 
         public AutomationApplicationBar ApplicationBar {
-            get {return new AutomationApplicationBar(Page);}
+            get { return new AutomationApplicationBar(Page); }
         }
 
         public void Ready(Action action) {
@@ -40,19 +41,31 @@ namespace Victoria.Test.UI {
 
         public void Ready(Action<AutomationPage> action) {
 
-            var handle = new AutoResetEvent(false);
             Frame.Dispatcher.BeginInvoke(() => {
                 _readyAction = (s, e) => {
-
-                    handle.Set();
-                    action(this);
                     Frame.Navigated -= _readyAction;
+                    action(this);
                 };
                 Frame.Navigated += _readyAction;
-                Frame.Navigate(new Uri(_page, UriKind.Relative));
+                Frame.Navigate(new Uri(_page + "?r=" + DateTime.UtcNow.Ticks, UriKind.Relative));
             });
-            handle.WaitOne();
+        }
 
+        private NavigatedEventHandler _waitForNavigationAction;
+
+        public void WaitForNavigation(Action action) {
+            var handle = new AutoResetEvent(false);
+            Frame.Dispatcher.BeginInvoke(() => {
+                _waitForNavigationAction = (s, e) => {
+                    Debug.WriteLine("Wait is over");
+                    Frame.Navigated -= _waitForNavigationAction;
+                    handle.Set();
+                };
+                Frame.Navigated += _waitForNavigationAction;
+            });
+            Debug.WriteLine("Waiting for navigation");
+            action();
+            handle.WaitOne(2000);
         }
     }
 }

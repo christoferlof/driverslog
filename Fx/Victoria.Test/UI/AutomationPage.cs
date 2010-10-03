@@ -50,22 +50,5 @@ namespace Victoria.Test.UI {
                 Frame.Navigate(new Uri(_page + "?r=" + DateTime.UtcNow.Ticks, UriKind.Relative));
             });
         }
-
-        private NavigatedEventHandler _waitForNavigationAction;
-
-        public void WaitForNavigation(Action action) {
-            var handle = new AutoResetEvent(false);
-            Frame.Dispatcher.BeginInvoke(() => {
-                _waitForNavigationAction = (s, e) => {
-                    Debug.WriteLine("Wait is over");
-                    Frame.Navigated -= _waitForNavigationAction;
-                    handle.Set();
-                };
-                Frame.Navigated += _waitForNavigationAction;
-            });
-            Debug.WriteLine("Waiting for navigation");
-            action();
-            handle.WaitOne(2000);
-        }
     }
 }

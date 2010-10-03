@@ -48,9 +48,7 @@ namespace Driverslog {
                 testClass.should_hold_to_and_car();
                 Debug.WriteLine("test 2 end");
             });
-
 #endif
- 
         }
     }
 }

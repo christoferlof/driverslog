@@ -66,6 +66,9 @@
     <Compile Include="IntegrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exceptions\TrueException.cs" />
+    <Compile Include="Runner\MemberInfoExtensions.cs" />
+    <Compile Include="Runner\TestPathExtensions.cs" />
+    <Compile Include="Runner\TestRunner.cs" />
     <Compile Include="UI\AutomationApplicationBar.cs" />
     <Compile Include="UI\AutomationApplicationBarIconButton.cs" />
     <Compile Include="UI\AutomationElement.cs" />

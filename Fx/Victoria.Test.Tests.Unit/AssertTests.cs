@@ -4,7 +4,7 @@ using Victoria.Test.Exceptions;
 namespace Victoria.Test.Tests.Unit {
     public class AssertTests {
         
-        //test using exceptions - the other tests are based on this one so make sure it works without using the fx.. 
+        //test using exceptions - the other tests depend on assert.true so make sure it works without using the fx.. 
         [Fact]
         public void TrueThrows() {
             try {

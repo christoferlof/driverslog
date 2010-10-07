@@ -3,20 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Victoria.Test.Exceptions;
+using Victoria.Test.Tests.Unit.Runner;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
+        private readonly TestMethodResolver _testMethodResolver;
 
         private int _passedCounter;
         private int _failedCounter;
 
+        /// <summary>
+        /// Creates the testrunner with default TestMethodResolver
+        /// </summary>
+        public TestRunner()
+            : this(new TestMethodResolver(new TestAssemblyResolver())) {}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="testMethodResolver"></param>
+        public TestRunner(TestMethodResolver testMethodResolver) {
+            _testMethodResolver = testMethodResolver;
+        }
+
+        /// <summary>
+        /// Executes the suite of tests
+        /// </summary>
+        /// <param name="testPath">The path of the test(s) to execute.</param>
+        /// <returns>True if the testrun succeeded; otherwise false.</returns>
+        /// <remarks>
+        /// Supported test paths are
+        ///   - Full path to single testmethod. Will execute single testmethod. name.space.Tests.Unit.testmethod
+        ///   - Root namespace. Will execute all tests within that project. 
+        ///     By convention the project namespace must end with "Tests.Unit". name.space.Tests.Unit
+        ///   - Empty. Will execute all testmethods found in the assemblies that are returned by the TestAssemblyResolver.
+        /// </remarks>
         public bool Execute(string testPath) {
             try {
 
-                LoadTestAssemblies();
+                _testMethodResolver.LoadTestAssemblies();
 
-                var methods = GetTestMethods(testPath);
-                if (methods.Count() == 0) return ExitRun(false, "Couldn't find any matching test methods");
+                var methods = _testMethodResolver.GetTestMethods(testPath);
+                if (!methods.Any()) return ExitRun(false, "Couldn't find any matching test methods");
 
                 var testrunPass = true;
                 Console.WriteLine(string.Empty); //new line
@@ -38,8 +66,7 @@ namespace Victoria.Test.Runner {
                             );
                         testmethodPass = true;
                         _passedCounter++;
-                    }
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         testmethodPass = false;
                         testrunPass = false;
                         _failedCounter++;
@@ -76,88 +103,6 @@ namespace Victoria.Test.Runner {
             Console.WriteLine(string.Format("{0} tests passed",_passedCounter));
             Console.WriteLine(string.Format("{0} tests failed", _failedCounter));
             return testrunPass;
-        }
-
-        private static IEnumerable<Assembly> _testAssemblies;
-
-        private static void LoadTestAssemblies() {
-            _testAssemblies = new List<Assembly> {
-                Assembly.Load("Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"),
-                Assembly.Load("Victoria.Test.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
-            };
-        }
-
-        private static IEnumerable<MemberInfo> GetTestMethods(string testPath) {
-
-            var methods = new List<MemberInfo>();
-           
-            if (testPath.IsMethod()) {
-                methods.Add(GetTestMethod(testPath));
-            } else if (testPath.IsRootNamespace()) {
-                methods.AddRange(GetTestMethodsInRootNamespace(testPath));
-            } else if (testPath.IsBlank()) {
-                methods.AddRange(GetAllTestMethods());
-            }
-
-            return methods;
-        }
-
-        private static MemberInfo GetTestMethod(string testPath) {
-            
-            Console.WriteLine("Getting single method: " + testPath);
-
-            var typeSegments    = testPath.Split('.');
-            var methodName      = typeSegments.Last();
-            var declaringType   = typeSegments[typeSegments.Count() - 2];
-            var declaringAssembly = testPath.Substring(0, testPath.IndexOf("Unit")+4);
-            var testAssembly    = _testAssemblies.Where(a => a.FullName.Contains(declaringAssembly)).Single();
-
-            var testClass = testAssembly
-                .GetExportedTypes()
-                .Where(t => t.Name == declaringType)
-                .Single();
-
-            return GetTestMethodsInClass(testClass)
-                .Where(s => s.Name == methodName)
-                .Single();
-        }
-
-        private static IEnumerable<MemberInfo> GetAllTestMethods() {
-
-            Console.WriteLine("Getting all methods");
-
-            var methods = new List<MemberInfo>();
-
-            foreach (var assembly in _testAssemblies) {
-                var testClasses = assembly.GetExportedTypes().Where(t => t.Name.EndsWith("Tests"));
-                LoadTestMethodsFromClasses(testClasses, methods);
-            }
-
-            return methods;
-        }
-
-        private static IEnumerable<MemberInfo> GetTestMethodsInRootNamespace(string testPath) {
-            
-            Console.WriteLine("Getting all test methods in root namespace: " + testPath);
-
-            var testAssembly    = _testAssemblies.Where(a => a.FullName.Contains(testPath)).Single();
-            var testClasses     = testAssembly.GetExportedTypes().Where(t => t.IsClass);
-
-            var methods = new List<MemberInfo>();
-            LoadTestMethodsFromClasses(testClasses,methods);
-            return methods;
-        }
-
-        private static void LoadTestMethodsFromClasses(IEnumerable<Type> testClasses, List<MemberInfo> methods) {
-            foreach (var testClass in testClasses) {
-                methods.AddRange(GetTestMethodsInClass(testClass));
-            }
-        }
-
-        private static IEnumerable<MemberInfo> GetTestMethodsInClass(Type testClass) {
-            return testClass
-                .FindMembers(MemberTypes.Method, BindingFlags.Public | BindingFlags.Instance, null, null)
-                .Where(s => s.IsMarkedWith<FactAttribute>());
         }
     }
 }

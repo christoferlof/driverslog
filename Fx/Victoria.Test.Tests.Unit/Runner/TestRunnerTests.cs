@@ -8,36 +8,51 @@ using Victoria.Test.Runner;
 namespace Victoria.Test.Tests.Unit.Runner {
     public class TestRunnerTests {
     
+        FakeMethodResolver _methodResolver  = new FakeMethodResolver();
+        string _failingMethod               = "this_is_a_failing_test_for_testing";
+        string _testClass                   = "Victoria.Test.Tests.Unit.Runner.TestRunnerTests";
+        FakeOutputWriter _outputWriter      = new FakeOutputWriter();
+
         [Fact]
         public void should_return_success_when_all_tests_pass() {
             var methodResolver = new TestMethodResolver(new FakeAssemblyResolver());
-            var runner = new TestRunner(methodResolver,new FakeOutputWriter());
+            var runner = new TestRunner(methodResolver,_outputWriter);
             var testMethod = "Victoria.Test.Tests.Unit.AssertTests.TrueThrows";
             var result = runner.Execute(testMethod);
 
             Assert.True(result);
         }
 
+        private TestRunner CreateRunner() {
+            return new TestRunner(_methodResolver,_outputWriter);
+        }
+
+        private bool ExecuteFailingRunner() {
+            var runner = CreateRunner();
+            var testPath = _testClass + "." + _failingMethod;
+            return runner.Execute(testPath);
+        }
+
         [Fact]
         public void should_return_failure_when_a_single_test_fails() {
-            var methodResolver = new FakeMethodResolver();
-            var runner = new TestRunner(methodResolver, new FakeOutputWriter());
-            var testMethod = "Victoria.Test.Tests.Unit.Runner.TestRunnerTests.this_is_a_failing_test_for_testing";
-            var result = runner.Execute(testMethod);
-
+            var result = ExecuteFailingRunner();
             Assert.True(!result);
         }
 
         [Fact]
         public void should_output_executing_test_case() {
-            var outputWriter = new FakeOutputWriter();
-            var methodResolver = new FakeMethodResolver();
-            var runner = new TestRunner(methodResolver, outputWriter);
-            var testMethod = "Victoria.Test.Tests.Unit.Runner.TestRunnerTests.this_is_a_failing_test_for_testing";
-            runner.Execute(testMethod);
+            
+            ExecuteFailingRunner();
 
-            Assert.True(outputWriter.Output.Where(x => x.Contains("this_is_a_failing_test_for_testing")).Any());
+            Assert.True(_outputWriter.Output.Where(x => x.Contains("this_is_a_failing_test_for_testing")).Any());
 
+        }
+
+        [Fact]
+        public void should_output_testrun_result() {
+            ExecuteFailingRunner();
+
+            Assert.True(_outputWriter.Output.Where(x => x.Contains("Testrun failed")).Any());
         }
 
         #region fakes

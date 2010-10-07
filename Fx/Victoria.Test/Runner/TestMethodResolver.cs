@@ -39,8 +39,6 @@ namespace Victoria.Test.Runner {
 
         public virtual MemberInfo GetTestMethod(string testPath) {
 
-            Console.WriteLine("Getting single method: " + testPath);
-
             var typeSegments = testPath.Split('.');
             var methodName = typeSegments.Last();
             var declaringType = typeSegments[typeSegments.Count() - 2];
@@ -59,8 +57,6 @@ namespace Victoria.Test.Runner {
 
         public IEnumerable<MemberInfo> GetAllTestMethods() {
 
-            Console.WriteLine("Getting all methods");
-
             var methods = new List<MemberInfo>();
 
             foreach (var assembly in TestAssemblies) {
@@ -72,8 +68,6 @@ namespace Victoria.Test.Runner {
         }
 
         public IEnumerable<MemberInfo> GetTestMethodsInRootNamespace(string testPath) {
-
-            Console.WriteLine("Getting all test methods in root namespace: " + testPath);
 
             var testAssembly = TestAssemblies.Where(a => a.FullName.Contains(testPath)).Single();
             var testClasses = testAssembly.GetExportedTypes().Where(t => t.IsClass);

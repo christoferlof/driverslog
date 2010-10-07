@@ -7,23 +7,28 @@ using Victoria.Test.Tests.Unit.Runner;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
+
         private readonly TestMethodResolver _testMethodResolver;
+        private readonly OutputWriter       _outputWriter;
 
         private int _passedCounter;
         private int _failedCounter;
 
         /// <summary>
-        /// Creates the testrunner with default TestMethodResolver
+        /// Creates the testrunner with default TestMethodResolver and a ConsoleOutputWriter
         /// </summary>
-        public TestRunner()
-            : this(new TestMethodResolver(new TestAssemblyResolver())) {}
+        public TestRunner() : this( 
+                new TestMethodResolver(new TestAssemblyResolver()),
+                new ConsoleOutputWriter()) {}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="testMethodResolver"></param>
-        public TestRunner(TestMethodResolver testMethodResolver) {
+        /// <param name="outputWriter"></param>
+        public TestRunner(TestMethodResolver testMethodResolver, OutputWriter outputWriter) {
             _testMethodResolver = testMethodResolver;
+            _outputWriter = outputWriter;
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace Victoria.Test.Runner {
                 if (!methods.Any()) return ExitRun(false, "Couldn't find any matching test methods");
 
                 var testrunPass = true;
-                Console.WriteLine(string.Empty); //new line
+                _outputWriter.Write(string.Empty); //new line
 
                 foreach (var method in methods) {
 
@@ -83,15 +88,15 @@ namespace Victoria.Test.Runner {
                                                        method.DeclaringType.Name,
                                                        method.Name,
                                                        failedMessage);
-                    Console.WriteLine(restultMessage);
+                    _outputWriter.Write(restultMessage);
                 }
 
                 return ExitRun(testrunPass, string.Empty);
             }
             catch(Exception ex) {
-                Console.WriteLine(string.Empty); //new line
-                Console.WriteLine("Catastrophic failure!");
-                Console.WriteLine(ex.ToString());
+                _outputWriter.Write(string.Empty); //new line
+                _outputWriter.Write("Catastrophic failure!");
+                _outputWriter.Write(ex.ToString());
                 return false;
             }
 
@@ -99,9 +104,9 @@ namespace Victoria.Test.Runner {
 
         private bool ExitRun(bool testrunPass, string message) {
             var testrunMessage = string.Format("\nTestrun {0}. {1}", (testrunPass) ? "succeeded" : "failed", message);
-            Console.WriteLine(testrunMessage);
-            Console.WriteLine(string.Format("{0} tests passed",_passedCounter));
-            Console.WriteLine(string.Format("{0} tests failed", _failedCounter));
+            _outputWriter.Write(testrunMessage);
+            _outputWriter.Write(string.Format("{0} tests passed", _passedCounter));
+            _outputWriter.Write(string.Format("{0} tests failed", _failedCounter));
             return testrunPass;
         }
     }

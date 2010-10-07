@@ -23,7 +23,10 @@ namespace Victoria.Test.Runner {
 
         [ScriptableMember]
         public int ExecuteTest(string testMethod) {
-            return (new TestRunner(new TestMethodResolver(new TestAssemblyResolver())).Execute(testMethod)) ? 0 : 1;
+            return (new TestRunner(
+                new TestMethodResolver(new TestAssemblyResolver()),
+                new ConsoleOutputWriter())
+                .Execute(testMethod)) ? 0 : 1;
         }
 
         

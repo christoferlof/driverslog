@@ -51,44 +51,20 @@ namespace Victoria.Test.Runner {
                 var methods = _testMethodResolver.GetTestMethods(testPath);
                 if (!methods.Any()) return ExitRun(false, "Couldn't find any matching test methods");
 
-                var testrunPass = true;
                 _outputWriter.Write(string.Empty); //new line
 
+                var testrunPass = true;
                 foreach (var method in methods) {
 
-                    var testClass = Activator.CreateInstance(method.DeclaringType);
-
-                    var testmethodPass = false;
-                    var failedMessage = string.Empty;
-                    try {
-                        //invoke testmethod
-                        testClass.GetType().InvokeMember(
-                            method.Name,
-                            BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
-                            null,
-                            testClass,
-                            null
-                            );
-                        testmethodPass = true;
-                        _passedCounter++;
-                    } catch (Exception ex) {
-                        testmethodPass = false;
+                    var methodResult = ExecuteMethod(method);
+                    if(!methodResult) {
                         testrunPass = false;
-                        _failedCounter++;
-                        if (ex.InnerException is AssertException) {
-                            failedMessage = string.Format("=> {0}", ex.InnerException.Message);
-                        } else {
-                            failedMessage = string.Format("=> {0}: {1}", ex.InnerException.GetType().Name,
-                                                          ex.InnerException.Message);
-                        }
+                        _failedCounter ++;
+                    }
+                    if (methodResult) {
+                        _passedCounter++;
                     }
 
-                    var restultMessage = string.Format("{0} {1}.{2} {3}",
-                                                       (testmethodPass) ? "Passed" : "Failed",
-                                                       method.DeclaringType.Name,
-                                                       method.Name,
-                                                       failedMessage);
-                    _outputWriter.Write(restultMessage);
                 }
 
                 return ExitRun(testrunPass, string.Empty);
@@ -100,6 +76,55 @@ namespace Victoria.Test.Runner {
                 return false;
             }
 
+        }
+
+        private bool ExecuteMethod(MemberInfo method) {
+
+            var testObject = Activator.CreateInstance(method.DeclaringType);
+
+            var testmethodPass = false;
+            var failedMessage = string.Empty;
+            try {
+                InvokeTestMethod(method, testObject);
+                testmethodPass = true;
+            }
+            catch (Exception ex) {
+                failedMessage = HandleTestMethodException(ex);
+                testmethodPass = false;
+            }
+
+            var restultMessage = FormatRestultMessage(method, testmethodPass, failedMessage);
+            _outputWriter.Write(restultMessage);
+            return testmethodPass;
+        }
+
+        private void InvokeTestMethod(MemberInfo method, object testClass) {
+            testClass.GetType().InvokeMember(
+                method.Name,
+                BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
+                null,
+                testClass,
+                null
+                );
+        }
+
+        private string FormatRestultMessage(MemberInfo method, bool testmethodPass, string failedMessage) {
+            return string.Format("{0} {1}.{2} {3}",
+                                 (testmethodPass) ? "Passed" : "Failed",
+                                 method.DeclaringType.Name,
+                                 method.Name,
+                                 failedMessage);
+        }
+
+        private string HandleTestMethodException(Exception ex) {
+            string failedMessage;
+            if (ex.InnerException is AssertException) {
+                failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+            } else {
+                failedMessage = string.Format("=> {0}: {1}", ex.InnerException.GetType().Name,
+                                              ex.InnerException.Message);
+            }
+            return failedMessage;
         }
 
         private bool ExitRun(bool testrunPass, string message) {

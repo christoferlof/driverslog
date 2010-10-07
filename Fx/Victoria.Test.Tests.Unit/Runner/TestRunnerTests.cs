@@ -41,17 +41,13 @@ namespace Victoria.Test.Tests.Unit.Runner {
 
         [Fact]
         public void should_output_executing_test_case() {
-            
             ExecuteFailingRunner();
-
             Assert.True(_outputWriter.Output.Where(x => x.Contains("this_is_a_failing_test_for_testing")).Any());
-
         }
 
         [Fact]
         public void should_output_testrun_result() {
             ExecuteFailingRunner();
-
             Assert.True(_outputWriter.Output.Where(x => x.Contains("Testrun failed")).Any());
         }
 

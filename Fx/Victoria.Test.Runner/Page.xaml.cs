@@ -7,8 +7,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
-using Driverslog.Tests.Unit;
-using Victoria.Test;
 using Victoria.Test.Tests.Unit.Runner;
 
 namespace Victoria.Test.Runner {

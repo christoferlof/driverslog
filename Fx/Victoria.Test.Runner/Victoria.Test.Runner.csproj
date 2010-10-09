@@ -62,12 +62,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Driverslog">
-      <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Driverslog.dll</HintPath>
-    </Reference>
-    <Reference Include="Driverslog.Tests.Unit">
-      <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Driverslog.Tests.Unit.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -77,9 +71,6 @@
     <Reference Include="System.Windows.Browser" />
     <Reference Include="Victoria.Test">
       <HintPath>..\..\Driverslog.Tests.Unit\Bin\Debug\Victoria.Test.dll</HintPath>
-    </Reference>
-    <Reference Include="Victoria.Test.Tests.Unit">
-      <HintPath>..\Victoria.Test.Tests.Unit\Bin\Debug\Victoria.Test.Tests.Unit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

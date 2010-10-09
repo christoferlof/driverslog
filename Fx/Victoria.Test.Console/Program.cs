@@ -11,8 +11,12 @@ namespace Victoria.Test.Console {
 
         [STAThread]
         private static void Main(string[] args) {
+            Packager.CreatePackage();
+            ExecuteTests(args);
+        }
 
-            if(args != null) {
+        private static void ExecuteTests(string[] args) {
+            if (args != null) {
                 _testMethods = string.Join("|", args);
             }
 

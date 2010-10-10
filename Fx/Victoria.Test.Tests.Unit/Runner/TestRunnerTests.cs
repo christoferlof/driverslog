@@ -58,6 +58,11 @@ namespace Victoria.Test.Tests.Unit.Runner {
         }
 
         public class FakeAssemblyResolver : TestAssemblyResolver {
+
+            public FakeAssemblyResolver() : this(string.Empty) {}
+            
+            public FakeAssemblyResolver(string manifest) : base(manifest) {}
+
             public override IEnumerable<string> GetTestAssemblies() {
                 return new []{GetType().Assembly.FullName};
             }

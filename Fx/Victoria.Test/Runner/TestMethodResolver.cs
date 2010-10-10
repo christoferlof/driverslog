@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
-using Victoria.Test.Tests.Unit.Runner;
 
 namespace Victoria.Test.Runner {
     public class TestMethodResolver {

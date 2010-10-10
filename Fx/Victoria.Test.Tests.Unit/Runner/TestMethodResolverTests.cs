@@ -6,9 +6,9 @@ namespace Victoria.Test.Tests.Unit.Runner {
 
         [Fact]
         public void should_load_test_assemblies_provided_by_assembly_resolver() {
-            var methodsResolver = new TestMethodResolver(new TestAssemblyResolver());
+            var methodsResolver = new TestMethodResolver(new TestRunnerTests.FakeAssemblyResolver());
             methodsResolver.LoadTestAssemblies();
-            Assert.Equal(2,methodsResolver.TestAssemblies.Count());
+            Assert.Equal(1,methodsResolver.TestAssemblies.Count());
         }
     }
 }

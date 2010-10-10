@@ -7,7 +7,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Browser;
 using System.Windows.Controls;
-using Victoria.Test.Tests.Unit.Runner;
+using System.Windows.Resources;
 
 namespace Victoria.Test.Runner {
     public partial class Page : UserControl {
@@ -22,11 +22,20 @@ namespace Victoria.Test.Runner {
         [ScriptableMember]
         public int ExecuteTest(string testMethod) {
             return (new TestRunner(
-                new TestMethodResolver(new TestAssemblyResolver()),
+                new TestMethodResolver(new TestAssemblyResolver(GetManifest())),
                 new ConsoleOutputWriter())
                 .Execute(testMethod)) ? 0 : 1;
         }
 
-        
+        private string GetManifest() {
+            StreamResourceInfo manifest = Application.GetResourceStream(
+                new Uri("AppManifest.xaml", UriKind.Relative));
+            
+            string content;
+            using (var reader = new StreamReader(manifest.Stream)) {
+                content = reader.ReadToEnd();
+            }
+            return content;
+        }
     }
 }

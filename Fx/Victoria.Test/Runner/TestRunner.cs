@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Victoria.Test.Exceptions;
-using Victoria.Test.Tests.Unit.Runner;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
@@ -13,13 +12,6 @@ namespace Victoria.Test.Runner {
 
         private int _passedCounter;
         private int _failedCounter;
-
-        /// <summary>
-        /// Creates the testrunner with default TestMethodResolver and a ConsoleOutputWriter
-        /// </summary>
-        public TestRunner() : this( 
-                new TestMethodResolver(new TestAssemblyResolver()),
-                new ConsoleOutputWriter()) {}
 
         /// <summary>
         /// 

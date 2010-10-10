@@ -1,12 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
-namespace Victoria.Test.Tests.Unit.Runner {
+namespace Victoria.Test.Runner {
     public class TestAssemblyResolver {
+        
+        private readonly string _manifest;
+        private static readonly XNamespace Xns = "http://schemas.microsoft.com/winfx/2006/xaml";
+
+        public TestAssemblyResolver(string manifest) {
+            _manifest = manifest;
+        }
+
         public virtual IEnumerable<string> GetTestAssemblies() {
-            return new[] {
-                "Driverslog.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "Victoria.Test.Tests.Unit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-            };
+            
+            var manifest = XElement.Load(new StringReader(_manifest));
+            var testAssemblies = from a in manifest.Elements().Elements()
+                                 where a.Attribute(Xns + "Name").Value.Contains("Tests")
+                                 select a.Attribute(Xns + "Name").Value;
+
+            return testAssemblies.ToList();
         }
     }
 }

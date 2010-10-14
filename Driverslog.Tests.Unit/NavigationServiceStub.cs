@@ -4,9 +4,13 @@ using Caliburn.Micro;
 
 namespace Driverslog.Tests.Unit {
     public class NavigationServiceStub : INavigationService {
+        
+        public Uri NavigateUri;
+
         public bool Navigate(Uri source) {
             CurrentSource = source;
             Source = source;
+            NavigateUri = source;
             return true;
         }
 

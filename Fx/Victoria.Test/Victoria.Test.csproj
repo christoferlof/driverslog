@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assert.cs" />
+    <Compile Include="ContextSpecification.cs" />
     <Compile Include="Exceptions\AssertException.cs" />
     <Compile Include="Exceptions\EqualException.cs" />
     <Compile Include="FactAttribute.cs" />

@@ -59,7 +59,7 @@ namespace Victoria.Test.Runner {
             var methods = new List<MemberInfo>();
 
             foreach (var assembly in TestAssemblies) {
-                var testClasses = assembly.GetExportedTypes().Where(t => t.Name.EndsWith("Tests"));
+                var testClasses = assembly.GetExportedTypes(); //.Where(t => t.Name.EndsWith("Tests"))
                 LoadTestMethodsFromClasses(testClasses, methods);
             }
 

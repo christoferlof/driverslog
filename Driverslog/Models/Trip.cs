@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]

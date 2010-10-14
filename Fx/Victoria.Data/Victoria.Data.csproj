@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{455D0460-E641-4EFB-A55E-A97506BCDF60}</ProjectGuid>
+    <ProjectGuid>{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Driverslog.Tests.Unit</RootNamespace>
-    <AssemblyName>Driverslog.Tests.Unit</AssemblyName>
+    <RootNamespace>Victoria.Data</RootNamespace>
+    <AssemblyName>Victoria.Data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -34,17 +34,15 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\code\driverslog\lib\Caliburn.Micro.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Servicemodel.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -52,25 +50,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\SettingTests.cs" />
-    <Compile Include="NavigationServiceStub.cs" />
-    <Compile Include="ViewModels\CreateTripViewModelTests.cs" />
-    <Compile Include="ViewModels\ListViewModelTests.cs" />
+    <Compile Include="ActiveRecord.cs" />
+    <Compile Include="DataContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Driverslog\Driverslog.csproj">
-      <Project>{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}</Project>
-      <Name>Driverslog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fx\Victoria.Data\Victoria.Data.csproj">
-      <Project>{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}</Project>
-      <Name>Victoria.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fx\Victoria.Test\Victoria.Test.csproj">
-      <Project>{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}</Project>
-      <Name>Victoria.Test</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

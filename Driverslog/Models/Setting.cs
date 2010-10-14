@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Runtime.Serialization;
+using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]

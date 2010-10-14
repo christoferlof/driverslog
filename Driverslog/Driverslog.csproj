@@ -92,8 +92,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ActiveRecord.cs" />
-    <Compile Include="Models\DataContainer.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="PhoneContainer.cs" />
@@ -153,6 +151,10 @@
     </DesignData>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fx\Victoria.Data\Victoria.Data.csproj">
+      <Project>{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}</Project>
+      <Name>Victoria.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fx\Victoria.Test\Victoria.Test.csproj">
       <Project>{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}</Project>
       <Name>Victoria.Test</Name>

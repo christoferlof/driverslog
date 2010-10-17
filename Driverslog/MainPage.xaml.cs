@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -10,9 +11,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 using Driverslog.Tests;
 using Microsoft.Phone.Controls;
+using Victoria.Test.Runner;
 
 namespace Driverslog {
     public partial class MainPage : PhoneApplicationPage {
@@ -28,6 +31,12 @@ namespace Driverslog {
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
 #if INTEGRATIONTEST
+
+            var runner = new TestRunner(
+                new TestMethodResolver(new TestAssemblyResolver(GetManifest())),
+                new ConsoleOutputWriter());
+            runner.Execute(string.Empty);
+
             var testClass = new CreateTripTests {
                 RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
             };
@@ -49,6 +58,17 @@ namespace Driverslog {
                 Debug.WriteLine("test 2 end");
             });
 #endif
+        }
+
+        private string GetManifest() {
+            StreamResourceInfo manifest = Application.GetResourceStream(
+                new Uri("AppManifest.xaml", UriKind.Relative));
+
+            string content;
+            using (var reader = new StreamReader(manifest.Stream)) {
+                content = reader.ReadToEnd();
+            }
+            return content;
         }
     }
 }

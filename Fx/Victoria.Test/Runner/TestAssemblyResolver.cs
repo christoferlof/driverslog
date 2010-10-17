@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Resources;
 using System.Xml.Linq;
 
 namespace Victoria.Test.Runner {
@@ -15,7 +17,7 @@ namespace Victoria.Test.Runner {
         }
 
         public virtual IEnumerable<string> GetTestAssemblies() {
-            
+
             var manifest = XElement.Load(new StringReader(_manifest));
             var testAssemblies = from a in manifest.Elements().Elements()
                                  where a.Attribute(Xns + "Name").Value.Contains("Tests")

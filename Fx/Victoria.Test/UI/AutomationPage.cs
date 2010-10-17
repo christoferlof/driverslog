@@ -40,7 +40,6 @@ namespace Victoria.Test.UI {
         private NavigatedEventHandler _readyAction;
 
         public void Ready(Action<AutomationPage> action) {
-
             Frame.Dispatcher.BeginInvoke(() => {
                 _readyAction = (s, e) => {
                     Frame.Navigated -= _readyAction;

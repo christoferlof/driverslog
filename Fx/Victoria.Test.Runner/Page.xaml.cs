@@ -30,7 +30,7 @@ namespace Victoria.Test.Runner {
         private string GetManifest() {
             StreamResourceInfo manifest = Application.GetResourceStream(
                 new Uri("AppManifest.xaml", UriKind.Relative));
-            
+
             string content;
             using (var reader = new StreamReader(manifest.Stream)) {
                 content = reader.ReadToEnd();

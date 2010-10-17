@@ -2,7 +2,7 @@ using System;
 using System.Windows.Navigation;
 using Caliburn.Micro;
 
-namespace Driverslog.Tests.Unit {
+namespace Victoria.Test {
     public class NavigationServiceStub : INavigationService {
         
         public Uri NavigateUri;

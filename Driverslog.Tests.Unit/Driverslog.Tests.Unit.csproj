@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\SettingTests.cs" />
-    <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="ViewModels\when_saving_trip.cs" />
     <Compile Include="ViewModels\ListViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

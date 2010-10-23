@@ -59,6 +59,7 @@
     <Compile Include="ContextSpecificationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runner\MemberInfoExtensionsTests.cs" />
+    <Compile Include="Runner\StaticAssemblyResolverTests.cs" />
     <Compile Include="Runner\TestAssemblyResolverTests.cs" />
     <Compile Include="Runner\TestMethodResolverTests.cs" />
     <Compile Include="Runner\TestRunnerTests.cs" />

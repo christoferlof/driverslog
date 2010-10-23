@@ -7,7 +7,7 @@ using System.Windows.Resources;
 using System.Xml.Linq;
 
 namespace Victoria.Test.Runner {
-    public class TestAssemblyResolver {
+    public class TestAssemblyResolver : IAssemblyResolver {
         
         private readonly string _manifest;
         private static readonly XNamespace Xns = "http://schemas.microsoft.com/winfx/2006/xaml";

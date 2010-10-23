@@ -4,7 +4,7 @@ using Driverslog.ViewModels;
 using Victoria.Test;
 
 namespace Driverslog.Tests.Unit.ViewModels {
-    public class when_saving_trip : ContextSpecification {
+    public class when_saving_trip_spec : ContextSpecification {
         
         protected CreateTripViewModel   ViewModel;
         protected NavigationServiceStub NavigationService;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Victoria.Test.Runner {
     public abstract class OutputWriter {
@@ -10,6 +11,12 @@ namespace Victoria.Test.Runner {
     public class ConsoleOutputWriter : OutputWriter {
         public override void Write(string message) {
             Console.WriteLine(message);
+        }
+    }
+
+    public class DebugOutputWriter : OutputWriter {
+        public override void Write(string message) {
+            Debug.WriteLine(message);
         }
     }
 }

@@ -32,43 +32,35 @@ namespace Driverslog {
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
 #if INTEGRATIONTEST
 
-            var runner = new TestRunner(
-                new TestMethodResolver(new TestAssemblyResolver(GetManifest())),
-                new ConsoleOutputWriter());
+            var runner = new IntegrationTestRunner(
+                new TestMethodResolver(
+                    new StaticAssemblyResolver(GetType())),
+                    new DebugOutputWriter(),
+                    (PhoneApplicationFrame)Application.Current.RootVisual);
+            
             runner.Execute(string.Empty);
 
-            var testClass = new CreateTripTests {
-                RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
-            };
+            //var testClass = new CreateTripTests {
+            //    RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
+            //};
 
-            var handle = new AutoResetEvent(false);
+            //var handle = new AutoResetEvent(false);
 
-            ThreadPool.QueueUserWorkItem(d => {
-                Debug.WriteLine("test 1 start");
-                testClass.should_hold_to_and_car();
-                handle.Set();
-                Debug.WriteLine("test 1 end");
-            });
+            //ThreadPool.QueueUserWorkItem(d => {
+            //    Debug.WriteLine("test 1 start");
+            //    testClass.should_hold_to_and_car();
+            //    handle.Set();
+            //    Debug.WriteLine("test 1 end");
+            //});
             
-            handle.WaitOne();
+            //handle.WaitOne();
 
-            ThreadPool.QueueUserWorkItem(d => {
-                Debug.WriteLine("test 2 start");
-                testClass.should_hold_to_and_car();
-                Debug.WriteLine("test 2 end");
-            });
+            //ThreadPool.QueueUserWorkItem(d => {
+            //    Debug.WriteLine("test 2 start");
+            //    testClass.should_hold_to_and_car();
+            //    Debug.WriteLine("test 2 end");
+            //});
 #endif
-        }
-
-        private string GetManifest() {
-            StreamResourceInfo manifest = Application.GetResourceStream(
-                new Uri("AppManifest.xaml", UriKind.Relative));
-
-            string content;
-            using (var reader = new StreamReader(manifest.Stream)) {
-                content = reader.ReadToEnd();
-            }
-            return content;
         }
     }
 }

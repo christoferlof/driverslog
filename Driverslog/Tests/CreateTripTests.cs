@@ -28,6 +28,19 @@ namespace Driverslog.Tests {
         }
 
         [Fact]
+        public void should_hold_to_and_car_again() {
+            Page("/views/CreateTrip.xaml").Ready(page => {
+
+                page.Find<TextBox>("txtto").SetText("foo");
+                page.Find<TextBox>("txtcar").SetText("bar");
+
+                page.ApplicationBar.Button("Check").Click();
+                
+                Assert.True(false);
+            });
+        }
+
+        [Fact]
         public void should_list_trips() {
             Debug.WriteLine("list");
             Page("/views/List.xaml").Ready(page => {

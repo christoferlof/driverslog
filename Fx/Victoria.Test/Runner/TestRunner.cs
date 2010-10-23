@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using Microsoft.Phone.Controls;
 using Victoria.Test.Exceptions;
 
 namespace Victoria.Test.Runner {
     public class TestRunner {
 
         private readonly TestMethodResolver _testMethodResolver;
-        private readonly OutputWriter       _outputWriter;
+        private readonly OutputWriter _outputWriter;
 
         private int _passedCounter;
         private int _failedCounter;
@@ -49,9 +51,9 @@ namespace Victoria.Test.Runner {
                 foreach (var method in methods) {
 
                     var methodResult = ExecuteMethod(method);
-                    if(!methodResult) {
+                    if (!methodResult) {
                         testrunPass = false;
-                        _failedCounter ++;
+                        _failedCounter++;
                     }
                     if (methodResult) {
                         _passedCounter++;
@@ -60,8 +62,7 @@ namespace Victoria.Test.Runner {
                 }
 
                 return ExitRun(testrunPass, string.Empty);
-            }
-            catch(Exception ex) {
+            } catch (Exception ex) {
                 _outputWriter.Write(string.Empty); //new line
                 _outputWriter.Write("Catastrophic failure!");
                 _outputWriter.Write(ex.ToString());
@@ -72,15 +73,14 @@ namespace Victoria.Test.Runner {
 
         private bool ExecuteMethod(MemberInfo method) {
 
-            var testObject = Activator.CreateInstance(method.DeclaringType);
+            var testObject = CreateInstance(method.DeclaringType);
 
             var testmethodPass = false;
             var failedMessage = string.Empty;
             try {
                 InvokeTestMethod(method, testObject);
                 testmethodPass = true;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 failedMessage = HandleTestMethodException(ex);
                 testmethodPass = false;
             }
@@ -90,14 +90,19 @@ namespace Victoria.Test.Runner {
             return testmethodPass;
         }
 
+        protected virtual object CreateInstance(Type testClass) {
+            return Activator.CreateInstance(testClass);
+        }
+
         private void InvokeTestMethod(MemberInfo method, object testClass) {
+
             testClass.GetType().InvokeMember(
                 method.Name,
                 BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
                 null,
                 testClass,
                 null
-                );
+            );
         }
 
         private string FormatRestultMessage(MemberInfo method, bool testmethodPass, string failedMessage) {

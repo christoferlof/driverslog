@@ -6,9 +6,9 @@ using System.Reflection;
 namespace Victoria.Test.Runner {
     public class TestMethodResolver {
 
-        private readonly TestAssemblyResolver _testAssemblyResolver;
+        private readonly IAssemblyResolver _testAssemblyResolver;
 
-        public TestMethodResolver(TestAssemblyResolver testAssemblyResolver) {
+        public TestMethodResolver(IAssemblyResolver testAssemblyResolver) {
             _testAssemblyResolver = testAssemblyResolver;
         }
 
@@ -59,7 +59,8 @@ namespace Victoria.Test.Runner {
             var methods = new List<MemberInfo>();
 
             foreach (var assembly in TestAssemblies) {
-                var testClasses = assembly.GetExportedTypes(); //.Where(t => t.Name.EndsWith("Tests"))
+                var testClasses = assembly.GetExportedTypes().Where(
+                    t => t.Name.EndsWith("Tests") || t.Name.EndsWith("spec"));
                 LoadTestMethodsFromClasses(testClasses, methods);
             }
 

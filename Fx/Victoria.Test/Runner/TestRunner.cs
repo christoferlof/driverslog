@@ -51,27 +51,17 @@ namespace Victoria.Test.Runner {
 
                 var methods = _testMethodResolver.GetTestMethods(testPath);
                 if (!methods.Any()) return ExitRun(false, "Couldn't find any matching test methods");
-
-                _outputWriter.Write(string.Empty); //new line
                 
                 foreach(var method in methods){                    
                     _waitHandle.Reset();
-
-                    var workItem = new WorkItem(method, _instanceProvider, null);
-                    ThreadPool.QueueUserWorkItem((d) => {
-                        workItem.Complete += OnWorkItemComplete;
-                        workItem.Run();
-                    });
-
+                    WorkItem.Enqueue(method,_instanceProvider,OnWorkItemComplete);
                     _waitHandle.WaitOne();
                 }
                 
                 return ExitRun(TestRunResult(), string.Empty);
             } catch (Exception ex) {
-                _outputWriter.Write(string.Empty); //new line
-                _outputWriter.Write("Catastrophic failure!");
-                _outputWriter.Write(ex.ToString());
-                return false;
+                var msg = string.Format("Catastrophic failure! => {0}",ex);
+                return ExitRun(false,msg);
             }
 
         }

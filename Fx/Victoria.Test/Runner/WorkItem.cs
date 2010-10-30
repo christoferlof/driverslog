@@ -6,16 +6,23 @@ using Victoria.Test.Exceptions;
 namespace Victoria.Test.Runner {
     public class WorkItem {
         
+        public static void Enqueue(MemberInfo method, 
+            ITestClassInstanceProvider instanceProvider, EventHandler<EventArgs> onCompleteCallback) {
+
+            ThreadPool.QueueUserWorkItem((d) => {
+                var workItem = new WorkItem(method, instanceProvider);
+                workItem.Complete += onCompleteCallback;
+                workItem.Run();
+            });
+        }
+
         private readonly ITestClassInstanceProvider _instanceProvider;
 
-        public WorkItem(MemberInfo testMethod, ITestClassInstanceProvider instanceProvider, ManualResetEvent handle) {
+        public WorkItem(MemberInfo testMethod, ITestClassInstanceProvider instanceProvider) {
             
             TestMethod = testMethod;
             _instanceProvider = instanceProvider;
-            Handle = handle;
         }
-
-        public ManualResetEvent Handle { get; private set; }
 
         public MemberInfo TestMethod {get; private set;}
 
@@ -35,7 +42,7 @@ namespace Victoria.Test.Runner {
             }
         }
 
-        protected virtual void InvokeTestMethod(MemberInfo method, object testClass) {
+        protected void InvokeTestMethod(MemberInfo method, object testClass) {
 
             testClass.GetType().InvokeMember(
                 method.Name,

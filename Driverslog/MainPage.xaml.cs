@@ -32,13 +32,15 @@ namespace Driverslog {
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
 #if INTEGRATIONTEST
 
-            var runner = new IntegrationTestRunner(
+            var runner = new TestRunner(
                 new TestMethodResolver(
                     new StaticAssemblyResolver(GetType())),
                     new DebugOutputWriter(),
-                    (PhoneApplicationFrame)Application.Current.RootVisual);
+                    new UITestClassInstanceProvider((PhoneApplicationFrame)Application.Current.RootVisual)
+            );
             
-            runner.Execute(string.Empty);
+            ThreadPool.QueueUserWorkItem((d) => runner.Execute(string.Empty));
+            
 
             //var testClass = new CreateTripTests {
             //    RootFrame = Application.Current.RootVisual as PhoneApplicationFrame

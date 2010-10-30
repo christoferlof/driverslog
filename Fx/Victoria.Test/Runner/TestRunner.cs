@@ -11,18 +11,25 @@ namespace Victoria.Test.Runner {
 
         private readonly TestMethodResolver _testMethodResolver;
         private readonly OutputWriter _outputWriter;
+        private readonly ITestClassInstanceProvider _instanceProvider;
 
         private int _passedCounter;
         private int _failedCounter;
+
+        private readonly ManualResetEvent _waitHandle = new ManualResetEvent(false);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="testMethodResolver"></param>
         /// <param name="outputWriter"></param>
-        public TestRunner(TestMethodResolver testMethodResolver, OutputWriter outputWriter) {
+        /// <param name="instanceProvider"></param>
+        public TestRunner(TestMethodResolver testMethodResolver, OutputWriter outputWriter, 
+            ITestClassInstanceProvider instanceProvider) {
+            
             _testMethodResolver = testMethodResolver;
             _outputWriter = outputWriter;
+            _instanceProvider = instanceProvider;
         }
 
         /// <summary>
@@ -46,22 +53,20 @@ namespace Victoria.Test.Runner {
                 if (!methods.Any()) return ExitRun(false, "Couldn't find any matching test methods");
 
                 _outputWriter.Write(string.Empty); //new line
+                
+                foreach(var method in methods){                    
+                    _waitHandle.Reset();
 
-                var testrunPass = true;
-                foreach (var method in methods) {
+                    var workItem = new WorkItem(method, _instanceProvider, null);
+                    ThreadPool.QueueUserWorkItem((d) => {
+                        workItem.Complete += OnWorkItemComplete;
+                        workItem.Run();
+                    });
 
-                    var methodResult = ExecuteMethod(method);
-                    if (!methodResult) {
-                        testrunPass = false;
-                        _failedCounter++;
-                    }
-                    if (methodResult) {
-                        _passedCounter++;
-                    }
-
+                    _waitHandle.WaitOne();
                 }
-
-                return ExitRun(testrunPass, string.Empty);
+                
+                return ExitRun(TestRunResult(), string.Empty);
             } catch (Exception ex) {
                 _outputWriter.Write(string.Empty); //new line
                 _outputWriter.Write("Catastrophic failure!");
@@ -71,58 +76,30 @@ namespace Victoria.Test.Runner {
 
         }
 
-        private bool ExecuteMethod(MemberInfo method) {
+        void OnWorkItemComplete(object sender, EventArgs e) {
 
-            var testObject = CreateInstance(method.DeclaringType);
-
-            var testmethodPass = false;
-            var failedMessage = string.Empty;
             try {
-                InvokeTestMethod(method, testObject);
-                testmethodPass = true;
+                var workItem = (WorkItem)sender;
+                IncrementResult(workItem.Result);
+                _outputWriter.Write(workItem.ResultMessage);
+                _waitHandle.Set();
             } catch (Exception ex) {
-                failedMessage = HandleTestMethodException(ex);
-                testmethodPass = false;
+                _outputWriter.Write(ex.ToString());
             }
-
-            var restultMessage = FormatRestultMessage(method, testmethodPass, failedMessage);
-            _outputWriter.Write(restultMessage);
-            return testmethodPass;
         }
 
-        protected virtual object CreateInstance(Type testClass) {
-            return Activator.CreateInstance(testClass);
-        }
-
-        private void InvokeTestMethod(MemberInfo method, object testClass) {
-
-            testClass.GetType().InvokeMember(
-                method.Name,
-                BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod,
-                null,
-                testClass,
-                null
-            );
-        }
-
-        private string FormatRestultMessage(MemberInfo method, bool testmethodPass, string failedMessage) {
-            return string.Format("{0} {1}.{2} {3}",
-                                 (testmethodPass) ? "Passed" : "Failed",
-                                 method.DeclaringType.Name,
-                                 method.Name,
-                                 failedMessage);
-        }
-
-        private string HandleTestMethodException(Exception ex) {
-            string failedMessage;
-            if (ex.InnerException is AssertException) {
-                failedMessage = string.Format("=> {0}", ex.InnerException.Message);
+        private void IncrementResult(bool result) {
+            if (result) {
+                _passedCounter++;
             } else {
-                failedMessage = string.Format("=> {0}: {1}", ex.InnerException.GetType().Name,
-                                              ex.InnerException.Message);
+                _failedCounter++;
             }
-            return failedMessage;
         }
+
+        private bool TestRunResult() {
+            return _failedCounter == 0;
+        }
+
 
         private bool ExitRun(bool testrunPass, string message) {
             var testrunMessage = string.Format("\nTestrun {0}. {1}", (testrunPass) ? "succeeded" : "failed", message);

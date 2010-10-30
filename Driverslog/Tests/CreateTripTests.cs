@@ -19,11 +19,9 @@ namespace Driverslog.Tests {
                 page.Find<TextBox>("txtto").SetText("foo");
                 page.Find<TextBox>("txtcar").SetText("bar");
 
-                //page.WaitForNavigation(() =>
-                    page.ApplicationBar.Button("Check").Click();
-                //);
+                page.ApplicationBar.Button("Check").Click();
                 
-                //Debug.WriteLine(page.Find<TextBox>("txtto").GetText());
+                Assert.True(false);
             });
         }
 
@@ -36,16 +34,14 @@ namespace Driverslog.Tests {
 
                 page.ApplicationBar.Button("Check").Click();
                 
-                Assert.True(false);
+                Assert.True(true);
             });
         }
 
         [Fact]
         public void should_list_trips() {
-            Debug.WriteLine("list");
             Page("/views/List.xaml").Ready(page => {
-
-                Debug.WriteLine("List ready");
+                Assert.True(true);
             });
         }
     }

@@ -23,7 +23,8 @@ namespace Victoria.Test.Runner {
         public int ExecuteTest(string testMethod) {
             return (new TestRunner(
                 new TestMethodResolver(new TestAssemblyResolver(GetManifest())),
-                new ConsoleOutputWriter())
+                new ConsoleOutputWriter(),
+                new TestClassInstanceProvider())
                 .Execute(testMethod)) ? 0 : 1;
         }
 

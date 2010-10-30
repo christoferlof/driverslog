@@ -16,7 +16,7 @@ namespace Victoria.Test.Tests.Unit.Runner {
         [Fact]
         public void should_return_success_when_all_tests_pass() {
             var methodResolver = new TestMethodResolver(new FakeAssemblyResolver());
-            var runner = new TestRunner(methodResolver,_outputWriter);
+            var runner = new TestRunner(methodResolver,_outputWriter, new TestClassInstanceProvider());
             var testMethod = "Victoria.Test.Tests.Unit.AssertTests.TrueThrows";
             var result = runner.Execute(testMethod);
 
@@ -24,7 +24,7 @@ namespace Victoria.Test.Tests.Unit.Runner {
         }
 
         private TestRunner CreateRunner() {
-            return new TestRunner(_methodResolver,_outputWriter);
+            return new TestRunner(_methodResolver,_outputWriter, new TestClassInstanceProvider());
         }
 
         private bool ExecuteFailingRunner() {

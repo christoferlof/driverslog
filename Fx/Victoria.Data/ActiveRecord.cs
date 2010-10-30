@@ -8,7 +8,9 @@ namespace Victoria.Data {
     [DataContract]
     public class ActiveRecord<TRecord> where TRecord : ActiveRecord<TRecord>, new() {
 
-        private static readonly string FileName =  typeof(TRecord).Name.ToLower() + "s.json"; //lame pluralization.. 
+        private static readonly object _lock = new object();
+
+        private static readonly string FileName = typeof(TRecord).Name.ToLower() + "s.json"; //lame pluralization.. 
 
         private static readonly ObservableCollection<TRecord> _all = new ObservableCollection<TRecord>();
 
@@ -33,8 +35,10 @@ namespace Victoria.Data {
         }
 
         private static void WriteObject(DataContainer<TRecord> list) {
-            using (var file = GetFile(FileMode.Create)) {
-                GetSerializer().WriteObject(file, list);
+            lock (_lock) {
+                using (var file = GetFile(FileMode.Create)) {
+                    GetSerializer().WriteObject(file, list);
+                }
             }
         }
 
@@ -50,11 +54,13 @@ namespace Victoria.Data {
         }
 
         public static void Load() {
-            using (var file = GetFile(FileMode.OpenOrCreate)) {
-                All.Clear();
-                var list = ReadObject(file);
-                if (list != null) {
-                    list.Records.ForEach(t => All.Add(t));
+            lock (_lock) {
+                using (var file = GetFile(FileMode.OpenOrCreate)) {
+                    All.Clear();
+                    var list = ReadObject(file);
+                    if (list != null) {
+                        list.Records.ForEach(t => All.Add(t));
+                    }
                 }
             }
         }

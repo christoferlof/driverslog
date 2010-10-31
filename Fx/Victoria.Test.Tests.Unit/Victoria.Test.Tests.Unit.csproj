@@ -63,6 +63,7 @@
     <Compile Include="Runner\TestAssemblyResolverTests.cs" />
     <Compile Include="Runner\TestMethodResolverTests.cs" />
     <Compile Include="Runner\TestRunnerTests.cs" />
+    <Compile Include="Runner\WorkItemTests.cs" />
     <Compile Include="UI\AutomationPageTests.cs" />
   </ItemGroup>
   <ItemGroup>

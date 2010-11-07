@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
-    Loaded="PhoneApplicationPage_Loaded"
     >
 
     <Grid x:Name="LayoutRoot">

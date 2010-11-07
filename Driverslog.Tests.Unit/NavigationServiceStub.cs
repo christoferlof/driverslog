@@ -1,20 +1,16 @@
-using System;
+﻿using System;
 using System.Windows.Navigation;
 using Caliburn.Micro;
 
-namespace Victoria.Test {
+namespace Driverslog.Tests.Unit {
     public class NavigationServiceStub : INavigationService {
-        
-        public Uri NavigateUri;
-
         public bool Navigate(Uri source) {
-            CurrentSource = source;
-            Source = source;
             NavigateUri = source;
             return true;
         }
 
         public void StopLoading() {
+            throw new NotImplementedException();
         }
 
         public void GoBack() {
@@ -26,7 +22,8 @@ namespace Victoria.Test {
         }
 
         public Uri Source {
-            get; set; 
+            get { return NavigateUri; }
+            set { NavigateUri = value; }
         }
 
         public bool CanGoBack {
@@ -38,11 +35,12 @@ namespace Victoria.Test {
         }
 
         public Uri CurrentSource {
-            get ; private set;
+            get { throw new NotImplementedException(); }
         }
+
+        public Uri NavigateUri { get; private set; }
 
         public event NavigatedEventHandler Navigated;
         public event NavigatingCancelEventHandler Navigating;
-        
     }
 }

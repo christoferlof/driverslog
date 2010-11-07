@@ -13,9 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
-using Driverslog.Tests;
 using Microsoft.Phone.Controls;
-using Victoria.Test.Runner;
 
 namespace Driverslog {
     public partial class MainPage : PhoneApplicationPage {
@@ -27,42 +25,6 @@ namespace Driverslog {
 
         private void button1_Click(object sender, RoutedEventArgs e) {
             NavigationService.Navigate(new Uri("/views/List.xaml", UriKind.Relative));
-        }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e) {
-#if INTEGRATIONTEST
-
-            var runner = new TestRunner(
-                new TestMethodResolver(
-                    new StaticAssemblyResolver(GetType())),
-                    new DebugOutputWriter(),
-                    new UITestClassInstanceProvider((PhoneApplicationFrame)Application.Current.RootVisual)
-            );
-            
-            ThreadPool.QueueUserWorkItem((d) => runner.Execute(string.Empty));
-            
-
-            //var testClass = new CreateTripTests {
-            //    RootFrame = Application.Current.RootVisual as PhoneApplicationFrame
-            //};
-
-            //var handle = new AutoResetEvent(false);
-
-            //ThreadPool.QueueUserWorkItem(d => {
-            //    Debug.WriteLine("test 1 start");
-            //    testClass.should_hold_to_and_car();
-            //    handle.Set();
-            //    Debug.WriteLine("test 1 end");
-            //});
-            
-            //handle.WaitOne();
-
-            //ThreadPool.QueueUserWorkItem(d => {
-            //    Debug.WriteLine("test 2 start");
-            //    testClass.should_hold_to_and_car();
-            //    Debug.WriteLine("test 2 end");
-            //});
-#endif
         }
     }
 }

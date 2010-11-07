@@ -79,6 +79,12 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Victoria.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\lib\Victoria.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -97,7 +103,6 @@
     <Compile Include="PhoneContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleContainer.cs" />
-    <Compile Include="Tests\CreateTripTests.cs" />
     <Compile Include="ViewModels\CreateTripViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="Views\CreateTrip.xaml.cs">
@@ -149,16 +154,6 @@
     <DesignData Include="SampleData\ListViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fx\Victoria.Data\Victoria.Data.csproj">
-      <Project>{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}</Project>
-      <Name>Victoria.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fx\Victoria.Test\Victoria.Test.csproj">
-      <Project>{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}</Project>
-      <Name>Victoria.Test</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

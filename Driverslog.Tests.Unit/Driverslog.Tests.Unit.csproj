@@ -50,9 +50,19 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Victoria.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\lib\Victoria.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Victoria.Test, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\lib\Victoria.Test.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\SettingTests.cs" />
+    <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="ViewModels\when_saving_trip_spec.cs" />
     <Compile Include="ViewModels\ListViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,14 +71,6 @@
     <ProjectReference Include="..\Driverslog\Driverslog.csproj">
       <Project>{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}</Project>
       <Name>Driverslog</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fx\Victoria.Data\Victoria.Data.csproj">
-      <Project>{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}</Project>
-      <Name>Victoria.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fx\Victoria.Test\Victoria.Test.csproj">
-      <Project>{DDCD3148-4D8F-4F0E-BD9B-E216855DEA27}</Project>
-      <Name>Victoria.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

@@ -19,6 +19,8 @@ task Test -depends Compile, Clean {
     'Caliburn.Micro.dll'
   ) | foreach { copy-item $builddir\$_ $packagedir }
   
+  copy-item "$toolsdir\Victoria.Test.Runner.dll" $packagedir
+  
   $env:path = "$toolsdir;$env:path"
   exec {Victoria.Test.Console.exe $testpath} "Testrun failed"
 }

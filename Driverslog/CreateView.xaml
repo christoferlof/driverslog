@@ -29,19 +29,19 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="From" />
-                <TextBox x:Name="txtfrom" Text="{Binding From, Mode=TwoWay}"  />
+                <TextBox x:Name="From" />
 
                 <TextBlock Text="To" />
-                <TextBox x:Name="txtto" Text="{Binding To, Mode=TwoWay}" />
+                <TextBox x:Name="To" />
 
                 <TextBlock Text="Car" />
-                <TextBox x:Name="txtcar" Text="{Binding Car, Mode=TwoWay}"/>
+                <TextBox x:Name="Car" />
 
                 <TextBlock Text="Odometer" />
-                <TextBox Text="{Binding OdometerStart, Mode=TwoWay}" />
+                <TextBox x:Name="OdometerStart" />
 
                 <TextBlock Text="Notes" />
-                <TextBox Text="{Binding Notes, Mode=OneWay}" />
+                <TextBox x:Name="Notes" />
 
             </StackPanel>
         </Grid>

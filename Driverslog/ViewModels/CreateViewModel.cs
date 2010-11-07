@@ -19,26 +19,68 @@ using Driverslog.Commands;
 using Driverslog.Models;
 
 namespace Driverslog.ViewModels {
-    public class CreateViewModel {
+    public class CreateViewModel : Screen {
         private readonly INavigationService _navigationService;
 
         public CreateViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
         }
 
-        public string From { get; set; }
+        private string _from;
+        public string From {
+            get { return _from; }
+            set {
+                _from = value;
+                NotifyOfPropertyChange(() => From);
+            }
+        }
 
-        public string To { get; set; }
+        private string _to;
+        public string To {
+            get { return _to; }
+            set {
+                _to = value;
+                NotifyOfPropertyChange(() => To);
+            }
+        }
 
-        public int OdometerStart { get; set; }
+        private int _odometerStart;
+        public int OdometerStart {
+            get { return _odometerStart; }
+            set {
+                _odometerStart = value;
+                NotifyOfPropertyChange(() => OdometerStart);
+            }
+        }
 
-        public int OdometerStop { get; set; }
+        private int _odometerStop;
+        public int OdometerStop {
+            get { return _odometerStop; }
+            set {
+                _odometerStop = value;
+                NotifyOfPropertyChange(() => OdometerStop);
+            }
+        }
 
         public int Distance { get; private set; }
 
-        public string Car { get; set; }
+        private string _car;
+        public string Car {
+            get { return _car; }
+            set {
+                _car = value;
+                NotifyOfPropertyChange(() => Car);
+            }
+        }
 
-        public string Notes { get; set; }
+        private string _notes;
+        public string Notes {
+            get { return _notes; }
+            set {
+                _notes = value;
+                NotifyOfPropertyChange(() => Notes);
+            }
+        }
 
         public void SaveTrip() {
             Trip.All.Add(new Trip {

@@ -12,14 +12,13 @@ task default -depends Test
 
 task Test -depends Compile, Clean { 
   @(
-    'Driverslog*.dll',
-    'Victoria*.dll',
-    'System.Xml.Linq.dll',
-    'System.Windows.Interactivity.dll',
-    'Caliburn.Micro.dll'
-  ) | foreach { copy-item $builddir\$_ $packagedir }
-  
-  copy-item "$toolsdir\Victoria.Test.Runner.dll" $packagedir
+    "$builddir\Driverslog*.dll",
+    "$builddir\Victoria*.dll",
+    "$builddir\System.Windows.Interactivity.dll",
+    "$builddir\Caliburn.Micro.dll",
+    "$toolsdir\Victoria.Test.Runner.dll",
+    "$toolsdir\System.Xml.Linq.dll"
+  ) | foreach { copy-item $_ $packagedir }
   
   $env:path = "$toolsdir;$env:path"
   exec {Victoria.Test.Console.exe $testpath} "Testrun failed"

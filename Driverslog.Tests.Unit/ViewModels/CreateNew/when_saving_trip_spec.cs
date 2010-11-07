@@ -3,10 +3,10 @@ using Driverslog.Models;
 using Driverslog.ViewModels;
 using Victoria.Test;
 
-namespace Driverslog.Tests.Unit.ViewModels {
+namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
     public class when_saving_trip_spec : ContextSpecification {
         
-        protected CreateTripViewModel   ViewModel;
+        protected CreateViewModel   ViewModel;
         protected NavigationServiceStub NavigationService;
 
         public override void Context() {
@@ -14,7 +14,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
             Trip.SaveChanges();
 
             NavigationService = new NavigationServiceStub();
-            ViewModel = new CreateTripViewModel(NavigationService) {
+            ViewModel = new CreateViewModel(NavigationService) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",
@@ -26,7 +26,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
         }
 
         public override void Because() {
-            ViewModel.SaveTripCommand.Execute(false);
+            ViewModel.SaveTrip();
         }
 
         [Fact]
@@ -46,8 +46,8 @@ namespace Driverslog.Tests.Unit.ViewModels {
         }
 
         [Fact]
-        public void should_navigate_to_list() {
-            Assert.True(NavigationService.NavigateUri.OriginalString.Contains("List.xaml"));
+        public void should_navigate_to_main() {
+            Assert.True(NavigationService.NavigateUri.OriginalString.Contains("MainPage.xaml"));
         }
     }
 }

@@ -19,12 +19,11 @@ using Driverslog.Commands;
 using Driverslog.Models;
 
 namespace Driverslog.ViewModels {
-    public class CreateTripViewModel {
+    public class CreateViewModel {
         private readonly INavigationService _navigationService;
 
-        public CreateTripViewModel(INavigationService navigationService) {
+        public CreateViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
-            SaveTripCommand = new DelegateCommand(SaveTrip);
         }
 
         public string From { get; set; }
@@ -41,9 +40,7 @@ namespace Driverslog.ViewModels {
 
         public string Notes { get; set; }
 
-        public ICommand SaveTripCommand { get; private set; }
-
-        private void SaveTrip(object obj) {
+        public void SaveTrip() {
             Trip.All.Add(new Trip {
                 Car             = Car,
                 From            = From,
@@ -53,7 +50,7 @@ namespace Driverslog.ViewModels {
                 To              = To
             });     
             Trip.SaveChanges();
-            _navigationService.Navigate(new Uri("/views/List.xaml", UriKind.Relative));
+            _navigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
     }
 }

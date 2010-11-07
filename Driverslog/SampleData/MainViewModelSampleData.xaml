@@ -1,5 +1,5 @@
-<Driverslog_ViewModels:ListViewModel xmlns:Driverslog_ViewModels="clr-namespace:Driverslog.ViewModels" xmlns:Driverslog_Models="clr-namespace:Driverslog.Models">
-	<Driverslog_ViewModels:ListViewModel.TripList>
+<Driverslog_ViewModels:MainPageViewModel xmlns:Driverslog_ViewModels="clr-namespace:Driverslog.ViewModels" xmlns:Driverslog_Models="clr-namespace:Driverslog.Models">
+	<Driverslog_ViewModels:MainPageViewModel.TripList>
 		<Driverslog_Models:Trip Car="Curabitur vestibulum nam class phasellus" From="Maecenas consequat curae donec convallis" Notes="Etiam aliquam" OdometerStart="37" OdometerStop="70" To="Integer sed aenean"/>
 		<Driverslog_Models:Trip Car="Dis est hac cras praesent" From="Leo duis accumsan bibendum" Notes="Dignissim mauris nunc dictumst amet" OdometerStart="42" OdometerStop="19" To="Ante elementum nullam"/>
 		<Driverslog_Models:Trip Car="Eleifend arcu diam" From="Facilisi facilisis mus aptent fusce" Notes="Adipiscing faucibus auctor" OdometerStart="37" OdometerStop="85" To="Congue parturient lorem nec"/>
@@ -10,5 +10,5 @@
 		<Driverslog_Models:Trip Car="Porttitor tincidunt" From="Cubilia nisi" Notes="Magnis sit dapibus pharetra tristique" OdometerStart="79" OdometerStop="48" To="Fames vel felis"/>
 		<Driverslog_Models:Trip Car="Mattis placerat mauris ultricies" From="Vestibulum nisl" Notes="Venenatis nam" OdometerStart="65" OdometerStop="52" To="Sed dis egestas ipsum"/>
 		<Driverslog_Models:Trip Car="Nunc odio est justo euismod" From="Lacus feugiat" Notes="Vulputate mollis gravida" OdometerStart="27" OdometerStop="37" To="Hac adipiscing curabitur"/>
-	</Driverslog_ViewModels:ListViewModel.TripList>
-</Driverslog_ViewModels:ListViewModel>
+	</Driverslog_ViewModels:MainPageViewModel.TripList>
+</Driverslog_ViewModels:MainPageViewModel>

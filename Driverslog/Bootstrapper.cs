@@ -12,9 +12,8 @@ namespace Driverslog {
             _container = new PhoneContainer();
 
             //register viewmodels
-            
-            _container.RegisterPerRequest(typeof(ListViewModel),"ListViewModel",typeof(ListViewModel));
-            _container.RegisterPerRequest(typeof(CreateTripViewModel),"CreateTripViewModel",typeof(CreateTripViewModel));
+            _container.RegisterSingleton(typeof(MainPageViewModel),"MainPageViewModel",typeof(MainPageViewModel));
+            _container.RegisterSingleton(typeof(CreateViewModel), "CreateViewModel", typeof(CreateViewModel));
 
             //register services
             _container.RegisterInstance(typeof(INavigationService), null, new FrameAdapter(RootFrame));

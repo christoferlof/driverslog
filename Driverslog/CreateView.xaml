@@ -49,7 +49,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <cal:AppBarButton IconUri="/Images/check.dark.png" Text="Save" Message="SaveTrip"/>
+            <cal:AppBarButton IconUri="/icons/appbar.check.rest.png" Text="Save" Message="SaveTrip"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -43,7 +43,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <cal:AppBarButton Text="New Trip" IconUri="/Images/email.dark.png" Message="CreateNewTrip"/>
+            <cal:AppBarButton Text="New Trip" IconUri="/icons/appbar.new.rest.png" Message="CreateNewTrip"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\SettingTests.cs" />
+    <Compile Include="Models\TripTests.cs" />
     <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="ViewModels\CreateNew\when_creating_new_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_saving_trip_spec.cs" />

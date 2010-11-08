@@ -19,14 +19,13 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
                 From            = "from",
                 Notes           = "notes",
                 OdometerStart   = 1,
-                OdometerStop    = 2,
                 To              = "to"
             };
 
         }
 
         public override void Because() {
-            ViewModel.SaveTrip();
+            ViewModel.CreateTrip();
         }
 
         [Fact]
@@ -41,7 +40,6 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             Assert.Equal(ViewModel.From, trip.From);
             Assert.Equal(ViewModel.Notes, trip.Notes);
             Assert.Equal(ViewModel.OdometerStart, trip.OdometerStart);
-            Assert.Equal(ViewModel.OdometerStop, trip.OdometerStop);
             Assert.Equal(ViewModel.To, trip.To);
         }
 

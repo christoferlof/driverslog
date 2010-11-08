@@ -53,17 +53,6 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        private int _odometerStop;
-        public int OdometerStop {
-            get { return _odometerStop; }
-            set {
-                _odometerStop = value;
-                NotifyOfPropertyChange(() => OdometerStop);
-            }
-        }
-
-        public int Distance { get; private set; }
-
         private string _car;
         public string Car {
             get { return _car; }
@@ -82,13 +71,12 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        public void SaveTrip() {
+        public void CreateTrip() {
             Trip.All.Add(new Trip {
                 Car             = Car,
                 From            = From,
                 Notes           = Notes,
                 OdometerStart   = OdometerStart,
-                OdometerStop    = OdometerStop,
                 To              = To
             });     
             Trip.SaveChanges();

@@ -38,7 +38,7 @@
                 <TextBox x:Name="Car" />
 
                 <TextBlock Text="Odometer" />
-                <TextBox x:Name="OdometerStart" />
+                <TextBox x:Name="OdometerStart" InputScope="Number"/>
 
                 <TextBlock Text="Notes" />
                 <TextBox x:Name="Notes" />

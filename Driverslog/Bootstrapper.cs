@@ -13,7 +13,8 @@ namespace Driverslog {
 
             //register viewmodels
             _container.RegisterSingleton(typeof(MainPageViewModel),"MainPageViewModel",typeof(MainPageViewModel));
-            _container.RegisterSingleton(typeof(CreateViewModel), "CreateViewModel", typeof(CreateViewModel));
+            _container.RegisterPerRequest(typeof(CreateViewModel), "CreateViewModel", typeof(CreateViewModel));
+            _container.RegisterPerRequest(typeof(EditViewModel), "EditViewModel", typeof(EditViewModel));
 
             //register services
             _container.RegisterInstance(typeof(INavigationService), null, new FrameAdapter(RootFrame));

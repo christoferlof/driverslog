@@ -27,16 +27,21 @@
 
         <!--ContentGrid is empty. Place new content here-->
         <Grid x:Name="ContentGrid" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox x:Name="thelistbox" ItemsSource="{Binding TripList, Mode=OneWay}">
+            <ListBox x:Name="thelistbox" ItemsSource="{Binding TripList, Mode=OneWay}" SelectedItem="{Binding SelectedTrip, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Border Height="44" Width="44" BorderBrush="White" BorderThickness="2.5" CornerRadius="100" Margin="10,16,0,0" VerticalAlignment="Top">
-                                <Path Height="16" Width="11" Fill="White" Stretch="Fill" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z"/>
-                            </Border>
+                            <Border Height="54" Width="54" BorderBrush="White" BorderThickness="2.5" Margin="10,12,0,0" VerticalAlignment="Top"/>
                             <StackPanel>
-                                <TextBlock x:Name="From" Text="{Binding From}" Style="{StaticResource PhoneTextTitle2Style}"/>
-                                <TextBlock x:Name="Distance" Text="{Binding Distance}" Style="{StaticResource PhoneTextNormalStyle}"/>                     
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="From" Text="{Binding From}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    <Border Width="16">
+                                        <Path Height="16" Width="11" Fill="White" Stretch="Fill" Margin="0,6,0,0" HorizontalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock x:Name="To" Text="{Binding To}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                </StackPanel>
+
+                                <TextBlock x:Name="Distance" Text="{Binding Distance}" Style="{StaticResource PhoneTextNormalStyle}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

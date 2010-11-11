@@ -66,6 +66,8 @@
     <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="ViewModels\CreateNew\when_creating_new_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_saving_trip_spec.cs" />
+    <Compile Include="ViewModels\Edit\when_selecting_existing_trip_spec.cs" />
+    <Compile Include="ViewModels\Edit\when_updating_trip_spec.cs" />
     <Compile Include="ViewModels\when_initializing_main_view_spec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

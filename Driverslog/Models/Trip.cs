@@ -11,6 +11,13 @@ namespace Driverslog.Models {
     [DataContract]
     public class Trip : ActiveRecord<Trip> {
 
+        public Trip() {
+            Id = Guid.NewGuid();
+        }
+
+        [DataMember]
+        public Guid Id { get; set; }
+
         [DataMember]
         public string From { get; set; }
 

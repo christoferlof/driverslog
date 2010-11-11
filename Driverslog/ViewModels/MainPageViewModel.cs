@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace Driverslog.ViewModels {
 
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
-            //ExportTripsCommand = new DelegateCommand(ExportTrips);
             Trip.Load();
         }
 
@@ -27,26 +27,19 @@ namespace Driverslog.ViewModels {
             get { return Trip.All; }
         }
 
-        //public ICommand ExportTripsCommand { get; private set; }
+        private Trip _selectedTrip;
 
-        //private static void ExportTrips(object obj) {
+        public Trip SelectedTrip {
+            get { return _selectedTrip; }
+            set {
+                _selectedTrip = value;
+                EditTrip(_selectedTrip);
+            }
+        }
 
-        //    var body = Trip.All.Aggregate(string.Empty, (current, trip) => current + FormatTrip(trip));
-        //    var subject = "My drive log";
-        //    var to = Setting.Current.Email;
-
-        //    var mail = new EmailComposeTask {Body = body, Subject = subject, To = to};
-        //    mail.Show();
-        //}
-
-        //private static string FormatTrip(Trip trip) {
-        //    return trip.Car + ";" + 
-        //        trip.From + ";" + 
-        //        trip.To + ";" + 
-        //        trip.OdometerStart + ";" + 
-        //        trip.OdometerStop + ";" + 
-        //        trip.Notes + "\n";
-        //}
+        private void EditTrip(Trip selectedTrip) {
+            _navigationService.Navigate(new Uri("/EditView.xaml?TripId="+selectedTrip.Id, UriKind.Relative));
+        }
 
         public void CreateNewTrip() {
             _navigationService.Navigate(new Uri("/CreateView.xaml",UriKind.Relative));

@@ -1,5 +1,6 @@
 using Driverslog.Models;
 using Victoria.Test;
+using System;
 
 namespace Driverslog.Tests.Unit.Models {
     public class TripTests {
@@ -23,6 +24,13 @@ namespace Driverslog.Tests.Unit.Models {
                 OdometerStop = 2
             };
             Assert.Equal("1", trip.Distance);
+        }
+
+        [Fact]
+        public void should_set_id_when_instanciated() {
+            var trip = new Trip();
+
+            Assert.True(trip.Id != Guid.Empty);
         }
     }
 }

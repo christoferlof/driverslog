@@ -15,7 +15,7 @@ using Driverslog.Models;
 using Microsoft.Phone.Tasks;
 
 namespace Driverslog.ViewModels {
-    public class MainPageViewModel {
+    public class MainPageViewModel : Screen {
         private readonly INavigationService _navigationService;
 
         public MainPageViewModel(INavigationService navigationService) {
@@ -27,18 +27,23 @@ namespace Driverslog.ViewModels {
             get { return Trip.All; }
         }
 
-        private Trip _selectedTrip;
+        public Trip SelectedTrip { get; set; }
 
-        public Trip SelectedTrip {
-            get { return _selectedTrip; }
+        private int _selectedIndex;
+        public int SelectedIndex {
+            get { return _selectedIndex; }
             set {
-                _selectedTrip = value;
-                EditTrip(_selectedTrip);
+                _selectedIndex = value;
+                NotifyOfPropertyChange(() => SelectedIndex);
             }
         }
 
-        private void EditTrip(Trip selectedTrip) {
-            _navigationService.Navigate(new Uri("/EditView.xaml?TripId="+selectedTrip.Id, UriKind.Relative));
+        public void EditTrip() {
+            if(SelectedIndex == -1) return;
+
+            _navigationService.Navigate(new Uri("/EditView.xaml?TripId="+SelectedTrip.Id, UriKind.Relative));
+
+            SelectedIndex = -1;
         }
 
         public void CreateNewTrip() {

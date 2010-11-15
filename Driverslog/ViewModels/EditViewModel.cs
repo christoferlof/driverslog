@@ -36,8 +36,17 @@ namespace Driverslog.ViewModels {
             _trip.To = To;
 
             Trip.SaveChanges();
+            NavigateToMain();
+        }
 
+        private void NavigateToMain() {
             _navigationService.Navigate(new Uri("/MainPage.xaml",UriKind.Relative));
+        }
+
+        public void DeleteTrip() {
+            Trip.All.Remove(_trip);
+            Trip.SaveChanges();
+            NavigateToMain();
         }
     }
 }

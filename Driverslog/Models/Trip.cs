@@ -1,18 +1,21 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.IO.IsolatedStorage;
+using System.Linq;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]
     public class Trip : ActiveRecord<Trip> {
 
+        public static IEnumerable<Trip> ByDateDescending() {
+            return All.OrderByDescending(x => x.Date);
+        }
+
         public Trip() {
             Id = Guid.NewGuid();
+            Date = DateTime.Now.Date;
         }
 
         [DataMember]
@@ -42,6 +45,9 @@ namespace Driverslog.Models {
                 return (HasValidDistance()) ? FormatDistance() : "Unknown distance";
             }
         }
+        
+        [DataMember]
+        public DateTime Date { get; set; }
 
         private string FormatDistance() {
             return (OdometerStop - OdometerStart).ToString(CultureInfo.InvariantCulture);

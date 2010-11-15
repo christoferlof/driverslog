@@ -1,3 +1,4 @@
+using System;
 using Driverslog.Helpers;
 using Driverslog.Models;
 using Victoria.Test;
@@ -9,8 +10,8 @@ namespace Driverslog.Tests.Unit.Helpers {
 
         public override void Context() {
             Trip.Clear();
-            Trip.Add(new Trip { Car = "car1", From = "from1", To = "to1", OdometerStart = 1, OdometerStop = 2, Notes = "notes1" });
-            Trip.Add(new Trip { Car = "car2", From = "from2", To = "to2", OdometerStart = 3, OdometerStop = 4, Notes = "notes2" });
+            Trip.Add(new Trip { Date = DateTime.Now, Car = "car1", From = "from1", To = "to1", OdometerStart = 1, OdometerStop = 2, Notes = "notes1" });
+            Trip.Add(new Trip { Date = DateTime.Now.AddDays(-1), Car = "car2", From = "from2", To = "to2", OdometerStart = 3, OdometerStop = 4, Notes = "notes2" });
         }
 
         public override void Because() {
@@ -34,6 +35,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             Assert.True(header.Contains("Start"));
             Assert.True(header.Contains("Stop"));
             Assert.True(header.Contains("Distance"));
+            Assert.True(header.Contains("Date"));
         }
 
         [Fact]
@@ -41,7 +43,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             var firstTrip = Result.Split('\n')[1];
             var cols = firstTrip.Split(',');
 
-            Assert.Equal(7, cols.Length);
+            Assert.Equal(8, cols.Length);
 
         }
 

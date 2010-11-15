@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Driverslog.Models;
 using Driverslog.ViewModels;
 using Victoria.Test;
@@ -11,7 +13,8 @@ namespace Driverslog.Tests.Unit.ViewModels {
         public override void Context() {
             NavigationService = new NavigationServiceStub();
             Trip.All.Clear();
-            Trip.Add(new Trip());
+            Trip.Add(new Trip { From = "first", Date = DateTime.Now.AddDays(-1).Date});
+            Trip.Add(new Trip { From = "second", Date = DateTime.Now.Date });
             Trip.SaveChanges();
         }
 
@@ -21,12 +24,17 @@ namespace Driverslog.Tests.Unit.ViewModels {
 
         [Fact]
         public void should_list_all_existing_trips() {
-            Assert.Equal(1, PageViewModel.TripList.Count);
+            Assert.Equal(2, PageViewModel.TripList.Count());
         }
 
         [Fact]
         public void should_set_selected_index_to_none() {
-            Assert.Equal(-1,PageViewModel.SelectedIndex);
+            Assert.Equal(-1, PageViewModel.SelectedIndex);
+        }
+
+        [Fact]
+        public void should_display_newest_trip_first() {
+            Assert.Equal("second", PageViewModel.TripList.First().From);
         }
 
     }

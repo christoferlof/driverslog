@@ -10,7 +10,7 @@ namespace Driverslog.Helpers {
 
         private const string Delimiter = ",";
 
-        public static string Format(IList<Trip> trips) {
+        public static string Format(IEnumerable<Trip> trips) {
             var builder = new StringBuilder();
             FormatHeader(builder);
 
@@ -22,6 +22,7 @@ namespace Driverslog.Helpers {
 
         private static void FormatLineItem(StringBuilder builder, Trip trip) {
             var line = new[] {
+                trip.Date.ToShortDateString(),
                 trip.Car,
                 trip.To,
                 trip.From,
@@ -34,7 +35,7 @@ namespace Driverslog.Helpers {
         }
 
         private static void FormatHeader(StringBuilder builder) {
-            var headers = new[] { "Car", "To", "From", "Start", "Stop", "Distance", "Notes" };
+            var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Notes" };
             builder.AppendLine(string.Join(Delimiter, headers));
         }
     }

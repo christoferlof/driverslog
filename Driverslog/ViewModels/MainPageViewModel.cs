@@ -25,8 +25,8 @@ namespace Driverslog.ViewModels {
             Trip.Load();
         }
 
-        public ObservableCollection<Trip> TripList {
-            get { return Trip.All; }
+        public IEnumerable<Trip> TripList {
+            get { return Trip.ByDateDescending(); }
         }
 
         public Trip SelectedTrip { get; set; }
@@ -51,9 +51,10 @@ namespace Driverslog.ViewModels {
         }
 
         public void ExportTrips() {
+            MessageBox.Show(EmailHelper.Format(Trip.ByDateDescending()));
             var task = new EmailComposeTask() {
                 Subject = "Your drive log",
-                Body    = EmailHelper.Format(Trip.All)
+                Body = EmailHelper.Format(Trip.ByDateDescending())
             };
             task.Show();
         }

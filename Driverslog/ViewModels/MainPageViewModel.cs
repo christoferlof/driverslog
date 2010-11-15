@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Driverslog.Commands;
+using Driverslog.Helpers;
 using Driverslog.Models;
 using Microsoft.Phone.Tasks;
 
@@ -20,6 +21,7 @@ namespace Driverslog.ViewModels {
 
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
+            _selectedIndex = -1;
             Trip.Load();
         }
 
@@ -39,15 +41,21 @@ namespace Driverslog.ViewModels {
         }
 
         public void EditTrip() {
-            if(SelectedIndex == -1) return;
-
-            _navigationService.Navigate(new Uri("/EditView.xaml?TripId="+SelectedTrip.Id, UriKind.Relative));
-
+            if (SelectedIndex == -1) return;
+            _navigationService.Navigate(new Uri("/EditView.xaml?TripId=" + SelectedTrip.Id, UriKind.Relative));
             SelectedIndex = -1;
         }
 
         public void CreateNewTrip() {
-            _navigationService.Navigate(new Uri("/CreateView.xaml",UriKind.Relative));
+            _navigationService.Navigate(new Uri("/CreateView.xaml", UriKind.Relative));
+        }
+
+        public void ExportTrips() {
+            var task = new EmailComposeTask() {
+                Subject = "Your drive log",
+                Body    = EmailHelper.Format(Trip.All)
+            };
+            task.Show();
         }
     }
 }

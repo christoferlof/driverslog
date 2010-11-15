@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
 using Driverslog.ViewModels;
+using Microsoft.Phone.Tasks;
 
 namespace Driverslog {
     public class Bootstrapper : PhoneBootstrapper {
@@ -19,6 +20,7 @@ namespace Driverslog {
             //register services
             _container.RegisterInstance(typeof(INavigationService), null, new FrameAdapter(RootFrame));
             _container.RegisterInstance(typeof(IPhoneService), null, new PhoneApplicationServiceAdapter(PhoneService));
+        
         }
 
         protected override object GetInstance(Type service, string key) {

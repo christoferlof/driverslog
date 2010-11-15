@@ -21,9 +21,12 @@ namespace Driverslog.Tests.Unit.ViewModels {
 
         [Fact]
         public void should_list_all_existing_trips() {
-
             Assert.Equal(1, PageViewModel.TripList.Count);
+        }
 
+        [Fact]
+        public void should_set_selected_index_to_none() {
+            Assert.Equal(-1,PageViewModel.SelectedIndex);
         }
 
     }

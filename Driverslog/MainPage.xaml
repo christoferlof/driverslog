@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     d:DataContext="{d:DesignData /SampleData/MainViewModelSampleData.xaml}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
@@ -13,7 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     >
-
+    
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

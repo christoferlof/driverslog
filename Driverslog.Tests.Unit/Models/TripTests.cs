@@ -32,5 +32,11 @@ namespace Driverslog.Tests.Unit.Models {
 
             Assert.True(trip.Id != Guid.Empty);
         }
+
+        [Fact]
+        public void should_not_be_valid_with_missing_from() {
+            var trip = new Trip();
+            Assert.True(!trip.IsValid());
+        }
     }
 }

@@ -17,24 +17,35 @@ using System.IO.IsolatedStorage;
 using Caliburn.Micro;
 using Driverslog.Commands;
 using Driverslog.Models;
+using Driverslog.Services;
 
 namespace Driverslog.ViewModels {
     public class CreateViewModel : TripScreen {
         private readonly INavigationService _navigationService;
+        private readonly IMessageBoxService _messageBoxService;
 
-        public CreateViewModel(INavigationService navigationService) {
+        public CreateViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
             _navigationService = navigationService;
+            _messageBoxService = messageBoxService;
         }
 
         public void CreateTrip() {
-            Trip.All.Add(new Trip {
+            var trip = new Trip {
                 Car             = Car,
                 From            = From,
                 Notes           = Notes,
                 OdometerStart   = OdometerStart,
                 To              = To
-            });     
+            };
+            
+            if (!trip.IsValid()) {
+                _messageBoxService.ShowMessage("Invalid");
+                return;
+            }
+
+            Trip.AddFirst(trip);     
             Trip.SaveChanges();
+            
             _navigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
     }

@@ -8,13 +8,15 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         
         protected CreateViewModel   ViewModel;
         protected NavigationServiceStub NavigationService;
+        protected MessageBoxServiceStub MessageBoxService;
 
         public override void Context() {
             Trip.Clear();
             Trip.SaveChanges();
 
             NavigationService = new NavigationServiceStub();
-            ViewModel = new CreateViewModel(NavigationService) {
+            MessageBoxService = new MessageBoxServiceStub();
+            ViewModel = new CreateViewModel(NavigationService, MessageBoxService) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",
@@ -46,6 +48,11 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         [Fact]
         public void should_navigate_to_main() {
             Assert.True(NavigationService.NavigateUri.OriginalString.Contains("MainPage.xaml"));
+        }
+
+        [Fact]
+        public void should_not_display_validation_message() {
+            Assert.Equal(false,MessageBoxService.ShowMessageWasInvoked);
         }
     }
 }

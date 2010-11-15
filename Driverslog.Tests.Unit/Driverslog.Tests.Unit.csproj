@@ -65,8 +65,10 @@
     <Compile Include="Models\SettingTests.cs" />
     <Compile Include="Models\TripTests.cs" />
     <Compile Include="NavigationServiceStub.cs" />
+    <Compile Include="MessageBoxServiceStub.cs" />
     <Compile Include="ViewModels\CreateNew\when_creating_new_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_saving_trip_spec.cs" />
+    <Compile Include="ViewModels\CreateNew\when_validating_spec.cs" />
     <Compile Include="ViewModels\Edit\TestableEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\when_deleting_trip_spec.cs" />
     <Compile Include="ViewModels\Edit\when_selecting_existing_trip_spec.cs" />

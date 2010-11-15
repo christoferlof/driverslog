@@ -9,9 +9,13 @@ namespace Driverslog.Models {
     [DataContract]
     public class Trip : ActiveRecord<Trip> {
 
-        public static IEnumerable<Trip> ByDateDescending() {
-            return All.OrderByDescending(x => x.Date);
+        public static void AddFirst(Trip trip) {
+            All.Insert(0,trip);
         }
+
+        //public static IEnumerable<Trip> ByDateDescending() {
+        //    return All.OrderByDescending(x => x.Date);
+        //}
 
         public Trip() {
             Id = Guid.NewGuid();
@@ -57,6 +61,10 @@ namespace Driverslog.Models {
             return  OdometerStop - OdometerStart > 0 && 
                     OdometerStart > 0 && 
                     OdometerStop > 0;
+        }
+
+        public bool IsValid() {
+            return !string.IsNullOrEmpty(From);
         }
     }
 }

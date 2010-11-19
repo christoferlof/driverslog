@@ -38,5 +38,18 @@ namespace Driverslog.Tests.Unit.Models {
             var trip = new Trip();
             Assert.True(!trip.IsValid());
         }
+
+        [Fact]
+        public void should_include_name_of_invalid_field_in_validation_result() {
+            var trip = new Trip();
+            trip.IsValid();
+
+            Assert.True(trip.ValidationMessages.ContainsKey("From"));
+        }
+
+        [Fact]
+        public void should_not_throw_on_no_validation_messages() {
+            Assert.True(new Trip().ValidationMessages != null);
+        }
     }
 }

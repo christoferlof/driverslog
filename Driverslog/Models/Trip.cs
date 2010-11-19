@@ -13,13 +13,10 @@ namespace Driverslog.Models {
             All.Insert(0,trip);
         }
 
-        //public static IEnumerable<Trip> ByDateDescending() {
-        //    return All.OrderByDescending(x => x.Date);
-        //}
-
         public Trip() {
-            Id = Guid.NewGuid();
-            Date = DateTime.Now.Date;
+            Id      = Guid.NewGuid();
+            Date    = DateTime.Now.Date;
+            ValidationMessages = new Dictionary<string, string>();
         }
 
         [DataMember]
@@ -64,7 +61,13 @@ namespace Driverslog.Models {
         }
 
         public bool IsValid() {
-            return !string.IsNullOrEmpty(From);
+            if (string.IsNullOrEmpty(From)) {
+                ValidationMessages.Add("From","You must specify where you're traveling from.");
+            }
+            return ValidationMessages.Count == 0;
         }
+
+        public Dictionary<string, string> ValidationMessages { get; set; }
+
     }
 }

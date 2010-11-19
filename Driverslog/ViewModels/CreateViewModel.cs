@@ -39,7 +39,8 @@ namespace Driverslog.ViewModels {
             };
             
             if (!trip.IsValid()) {
-                _messageBoxService.ShowMessage("Invalid");
+                _messageBoxService.ShowMessage(
+                    string.Join("\n",trip.ValidationMessages.Select(x => x.Value).ToArray()));
                 return;
             }
 

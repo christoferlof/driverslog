@@ -29,7 +29,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="From" />
-                <TextBox x:Name="From" />
+                <TextBox x:Name="From" InputScope="Search"/>
 
                 <TextBlock Text="To" />
                 <TextBox x:Name="To" />

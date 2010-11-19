@@ -30,7 +30,7 @@
             <ScrollViewer>
                 <StackPanel>
                     <TextBlock Text="From" />
-                    <TextBox x:Name="From" />
+                    <TextBox x:Name="From" InputScope="Search"/>
 
                     <TextBlock Text="To" />
                     <TextBox x:Name="To" />

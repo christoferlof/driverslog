@@ -69,7 +69,9 @@
     <Compile Include="ViewModels\CreateNew\when_creating_new_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_saving_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_validating_spec.cs" />
+    <Compile Include="ViewModels\Edit\DeleteTripContext.cs" />
     <Compile Include="ViewModels\Edit\TestableEditViewModel.cs" />
+    <Compile Include="ViewModels\Edit\when_canceling_delete_spec.cs" />
     <Compile Include="ViewModels\Edit\when_deleting_trip_spec.cs" />
     <Compile Include="ViewModels\Edit\when_selecting_existing_trip_spec.cs" />
     <Compile Include="ViewModels\Edit\when_updating_trip_spec.cs" />

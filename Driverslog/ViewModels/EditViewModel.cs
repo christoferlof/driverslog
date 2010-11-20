@@ -3,14 +3,17 @@ using System.Diagnostics;
 using System.Linq;
 using Caliburn.Micro;
 using Driverslog.Models;
+using Driverslog.Services;
 
 namespace Driverslog.ViewModels {
     public class EditViewModel : TripScreen {
         private INavigationService _navigationService;
+        private readonly IMessageBoxService _messageBoxService;
         private Trip _trip;
 
-        public EditViewModel(INavigationService navigationService) {
+        public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
             _navigationService = navigationService;
+            _messageBoxService = messageBoxService;
         }
 
         public string TripId { get; set; }
@@ -44,6 +47,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void DeleteTrip() {
+            if(!_messageBoxService.Confirm("Do you really wan't to delete this trip?")) return;
             Trip.All.Remove(_trip);
             Trip.SaveChanges();
             NavigateToMain();

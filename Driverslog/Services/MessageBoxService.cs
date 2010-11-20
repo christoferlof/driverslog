@@ -6,5 +6,9 @@ namespace Driverslog.Services {
         public void ShowMessage(string message) {
             MessageBox.Show(message);
         }
+
+        public bool Confirm(string message) {
+            return MessageBox.Show(message,"Confirm",MessageBoxButton.OKCancel) == MessageBoxResult.OK; 
+        }
     }
 }

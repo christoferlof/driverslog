@@ -13,7 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     >
-    
+
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -35,12 +35,14 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Border Height="54" Width="54" BorderBrush="White" BorderThickness="2.5" Margin="10,12,0,0" VerticalAlignment="Top"/>
+                            <Border Height="54" Width="54" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2.5" Margin="10,12,0,0" VerticalAlignment="Top" CornerRadius="4">
+                                <Path Width="40.7195" Height="33.1042" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource PhoneAccentBrush}" Fill="{StaticResource PhoneAccentBrush}" Data="M 10.6144,21.647C 11.8629,19.1235 14.4838,13.286 16.1768,12.2968C 18.6875,10.8299 22.4257,10.6971 26.7351,10.687L 26.7202,10.6667C 31.3431,10.6667 35.3696,10.7263 38.024,12.2772C 39.717,13.2664 42.338,19.104 43.5864,21.6275C 49.7104,25.5585 45.6565,34.3867 45.5036,36.3472L 45.5147,36.3472L 45.5147,39.3464L 45.5259,39.6131L 45.5147,39.8797L 45.5147,39.9262L 45.5104,39.9262C 45.3533,41.5088 44.0181,42.7447 42.3942,42.7447C 40.7703,42.7447 39.4351,41.5088 39.278,39.9262L 39.2737,39.9262L 39.2737,39.8796L 39.2625,39.6131L 39.2737,39.3466L 39.2737,36.3484L 45.4834,36.3472L 39.2737,36.3472L 39.2737,36.3484L 26.9372,36.3509L 8.71266,36.3733L 14.9288,36.3733L 14.9288,39.3725L 14.94,39.6392L 14.9288,39.9058L 14.9288,39.9523L 14.9245,39.9523C 14.7674,41.5349 13.4322,42.7708 11.8083,42.7708C 10.1845,42.7708 8.84925,41.5349 8.69213,39.9523L 8.68785,39.9523L 8.68785,39.9057L 8.67667,39.6392L 8.68785,39.3727L 8.68785,36.3733L 8.69776,36.3733C 8.55336,34.426 4.48363,25.5825 10.6144,21.647 Z M 13.5457,22.0646L 40.806,22.0646C 39.7522,20.0166 38.9568,17.8294 37.6445,15.9206C 37.1077,15.682 32.9918,14.3697 27.146,14.3697C 21.3002,14.3697 16.7668,15.861 16.7668,15.861L 13.5457,22.0646 Z M 12.7702,25.1068C 10.7935,25.1068 9.19115,26.7092 9.19115,28.6859C 9.19115,30.6625 10.7935,32.2649 12.7702,32.2649C 14.7468,32.2649 16.3492,30.6625 16.3492,28.6859C 16.3492,26.7092 14.7468,25.1068 12.7702,25.1068 Z M 41.5815,25.0173C 39.6048,25.0173 38.0024,26.6197 38.0024,28.5964C 38.0024,30.573 39.6048,32.1754 41.5815,32.1754C 43.5581,32.1754 45.1605,30.573 45.1605,28.5964C 45.1605,26.6197 43.5581,25.0173 41.5815,25.0173 Z M 27.1853,29.4352C 23.188,29.4352 19.688,29.9773 17.7581,30.7885L 17.7473,30.7885L 17.7473,30.7931L 17.7141,30.8072L 17.7473,30.8072L 17.7473,33.9351L 36.6342,33.9351L 36.6342,30.8072L 36.6566,30.8072L 36.6342,30.7976L 36.6342,30.7885L 36.6126,30.7885C 34.6827,29.9773 31.1827,29.4352 27.1853,29.4352 Z " Margin="4.14,8,4.14,7.895" UseLayoutRounding="False"/>
+                            </Border>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock x:Name="From" Text="{Binding From}" Style="{StaticResource PhoneTextTitle2Style}"/>
                                     <Border Width="16">
-                                        <Path Height="16" Width="11" Fill="White" Stretch="Fill" Margin="0,6,0,0" HorizontalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z" VerticalAlignment="Center"/>
+                                        <Path Height="16" Width="11" Fill="{StaticResource PhoneAccentBrush}" Stretch="Fill" Margin="0,6,0,0" HorizontalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z" VerticalAlignment="Center"/>
                                     </Border>
                                     <TextBlock x:Name="To" Text="{Binding To}" Style="{StaticResource PhoneTextTitle2Style}"/>
                                 </StackPanel>

@@ -1,3 +1,4 @@
+using System;
 using Driverslog.ViewModels;
 using Victoria.Test;
 
@@ -20,6 +21,5 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         public void should_navigate_to_create_page() {
             Assert.True(NavigationService.NavigateUri.OriginalString.Contains("CreateView.xaml"));
         }
-
     }
 }

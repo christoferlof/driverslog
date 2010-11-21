@@ -17,7 +17,8 @@ task Test -depends Compile, Clean {
     "$builddir\System.Windows.Interactivity.dll",
     "$builddir\Caliburn.Micro.dll",
     "$toolsdir\Victoria.Test.Runner.dll",
-    "$toolsdir\System.Xml.Linq.dll"
+    "$toolsdir\System.Xml.Linq.dll",
+    "$builddir\Microsoft.Phone.Controls.Toolkit.dll"
   ) | foreach { copy-item $_ $packagedir }
   
   $env:path = "$toolsdir;$env:path"

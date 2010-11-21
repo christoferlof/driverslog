@@ -1,21 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.Serialization.Json;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using System.IO.IsolatedStorage;
 using Caliburn.Micro;
-using Driverslog.Commands;
 using Driverslog.Models;
 using Driverslog.Services;
 
@@ -35,7 +20,8 @@ namespace Driverslog.ViewModels {
                 From            = From,
                 Notes           = Notes,
                 OdometerStart   = OdometerStart,
-                To              = To
+                To              = To,
+                Date            = Date
             };
             
             if (!trip.IsValid()) {
@@ -44,7 +30,7 @@ namespace Driverslog.ViewModels {
                 return;
             }
 
-            Trip.AddFirst(trip);     
+            Trip.Add(trip);     
             Trip.SaveChanges();
             
             _navigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));

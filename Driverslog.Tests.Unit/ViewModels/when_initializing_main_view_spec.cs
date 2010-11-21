@@ -13,8 +13,8 @@ namespace Driverslog.Tests.Unit.ViewModels {
         public override void Context() {
             NavigationService = new NavigationServiceStub();
             Trip.All.Clear();
-            Trip.AddFirst(new Trip { From = "first", Date = DateTime.Now.AddDays(-1).Date});
-            Trip.AddFirst(new Trip { From = "second", Date = DateTime.Now.Date });
+            Trip.AddFirst(new Trip { From = "first", Date = DateTime.Now.AddDays(-1).Date}); //2
+            Trip.AddFirst(new Trip { From = "second", Date = DateTime.Now.Date }); //1
             Trip.SaveChanges();
         }
 

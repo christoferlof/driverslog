@@ -28,6 +28,7 @@ namespace Driverslog.ViewModels {
             OdometerStop = _trip.OdometerStop;
             Notes = _trip.Notes;
             Car = _trip.Car;
+            Date = _trip.Date;
         }
 
         public void UpdateTrip() {
@@ -37,6 +38,7 @@ namespace Driverslog.ViewModels {
             _trip.OdometerStop = OdometerStop;
             _trip.Car = Car;
             _trip.To = To;
+            _trip.Date = Date;
 
             Trip.SaveChanges();
             NavigateToMain();

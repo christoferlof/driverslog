@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Driverslog.Models;
 using Driverslog.ViewModels;
@@ -21,7 +22,9 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
                 From            = "from",
                 Notes           = "notes",
                 OdometerStart   = 1,
-                To              = "to"
+                To              = "to",
+                Date            = new DateTime(1979,1,3)
+                
             };
 
         }
@@ -43,6 +46,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             Assert.Equal(ViewModel.Notes, trip.Notes);
             Assert.Equal(ViewModel.OdometerStart, trip.OdometerStart);
             Assert.Equal(ViewModel.To, trip.To);
+            Assert.Equal(ViewModel.Date, trip.Date);
         }
 
         [Fact]

@@ -98,6 +98,9 @@
     <Compile Include="Commands\Click.cs" />
     <Compile Include="Commands\CommandBehaviorBase.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="CreateExpenseView.xaml.cs">
+      <DependentUpon>CreateExpenseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateView.xaml.cs">
       <DependentUpon>CreateView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="PhoneContainer.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Services\MessageBoxService.cs" />
     <Compile Include="SimpleContainer.cs" />
+    <Compile Include="ViewModels\CreateExpenseViewModel.cs" />
     <Compile Include="ViewModels\CreateViewModel.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -125,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="CreateExpenseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

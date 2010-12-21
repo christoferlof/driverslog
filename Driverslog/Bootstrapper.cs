@@ -17,6 +17,7 @@ namespace Driverslog {
             _container.RegisterSingleton(typeof(MainPageViewModel), "MainPageViewModel", typeof(MainPageViewModel));
             _container.RegisterPerRequest(typeof(CreateViewModel), "CreateViewModel", typeof(CreateViewModel));
             _container.RegisterPerRequest(typeof(EditViewModel), "EditViewModel", typeof(EditViewModel));
+            _container.RegisterPerRequest(typeof(CreateExpenseViewModel), "CreateExpenseViewModel", typeof(CreateExpenseViewModel));
 
             //register services
             _container.RegisterInstance(typeof(INavigationService), null, new FrameAdapter(RootFrame));

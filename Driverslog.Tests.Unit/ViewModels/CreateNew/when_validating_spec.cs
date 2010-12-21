@@ -17,8 +17,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         }
 
         [Fact]
-        public void should_display_message_if_not_valid() {
-            
+        public void should_display_message_if_not_valid() {   
             Assert.True(MessageBoxService.ShowMessageWasInvoked);
         }
 

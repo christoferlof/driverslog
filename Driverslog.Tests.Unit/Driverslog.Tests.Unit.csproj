@@ -63,10 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\when_formatting_email_spec.cs" />
+    <Compile Include="Models\ExpenseTests.cs" />
     <Compile Include="Models\SettingTests.cs" />
     <Compile Include="Models\TripTests.cs" />
     <Compile Include="NavigationServiceStub.cs" />
     <Compile Include="MessageBoxServiceStub.cs" />
+    <Compile Include="ViewModels\CreateNewExpense\when_creating_new_expense_spec.cs" />
+    <Compile Include="ViewModels\CreateNewExpense\when_saving_expense_spec.cs" />
+    <Compile Include="ViewModels\CreateNewExpense\when_validating_expense_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_changing_date_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_creating_new_trip_spec.cs" />
     <Compile Include="ViewModels\CreateNew\when_saving_trip_spec.cs" />

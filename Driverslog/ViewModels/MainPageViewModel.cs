@@ -52,6 +52,10 @@ namespace Driverslog.ViewModels {
             _navigationService.Navigate(new Uri("/CreateView.xaml", UriKind.Relative));
         }
 
+        public void CreateNewExpense() {
+            _navigationService.Navigate(new Uri("/CreateExpenseView.xaml",UriKind.Relative));
+        }
+
         public void ExportTrips() {
             //MessageBox.Show(EmailHelper.Format(Trip.ByDateDescending()));
             var task = new EmailComposeTask() {

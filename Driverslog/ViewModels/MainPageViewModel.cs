@@ -14,6 +14,7 @@ using Driverslog.Commands;
 using Driverslog.Helpers;
 using Driverslog.Models;
 using Microsoft.Phone.Tasks;
+using Victoria.Data;
 
 namespace Driverslog.ViewModels {
     public class MainPageViewModel : Screen {
@@ -22,13 +23,14 @@ namespace Driverslog.ViewModels {
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
             _selectedIndex = -1;
+            
+            //todo: async
             Trip.Load();
+            Expense.Load();
         }
 
         public ObservableCollection<Trip> TripList {
-            get {
-                return Trip.All;
-            }
+            get { return Trip.All;}
         }
 
         public Trip SelectedTrip { get; set; }
@@ -39,6 +41,26 @@ namespace Driverslog.ViewModels {
             set {
                 _selectedIndex = value;
                 NotifyOfPropertyChange(() => SelectedIndex);
+            }
+        }
+
+        public ObservableCollection<Expense> ExpenseList{
+            get { return Expense.All;}
+        }
+
+        public ObservableCollection<object> CombinedList {
+            get {
+                
+                var combined = new ObservableCollection<object>();
+                foreach (var e in ExpenseList) {
+                    combined.Add(e);
+                }
+
+                foreach (var t in TripList) {
+                    combined.Add(t);
+                }
+
+                return combined;
             }
         }
 

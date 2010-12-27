@@ -12,10 +12,16 @@ namespace Driverslog.Tests.Unit.ViewModels {
 
         public override void Context() {
             NavigationService = new NavigationServiceStub();
+            
             Trip.All.Clear();
             Trip.AddFirst(new Trip { From = "first", Date = DateTime.Now.AddDays(-1).Date}); //2
             Trip.AddFirst(new Trip { From = "second", Date = DateTime.Now.Date }); //1
             Trip.SaveChanges();
+
+            Expense.Clear();
+            Expense.Add(new Expense{Title = "first"});
+            Expense.Add(new Expense{Title = "second"});
+            Expense.SaveChanges();
         }
 
         public override void Because() {
@@ -35,6 +41,16 @@ namespace Driverslog.Tests.Unit.ViewModels {
         [Fact]
         public void should_display_newest_trip_first() {
             Assert.Equal("second", PageViewModel.TripList.First().From);
+        }
+
+        [Fact]
+        public void should_list_all_existing_expenses() {
+            Assert.Equal(2, PageViewModel.ExpenseList.Count());
+        }
+
+        [Fact]
+        public void should_combine_trips_and_expenses() {
+            Assert.Equal(4,PageViewModel.CombinedList.Count());
         }
 
     }

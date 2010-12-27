@@ -30,7 +30,6 @@
             <TextBlock x:Name="PageTitle" Text="My log" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <!--ContentGrid is empty. Place new content here-->
         <Grid x:Name="ContentGrid" Grid.Row="1" Margin="12,0,12,0">
             <ListBox x:Name="thelistbox" 
                      ItemsSource="{Binding CombinedList, Mode=OneWay}" 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -23,14 +24,16 @@ namespace Driverslog.ViewModels {
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
             _selectedIndex = -1;
-            
+
+            CombinedList = new TripAndExpenseCollection();
+
             //todo: async
             Trip.Load();
             Expense.Load();
         }
 
         public ObservableCollection<Trip> TripList {
-            get { return Trip.All;}
+            get { return Trip.All; }
         }
 
         public Trip SelectedTrip { get; set; }
@@ -44,24 +47,13 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        public ObservableCollection<Expense> ExpenseList{
-            get { return Expense.All;}
+        public ObservableCollection<Expense> ExpenseList {
+            get { return Expense.All; }
         }
 
-        public ObservableCollection<object> CombinedList {
-            get {
-                
-                var combined = new ObservableCollection<object>();
-                foreach (var e in ExpenseList) {
-                    combined.Add(e);
-                }
-
-                foreach (var t in TripList) {
-                    combined.Add(t);
-                }
-
-                return combined;
-            }
+        public TripAndExpenseCollection CombinedList {
+            get;
+            private set;
         }
 
         public void EditTrip() {
@@ -75,7 +67,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void CreateNewExpense() {
-            _navigationService.Navigate(new Uri("/CreateExpenseView.xaml",UriKind.Relative));
+            _navigationService.Navigate(new Uri("/CreateExpenseView.xaml", UriKind.Relative));
         }
 
         public void ExportTrips() {

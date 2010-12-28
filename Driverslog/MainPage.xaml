@@ -7,8 +7,9 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" 
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:helpers="clr-namespace:Driverslog.Helpers" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Models="clr-namespace:Driverslog.Models" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    xmlns:helpers="clr-namespace:Driverslog.Helpers" 
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows" 
+    xmlns:model="clr-namespace:Driverslog.Models" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     d:DataContext="{d:DesignData /SampleData/MainViewModelSampleData.xaml}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
@@ -20,6 +21,7 @@
         <helpers:TypeToVisibilityConverter x:Key="TypeToVisibilityConverter"/>
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -31,8 +33,16 @@
         </StackPanel>
 
         <Grid x:Name="ContentGrid" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.Resources>
+                <model:TripAndExpenseCollection x:Key="TripAndExpenses"/>
+                <CollectionViewSource x:Key="ViewSource" Source="{Binding Source={StaticResource TripAndExpenses}, Path=Current}">
+                    <CollectionViewSource.SortDescriptions>
+                        <scm:SortDescription PropertyName="Date" Direction="Descending"/>
+                    </CollectionViewSource.SortDescriptions>
+                </CollectionViewSource>
+            </Grid.Resources>
             <ListBox x:Name="thelistbox" 
-                     ItemsSource="{Binding CombinedList, Mode=OneWay}" 
+                     ItemsSource="{Binding Source={StaticResource ViewSource}}" 
                      SelectedItem="{Binding SelectedTrip, Mode=TwoWay}" 
                      SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
                      cal:Message.Attach="[Event SelectionChanged] = [Action EditTrip]">

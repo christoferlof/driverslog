@@ -9,6 +9,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Driverslog.Commands;
@@ -26,7 +27,10 @@ namespace Driverslog.ViewModels {
             _selectedIndex = -1;
 
             CombinedList = new TripAndExpenseCollection();
-
+            //var view = new CollectionViewSource { Source = CombinedList };
+            //view.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
+            //CombinedListView = view.View; 
+            
             //todo: async
             Trip.Load();
             Expense.Load();
@@ -49,6 +53,10 @@ namespace Driverslog.ViewModels {
 
         public ObservableCollection<Expense> ExpenseList {
             get { return Expense.All; }
+        }
+
+        public ICollectionView CombinedListView {
+            get;private set;
         }
 
         public TripAndExpenseCollection CombinedList {

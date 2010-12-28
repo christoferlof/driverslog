@@ -3,6 +3,12 @@ using System.Collections.Specialized;
 
 namespace Driverslog.Models {
     public class TripAndExpenseCollection : ObservableCollection<object> {
+
+        private static TripAndExpenseCollection _current;
+        public static TripAndExpenseCollection Current {
+            get { return _current ?? (_current = new TripAndExpenseCollection()); }
+        }
+
         public TripAndExpenseCollection() {
             RegisterListeners();
         }

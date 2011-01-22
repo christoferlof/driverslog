@@ -8,8 +8,9 @@ namespace Driverslog.Models {
     [DataContract]
     public class Expense : ActiveRecord<Expense>, IHaveId {
         public Expense() {
-            Id = Guid.NewGuid();
-            ValidationMessages = new Dictionary<string, string>();
+            Id                  = Guid.NewGuid();
+            ValidationMessages  = new Dictionary<string, string>();
+            Date                = DateTime.Now.Date;
         }
 
         [DataMember]

@@ -5,7 +5,7 @@ using Driverslog.Models;
 using Driverslog.Services;
 
 namespace Driverslog.ViewModels {
-    public class CreateExpenseViewModel {
+    public class CreateExpenseViewModel : ExpenseScreen {
         private readonly INavigationService _navigationService;
         private readonly IMessageBoxService _messageBoxService;
 
@@ -34,15 +34,5 @@ namespace Driverslog.ViewModels {
 
             _navigationService.Navigate(new Uri("/MainPage.xaml",UriKind.Relative));
         }
-
-        public string Car { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public string Title { get; set; }
-
-        public string Notes { get; set; }
-
-        public double Amount { get; set; }
     }
 }

@@ -22,7 +22,13 @@ task Test -depends Compile, Clean {
   ) | foreach { copy-item $_ $packagedir }
   
   $env:path = "$toolsdir;$env:path"
-  exec {Victoria.Test.Console.exe $testpath} "Testrun failed"
+  Victoria.Test.Console.exe $testpath
+  
+  if($lastexitcode -eq 0){
+    write-host "P" -foregroundcolor green
+  } else {
+    write-host "F" -foregroundcolor red
+  }
 }
 
 task Compile -depends Clean { 

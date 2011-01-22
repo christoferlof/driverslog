@@ -36,5 +36,10 @@ namespace Driverslog.Tests.Unit.Models {
         public void should_not_throw_on_no_validation_messages() {
             Assert.True(new Expense().ValidationMessages != null);
         }
+
+        [Fact]
+        public void should_set_date_to_today_as_default() {
+            Assert.Equal(DateTime.Now.Date, new Expense().Date);
+        }
     }
 }

@@ -6,7 +6,7 @@ using Victoria.Data;
 namespace Driverslog.Models {
     
     [DataContract]
-    public class Expense : ActiveRecord<Expense> {
+    public class Expense : ActiveRecord<Expense>, IHaveId {
         public Expense() {
             Id = Guid.NewGuid();
             ValidationMessages = new Dictionary<string, string>();

@@ -25,11 +25,6 @@ namespace Driverslog.ViewModels {
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
             _selectedIndex = -1;
-
-            CombinedList = new TripAndExpenseCollection();
-            //var view = new CollectionViewSource { Source = CombinedList };
-            //view.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Descending));
-            //CombinedListView = view.View; 
             
             //todo: async
             Trip.Load();
@@ -40,7 +35,18 @@ namespace Driverslog.ViewModels {
             get { return Trip.All; }
         }
 
-        public Trip SelectedTrip { get; set; }
+        public ObservableCollection<Expense> ExpenseList {
+            get { return Expense.All; }
+        }
+
+        private IHaveId _selectedItem;
+        public IHaveId SelectedItem {
+            get { return _selectedItem; }
+            set {
+                _selectedItem = value;
+                NotifyOfPropertyChange(() => SelectedItem);
+            }
+        }
 
         private int _selectedIndex;
         public int SelectedIndex {
@@ -50,26 +56,7 @@ namespace Driverslog.ViewModels {
                 NotifyOfPropertyChange(() => SelectedIndex);
             }
         }
-
-        public ObservableCollection<Expense> ExpenseList {
-            get { return Expense.All; }
-        }
-
-        public ICollectionView CombinedListView {
-            get;private set;
-        }
-
-        public TripAndExpenseCollection CombinedList {
-            get;
-            private set;
-        }
-
-        public void EditTrip() {
-            if (SelectedIndex == -1) return;
-            _navigationService.Navigate(new Uri("/EditView.xaml?TripId=" + SelectedTrip.Id, UriKind.Relative));
-            SelectedIndex = -1;
-        }
-
+        
         public void CreateNewTrip() {
             _navigationService.Navigate(new Uri("/CreateView.xaml", UriKind.Relative));
         }
@@ -85,6 +72,22 @@ namespace Driverslog.ViewModels {
                 Body = EmailHelper.Format(Trip.All)
             };
             task.Show();
+        }
+
+        public void EditItem() {
+            if (SelectedIndex == -1) return;
+            _navigationService.Navigate(GetItemUri());
+            SelectedIndex = -1;
+        }
+
+        private Uri GetItemUri() {
+            string uriString = string.Empty;
+            if (SelectedItem is Expense) {
+                uriString = "/EditExpenseView.xaml?ExpenseId={0}";
+            } else if (SelectedItem is Trip) {
+                uriString = "/EditView.xaml?TripId={0}";
+            }
+            return new Uri(string.Format(uriString,SelectedItem.Id),UriKind.Relative);
         }
     }
 }

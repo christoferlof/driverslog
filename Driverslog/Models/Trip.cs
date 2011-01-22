@@ -8,7 +8,7 @@ using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class Trip : ActiveRecord<Trip> {
+    public class Trip : ActiveRecord<Trip>, IHaveId {
 
         public static void AddFirst(Trip trip) {
             All.Insert(0,trip);

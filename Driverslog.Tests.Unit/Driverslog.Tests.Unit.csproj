@@ -81,6 +81,7 @@
     <Compile Include="ViewModels\Edit\TestableEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\when_canceling_delete_spec.cs" />
     <Compile Include="ViewModels\Edit\when_deleting_trip_spec.cs" />
+    <Compile Include="ViewModels\Edit\when_selecting_existing_expense_spec.cs" />
     <Compile Include="ViewModels\Edit\when_selecting_existing_trip_spec.cs" />
     <Compile Include="ViewModels\Edit\when_updating_trip_spec.cs" />
     <Compile Include="ViewModels\when_initializing_main_view_spec.cs" />

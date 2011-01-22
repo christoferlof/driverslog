@@ -43,9 +43,9 @@
             </Grid.Resources>
             <ListBox x:Name="thelistbox" 
                      ItemsSource="{Binding Source={StaticResource ViewSource}}" 
-                     SelectedItem="{Binding SelectedTrip, Mode=TwoWay}" 
+                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                      SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                     cal:Message.Attach="[Event SelectionChanged] = [Action EditTrip]">
+                     cal:Message.Attach="[Event SelectionChanged] = [Action EditItem]">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

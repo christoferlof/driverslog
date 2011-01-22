@@ -104,6 +104,9 @@
     <Compile Include="CreateView.xaml.cs">
       <DependentUpon>CreateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditExpenseView.xaml.cs">
+      <DependentUpon>EditExpenseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditView.xaml.cs">
       <DependentUpon>EditView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\IHaveId.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\TripAndExpenseCollection.cs" />
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditExpenseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

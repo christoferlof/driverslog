@@ -5,7 +5,8 @@ using Driverslog.ViewModels;
 using Victoria.Test;
 
 namespace Driverslog.Tests.Unit.ViewModels.Edit {
-    public class when_selecting_existing_trip_spec : ContextSpecification {
+    public class when_selecting_existing_expense_spec : ContextSpecification {
+
 
         protected NavigationServiceStub NavigationService;
         protected MainPageViewModel ViewModel;
@@ -16,18 +17,18 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             NavigationService = new NavigationServiceStub();
             ViewModel = new MainPageViewModel(NavigationService);
             Id = new Guid("E0F6658A-A510-4864-A9AA-E79EB06B3E0D");
-            ViewModel.PropertyChanged += (s,e) => PropertyChangedEventArgs = e;
+            ViewModel.PropertyChanged += (s, e) => PropertyChangedEventArgs = e;
         }
 
         public override void Because() {
-            ViewModel.SelectedItem = new Trip { Id = Id };
+            ViewModel.SelectedItem = new Expense{Id = Id};
             ViewModel.SelectedIndex = 1;
             ViewModel.EditItem();
         }
 
         [Fact]
-        public void should_navigate_to_edit_page() {
-            Assert.Equal("/EditView.xaml?TripId="+Id, NavigationService.NavigateUri.OriginalString);
+        public void should_navigate_to_edit_expense_page() {
+            Assert.Equal("/EditExpenseView.xaml?ExpenseId=" + Id, NavigationService.NavigateUri.OriginalString);
         }
 
         [Fact]
@@ -37,7 +38,8 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
         [Fact]
         public void should_notify_property_changed() {
-            Assert.Equal("SelectedIndex",PropertyChangedEventArgs.PropertyName);
+            Assert.Equal("SelectedIndex", PropertyChangedEventArgs.PropertyName);
         }
+        
     }
 }

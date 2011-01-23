@@ -48,12 +48,6 @@ namespace Driverslog.Tests.Unit.ViewModels {
             Assert.Equal(2, PageViewModel.ExpenseList.Count());
         }
 
-        //[Fact]
-        //public void should_combine_trips_and_expenses() {
-        //    Assert.True(PageViewModel.CombinedList.Source is TripAndExpenseCollection);
-        //}
-
-        
 
     }
 }

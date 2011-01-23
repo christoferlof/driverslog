@@ -51,7 +51,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
         [Fact]
         public void should_navigate_to_main() {
-            Assert.True(NavigationService.NavigateUri.OriginalString.Contains("MainPage.xaml"));
+            Assert.True(NavigationService.GoBackWasCalled);
         }
 
         [Fact]

@@ -41,8 +41,9 @@
                     </CollectionViewSource.SortDescriptions>
                 </CollectionViewSource>
             </Grid.Resources>
+            <!--ItemsSource="{Binding Source={StaticResource ViewSource}}"-->
             <ListBox x:Name="thelistbox" 
-                     ItemsSource="{Binding Source={StaticResource ViewSource}}" 
+                     ItemsSource="{Binding Source={StaticResource ViewSource}}"         
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                      SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
                      cal:Message.Attach="[Event SelectionChanged] = [Action EditItem]">

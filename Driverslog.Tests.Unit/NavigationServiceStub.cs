@@ -13,8 +13,10 @@ namespace Driverslog.Tests.Unit {
             throw new NotImplementedException();
         }
 
+
+        public bool GoBackWasCalled;
         public void GoBack() {
-            throw new NotImplementedException();
+            GoBackWasCalled = true;
         }
 
         public void GoForward() {
@@ -42,5 +44,6 @@ namespace Driverslog.Tests.Unit {
 
         public event NavigatedEventHandler Navigated;
         public event NavigatingCancelEventHandler Navigating;
+        
     }
 }

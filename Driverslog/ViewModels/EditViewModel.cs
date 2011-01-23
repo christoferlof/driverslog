@@ -21,7 +21,7 @@ namespace Driverslog.ViewModels {
         protected override void OnInitialize() {
             var id = new Guid(TripId);
             _trip = Trip.All.Single(x => x.Id == id);
-
+            
             From = _trip.From;
             To = _trip.To;
             OdometerStart = _trip.OdometerStart;
@@ -45,7 +45,8 @@ namespace Driverslog.ViewModels {
         }
 
         private void NavigateToMain() {
-            _navigationService.Navigate(new Uri("/MainPage.xaml",UriKind.Relative));
+            _navigationService.GoBack();
+            //_navigationService.Navigate(new Uri("/MainPage.xaml",UriKind.Relative));
         }
 
         public void DeleteTrip() {

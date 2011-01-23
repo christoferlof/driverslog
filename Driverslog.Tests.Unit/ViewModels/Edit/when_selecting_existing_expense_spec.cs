@@ -11,17 +11,15 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
         protected NavigationServiceStub NavigationService;
         protected MainPageViewModel ViewModel;
         protected Guid Id;
-        protected PropertyChangedEventArgs PropertyChangedEventArgs;
 
         public override void Context() {
             NavigationService = new NavigationServiceStub();
             ViewModel = new MainPageViewModel(NavigationService);
             Id = new Guid("E0F6658A-A510-4864-A9AA-E79EB06B3E0D");
-            ViewModel.PropertyChanged += (s, e) => PropertyChangedEventArgs = e;
         }
 
         public override void Because() {
-            ViewModel.SelectedItem = new Expense{Id = Id};
+            ViewModel.SelectedItem = new Expense { Id = Id };
             ViewModel.SelectedIndex = 1;
             ViewModel.EditItem();
         }
@@ -36,10 +34,5 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             Assert.Equal(-1, ViewModel.SelectedIndex);
         }
 
-        [Fact]
-        public void should_notify_property_changed() {
-            Assert.Equal("SelectedIndex", PropertyChangedEventArgs.PropertyName);
-        }
-        
     }
 }

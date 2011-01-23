@@ -37,7 +37,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
         [Fact]
         public void should_navigate_back_to_main() {
-            Assert.Equal("/MainPage.xaml",NavigationService.NavigateUri.OriginalString);
+            Assert.True(NavigationService.GoBackWasCalled);
         }
     }
 }

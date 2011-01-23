@@ -33,7 +33,7 @@ namespace Driverslog.ViewModels {
             Trip.Add(trip);     
             Trip.SaveChanges();
             
-            _navigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            _navigationService.GoBack();
         }
     }
 }

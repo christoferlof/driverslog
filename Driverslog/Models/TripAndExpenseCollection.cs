@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 
 namespace Driverslog.Models {
     public class TripAndExpenseCollection : ObservableCollection<object> {
@@ -19,6 +20,7 @@ namespace Driverslog.Models {
         }
 
         private void RegisterListener<T>(ObservableCollection<T> collection) {
+            
             collection.CollectionChanged += (s, e) => {
                 switch (e.Action) {
                     case NotifyCollectionChangedAction.Add:

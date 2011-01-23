@@ -24,7 +24,7 @@ namespace Driverslog.ViewModels {
 
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
-            _selectedIndex = -1;
+            SelectedIndex = -1;
             
             //todo: async
             Trip.Load();
@@ -39,24 +39,10 @@ namespace Driverslog.ViewModels {
             get { return Expense.All; }
         }
 
-        private IHaveId _selectedItem;
-        public IHaveId SelectedItem {
-            get { return _selectedItem; }
-            set {
-                _selectedItem = value;
-                NotifyOfPropertyChange(() => SelectedItem);
-            }
-        }
+        public IHaveId SelectedItem { get; set; }
 
-        private int _selectedIndex;
-        public int SelectedIndex {
-            get { return _selectedIndex; }
-            set {
-                _selectedIndex = value;
-                NotifyOfPropertyChange(() => SelectedIndex);
-            }
-        }
-        
+        public int SelectedIndex { get; set; }
+
         public void CreateNewTrip() {
             _navigationService.Navigate(new Uri("/CreateView.xaml", UriKind.Relative));
         }
@@ -76,8 +62,12 @@ namespace Driverslog.ViewModels {
 
         public void EditItem() {
             if (SelectedIndex == -1) return;
+            
             _navigationService.Navigate(GetItemUri());
+
             SelectedIndex = -1;
+            NotifyOfPropertyChange(() => SelectedIndex);
+            
         }
 
         private Uri GetItemUri() {

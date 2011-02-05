@@ -127,6 +127,7 @@
     <Compile Include="SimpleContainer.cs" />
     <Compile Include="ViewModels\CreateExpenseViewModel.cs" />
     <Compile Include="ViewModels\CreateViewModel.cs" />
+    <Compile Include="ViewModels\EditExpenseViewModel.cs" />
     <Compile Include="ViewModels\ExpenseScreen.cs" />
     <Compile Include="ViewModels\ItemScreen.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />

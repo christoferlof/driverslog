@@ -31,9 +31,9 @@
                 <StackPanel>
                     <TextBlock Text="Date" />
                     <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
-                    
+
                     <TextBlock Text="From" />
-                    <TextBox x:Name="From" InputScope="Search"/>
+                    <TextBox x:Name="From" />
 
                     <TextBlock Text="To" />
                     <TextBox x:Name="To" />

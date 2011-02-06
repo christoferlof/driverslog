@@ -73,7 +73,7 @@ namespace Driverslog.Models {
         }
 
         private string FormatDistance() {
-            return (OdometerStop - OdometerStart).ToString(CultureInfo.InvariantCulture);
+            return string.Format("{0} {1}",(OdometerStop - OdometerStart),Setting.Current.DistanceUnit);
         }
 
         private bool HasValidDistance() {

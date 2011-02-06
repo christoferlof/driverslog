@@ -23,7 +23,19 @@ namespace Driverslog.Tests.Unit.Models {
                 OdometerStart = 1,
                 OdometerStop = 2
             };
-            Assert.Equal("1", trip.Distance);
+            Assert.True(trip.Distance.Contains("1"));
+        }
+
+        [Fact]
+        public void should_include_unit_of_distance() {
+            
+            Setting.Current.DistanceUnit = "km";
+            var trip = new Trip {
+                OdometerStart = 1,
+                OdometerStop = 2
+            };
+
+            Assert.Equal("1 km",trip.Distance);
         }
 
         [Fact]

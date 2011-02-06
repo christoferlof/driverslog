@@ -65,6 +65,7 @@
     <Compile Include="Helpers\TypeToVisibilityConverterTests.cs" />
     <Compile Include="Helpers\when_formatting_email_spec.cs" />
     <Compile Include="Models\ExpenseTests.cs" />
+    <Compile Include="Models\LogItemTests.cs" />
     <Compile Include="Models\SettingTests.cs" />
     <Compile Include="Models\TripAndExpenseCollectionTests.cs" />
     <Compile Include="Models\TripTests.cs" />

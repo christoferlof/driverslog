@@ -30,6 +30,11 @@ namespace Driverslog.Models {
             }
         }
 
+        [IgnoreDataMember]
+        public string AmountWithCurrency {
+            get{ return Amount.ToString("c"); }
+        }
+
         protected override void OnValidating() {
             if (string.IsNullOrEmpty(Title)) {
                 ValidationMessages.Add("Title", "You must specify a title of the expense");

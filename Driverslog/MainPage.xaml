@@ -67,7 +67,7 @@
                             <!-- EXPENSE -->
                             <StackPanel Visibility="{Binding Converter={StaticResource TypeToVisibilityConverter}, ConverterParameter=Expense}">
                                 <TextBlock x:Name="Title" Text="{Binding Title}" Style="{StaticResource PhoneTextTitle2Style}"/>
-                                <TextBlock x:Name="Amount" Text="{Binding Amount}" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                <TextBlock x:Name="Amount" Text="{Binding AmountWithCurrency}" Style="{StaticResource PhoneTextNormalStyle}"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

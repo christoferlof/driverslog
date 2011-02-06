@@ -12,8 +12,9 @@ namespace Driverslog.Models {
     public abstract class LogItem<T> : ActiveRecord<T>, IHaveId, ICanHaveValidationErrors, INotifyPropertyChanged where T : ActiveRecord<T>, new() {
 
         protected LogItem() {
-            Id   = Guid.NewGuid();
-            Date = DateTime.Now.Date;
+            Id      = Guid.NewGuid();
+            Date    = DateTime.Now.Date;
+            Car     = Setting.Current.DefaultCar;
             EnsureValidationMessagesCollection();
         }
 

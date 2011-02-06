@@ -43,7 +43,7 @@
                     <TextBox x:Name="Notes"/>
 
                     <TextBlock Text="Amount"/>
-                    <TextBox x:Name="Amount"/>
+                    <TextBox x:Name="Amount" InputScope="CurrencyAmount"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

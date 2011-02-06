@@ -94,10 +94,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Commands\ButtonBaseClickCommandBehavior.cs" />
-    <Compile Include="Commands\Click.cs" />
-    <Compile Include="Commands\CommandBehaviorBase.cs" />
-    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="CreateExpenseView.xaml.cs">
       <DependentUpon>CreateExpenseView.xaml</DependentUpon>
     </Compile>

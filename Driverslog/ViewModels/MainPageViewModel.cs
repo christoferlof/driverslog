@@ -1,22 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
 using Caliburn.Micro;
-using Driverslog.Commands;
 using Driverslog.Helpers;
 using Driverslog.Models;
 using Microsoft.Phone.Tasks;
-using Victoria.Data;
 
 namespace Driverslog.ViewModels {
     public class MainPageViewModel : Screen {

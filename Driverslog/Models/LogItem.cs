@@ -12,22 +12,54 @@ namespace Driverslog.Models {
     public abstract class LogItem<T> : ActiveRecord<T>, IHaveId, ICanHaveValidationErrors, INotifyPropertyChanged where T : ActiveRecord<T>, new() {
 
         protected LogItem() {
-            Id      = Guid.NewGuid();
-            Date    = DateTime.Now.Date;
+            Id   = Guid.NewGuid();
+            Date = DateTime.Now.Date;
             EnsureValidationMessagesCollection();
         }
 
-        [DataMember]
-        public Guid Id { get; set; }
+        private Guid _id;
 
         [DataMember]
-        public string Notes { get; set; }
+        public Guid Id {
+            get { return _id; }
+            set {
+                _id = value;
+                Notify(() => Id);
+            }
+        }
+
+        private string _notes;
 
         [DataMember]
-        public string Car { get; set; }
+        public string Notes {
+            get { return _notes; }
+            set {
+                _notes = value;
+                Notify(() => Notes);
+            }
+        }
+
+        private string _car;
 
         [DataMember]
-        public DateTime Date { get; set; }
+        public string Car {
+            get { return _car; }
+            set {
+                _car = value;
+                Notify(() => Car);
+            }
+        }
+
+        private DateTime _date;
+
+        [DataMember]
+        public DateTime Date {
+            get { return _date; }
+            set {
+                _date = value;
+                Notify(() => Date);
+            }
+        }
 
         [OnDeserializing]
         public void OnDeserializing(StreamingContext context) {
@@ -35,7 +67,7 @@ namespace Driverslog.Models {
         }
 
         private void EnsureValidationMessagesCollection() {
-            if (ValidationMessages == null) { 
+            if (ValidationMessages == null) {
                 ValidationMessages = new Dictionary<string, string>();
             }
         }
@@ -46,7 +78,7 @@ namespace Driverslog.Models {
             return ValidationMessages.Count == 0;
         }
 
-        protected virtual void OnValidating() {}
+        protected virtual void OnValidating() { }
 
         [IgnoreDataMember]
         public Dictionary<string, string> ValidationMessages { get; private set; }

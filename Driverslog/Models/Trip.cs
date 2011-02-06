@@ -11,26 +11,12 @@ using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class Trip : ActiveRecord<Trip>, IHaveId, ICanHaveValidationErrors, INotifyPropertyChanged {
+    public class Trip : LogItem<Trip> {
 
         [Obsolete]
         public static void AddFirst(Trip trip) {
             All.Insert(0, trip);
         }
-
-        public Trip() {
-            Id = Guid.NewGuid();
-            Date = DateTime.Now.Date;
-            EnsureValidationMessagesCollection();
-        }
-
-        [OnDeserializing]
-        public void OnDeserializing(StreamingContext context) {
-            EnsureValidationMessagesCollection();
-        }
-
-        [DataMember]
-        public Guid Id { get; set; }
 
         private string _from;
 
@@ -78,21 +64,13 @@ namespace Driverslog.Models {
             }
         }
 
-        [DataMember]
-        public string Notes { get; set; }
-
-        [DataMember]
-        public string Car { get; set; }
-
+        
         [IgnoreDataMember]
         public string Distance {
             get {
                 return (HasValidDistance()) ? FormatDistance() : "Unknown distance";
             }
         }
-
-        [DataMember]
-        public DateTime Date { get; set; }
 
         private string FormatDistance() {
             return (OdometerStop - OdometerStart).ToString(CultureInfo.InvariantCulture);
@@ -104,29 +82,10 @@ namespace Driverslog.Models {
                     OdometerStop > 0;
         }
 
-        private void EnsureValidationMessagesCollection() {
-            ValidationMessages = new Dictionary<string, string>();
-        }
-
-        public bool IsValid() {
-            ValidationMessages.Clear();
-
+        protected override void OnValidating() {
             if (string.IsNullOrEmpty(From)) {
                 ValidationMessages.Add("From", "You must specify where you're traveling from.");
             }
-            return ValidationMessages.Count == 0;
         }
-
-        [IgnoreDataMember]
-        public Dictionary<string, string> ValidationMessages { get; private set; }
-
-        private void Notify<TProperty>(Expression<Func<TProperty>> property) {
-            var name = property.GetMemberInfo().Name;
-            if (PropertyChanged != null) {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

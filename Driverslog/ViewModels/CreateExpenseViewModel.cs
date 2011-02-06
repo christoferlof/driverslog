@@ -7,11 +7,10 @@ using Driverslog.Services;
 namespace Driverslog.ViewModels {
     public class CreateExpenseViewModel : ExpenseScreen {
         private readonly INavigationService _navigationService;
-        private readonly IMessageBoxService _messageBoxService;
 
-        public CreateExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
+        public CreateExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
+            : base(messageBoxService){
             _navigationService = navigationService;
-            _messageBoxService = messageBoxService;
         }
 
         public void CreateExpense() {
@@ -23,11 +22,7 @@ namespace Driverslog.ViewModels {
                 Amount  = Amount
             };
 
-            if (!expense.IsValid()) {
-                _messageBoxService.ShowMessage(
-                    string.Join("\n", expense.ValidationMessages.Select(x => x.Value).ToArray()));
-                return;
-            }
+            if (!IsValid(expense)) return;
 
             Expense.Add(expense);
             Expense.SaveChanges();

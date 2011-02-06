@@ -116,6 +116,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\ICanHaveValidationErrors.cs" />
     <Compile Include="Models\IHaveId.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\Trip.cs" />

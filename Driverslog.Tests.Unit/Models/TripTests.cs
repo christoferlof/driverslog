@@ -53,6 +53,17 @@ namespace Driverslog.Tests.Unit.Models {
         }
 
         [Fact]
+        public void should_clear_previous_validation_errors_on_validate() {
+            var trip = new Trip();
+
+            trip.ValidationMessages.Add("foo","bar");
+            trip.ValidationMessages.Add("baz", "zap");
+            trip.IsValid(); //should clear the above two messages and add one for "From"
+
+            Assert.Equal(1,trip.ValidationMessages.Count);
+        }
+
+        [Fact]
         public void should_set_date_to_today_as_default() {
             Assert.Equal(DateTime.Now.Date,new Trip().Date);
         }

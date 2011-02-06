@@ -8,8 +8,9 @@ using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class Trip : ActiveRecord<Trip>, IHaveId {
+    public class Trip : ActiveRecord<Trip>, IHaveId, ICanHaveValidationErrors {
 
+        [Obsolete]
         public static void AddFirst(Trip trip) {
             All.Insert(0,trip);
         }
@@ -17,7 +18,12 @@ namespace Driverslog.Models {
         public Trip() {
             Id      = Guid.NewGuid();
             Date    = DateTime.Now.Date;
-            ValidationMessages = new Dictionary<string, string>();
+            EnsureValidationMessagesCollection();
+        }
+
+        [OnDeserializing]
+        public void OnDeserializing(StreamingContext context) {
+            EnsureValidationMessagesCollection();
         }
 
         [DataMember]
@@ -61,14 +67,21 @@ namespace Driverslog.Models {
                     OdometerStop > 0;
         }
 
+        private void EnsureValidationMessagesCollection() {
+            ValidationMessages = new Dictionary<string, string>();
+        }
+
         public bool IsValid() {
+            ValidationMessages.Clear();
+
             if (string.IsNullOrEmpty(From)) {
                 ValidationMessages.Add("From","You must specify where you're traveling from.");
             }
             return ValidationMessages.Count == 0;
         }
 
-        public Dictionary<string, string> ValidationMessages { get; set; }
+        [IgnoreDataMember]
+        public Dictionary<string, string> ValidationMessages { get; private set; }
 
         
     }

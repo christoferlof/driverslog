@@ -1,5 +1,12 @@
+using Driverslog.Services;
+
 namespace Driverslog.ViewModels {
     public class ExpenseScreen : ItemScreen {
+
+        public ExpenseScreen(IMessageBoxService messageBoxService)
+            :base(messageBoxService) {
+        }
+        
         private string _title;
         public string Title {
             get { return _title; }

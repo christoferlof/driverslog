@@ -1,9 +1,13 @@
 using System;
 using Caliburn.Micro;
+using Driverslog.Services;
 using Microsoft.Phone.Controls;
 
 namespace Driverslog.ViewModels {
     public class TripScreen : ItemScreen {
+
+        public TripScreen(IMessageBoxService messageBoxService) : base(messageBoxService) {
+        }
 
         private string _from;
         public string From {

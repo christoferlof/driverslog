@@ -6,11 +6,16 @@ using Victoria.Data;
 namespace Driverslog.Models {
     
     [DataContract]
-    public class Expense : ActiveRecord<Expense>, IHaveId {
+    public class Expense : ActiveRecord<Expense>, IHaveId, ICanHaveValidationErrors {
         public Expense() {
-            Id                  = Guid.NewGuid();
-            ValidationMessages  = new Dictionary<string, string>();
-            Date                = DateTime.Now.Date;
+            Id      = Guid.NewGuid();
+            Date    = DateTime.Now.Date;
+            EnsureValidationMessagesCollection();
+        }
+
+        [OnDeserializing]
+        public void OnDeserializing(StreamingContext context) {
+            EnsureValidationMessagesCollection();
         }
 
         [DataMember]
@@ -31,7 +36,13 @@ namespace Driverslog.Models {
         [DataMember]
         public double Amount { get; set; }
 
+        private void EnsureValidationMessagesCollection() {
+            ValidationMessages = new Dictionary<string, string>();
+        }
+
         public bool IsValid() {
+            ValidationMessages.Clear();
+
             if (string.IsNullOrEmpty(Title)) {
                 ValidationMessages.Add("Title", "You must specify a title of the expense");
             }
@@ -39,7 +50,7 @@ namespace Driverslog.Models {
         }
 
         [IgnoreDataMember]
-        public Dictionary<string, string> ValidationMessages { get; set; }
+        public Dictionary<string, string> ValidationMessages { get; private set; }
 
     }
 }

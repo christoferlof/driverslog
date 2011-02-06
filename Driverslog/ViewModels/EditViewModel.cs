@@ -7,13 +7,12 @@ using Driverslog.Services;
 
 namespace Driverslog.ViewModels {
     public class EditViewModel : TripScreen {
-        private INavigationService _navigationService;
-        private readonly IMessageBoxService _messageBoxService;
+        private readonly INavigationService _navigationService;
         private Trip _trip;
 
-        public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
+        public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
+            :base (messageBoxService){
             _navigationService = navigationService;
-            _messageBoxService = messageBoxService;
         }
 
         public string TripId { get; set; }
@@ -40,17 +39,18 @@ namespace Driverslog.ViewModels {
             _trip.To = To;
             _trip.Date = Date;
 
+            if(!IsValid(_trip)) return;
+
             Trip.SaveChanges();
             NavigateToMain();
         }
 
         private void NavigateToMain() {
             _navigationService.GoBack();
-            //_navigationService.Navigate(new Uri("/MainPage.xaml",UriKind.Relative));
         }
 
         public void DeleteTrip() {
-            if(!_messageBoxService.Confirm("Do you really wan't to delete this trip?")) return;
+            if(!MessageBoxService.Confirm("Do you really wan't to delete this trip?")) return;
             Trip.All.Remove(_trip);
             Trip.SaveChanges();
             NavigateToMain();

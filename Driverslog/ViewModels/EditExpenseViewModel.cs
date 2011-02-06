@@ -7,12 +7,11 @@ using Driverslog.Services;
 namespace Driverslog.ViewModels {
     public class EditExpenseViewModel : ExpenseScreen {
         private readonly INavigationService _navigationService;
-        private readonly IMessageBoxService _messageBoxService;
         private Expense _expense;
 
-        public EditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
+        public EditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
+            : base(messageBoxService){
             _navigationService = navigationService;
-            _messageBoxService = messageBoxService;
         }
 
         protected override void OnInitialize() {
@@ -34,11 +33,15 @@ namespace Driverslog.ViewModels {
             _expense.Amount = Amount;
             _expense.Date = Date;
             _expense.Notes = Notes;
+
+            if (!IsValid(_expense)) return;
+
+            Expense.SaveChanges();
             _navigationService.GoBack();
         }
 
         public void DeleteExpense() {
-            if (!_messageBoxService.Confirm("Do you really wan't to delete this expense?")) return;
+            if (!MessageBoxService.Confirm("Do you really wan't to delete this expense?")) return;
             Expense.All.Remove(_expense);
             Expense.SaveChanges();
             NavigateToMain();

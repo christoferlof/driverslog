@@ -1,23 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using Caliburn.Micro;
 using Victoria.Data;
 
 namespace Driverslog.Models {
     [DataContract]
-    public class Trip : ActiveRecord<Trip>, IHaveId, ICanHaveValidationErrors {
+    public class Trip : ActiveRecord<Trip>, IHaveId, ICanHaveValidationErrors, INotifyPropertyChanged {
 
         [Obsolete]
         public static void AddFirst(Trip trip) {
-            All.Insert(0,trip);
+            All.Insert(0, trip);
         }
 
         public Trip() {
-            Id      = Guid.NewGuid();
-            Date    = DateTime.Now.Date;
+            Id = Guid.NewGuid();
+            Date = DateTime.Now.Date;
             EnsureValidationMessagesCollection();
         }
 
@@ -29,17 +32,51 @@ namespace Driverslog.Models {
         [DataMember]
         public Guid Id { get; set; }
 
-        [DataMember]
-        public string From { get; set; }
+        private string _from;
 
         [DataMember]
-        public string To { get; set; }
+        public string From {
+            get { return _from; }
+            set {
+                _from = value;
+                Notify(() => From);
+            }
+        }
+
+        private string _to;
 
         [DataMember]
-        public int OdometerStart { get; set; }
+        public string To {
+            get { return _to; }
+            set {
+                _to = value;
+                Notify(() => To);
+            }
+        }
+
+        private int _odometerStart;
 
         [DataMember]
-        public int OdometerStop { get; set; }
+        public int OdometerStart {
+            get { return _odometerStart; }
+            set {
+                _odometerStart = value;
+                Notify(() => OdometerStart);
+                Notify(() => Distance);
+            }
+        }
+
+        private int _odometerStop;
+
+        [DataMember]
+        public int OdometerStop {
+            get { return _odometerStop; }
+            set {
+                _odometerStop = value;
+                Notify(() => OdometerStop);
+                Notify(() => Distance);
+            }
+        }
 
         [DataMember]
         public string Notes { get; set; }
@@ -48,12 +85,12 @@ namespace Driverslog.Models {
         public string Car { get; set; }
 
         [IgnoreDataMember]
-        public string Distance { 
+        public string Distance {
             get {
                 return (HasValidDistance()) ? FormatDistance() : "Unknown distance";
             }
         }
-        
+
         [DataMember]
         public DateTime Date { get; set; }
 
@@ -62,8 +99,8 @@ namespace Driverslog.Models {
         }
 
         private bool HasValidDistance() {
-            return  OdometerStop - OdometerStart > 0 && 
-                    OdometerStart > 0 && 
+            return OdometerStop - OdometerStart > 0 &&
+                    OdometerStart > 0 &&
                     OdometerStop > 0;
         }
 
@@ -75,7 +112,7 @@ namespace Driverslog.Models {
             ValidationMessages.Clear();
 
             if (string.IsNullOrEmpty(From)) {
-                ValidationMessages.Add("From","You must specify where you're traveling from.");
+                ValidationMessages.Add("From", "You must specify where you're traveling from.");
             }
             return ValidationMessages.Count == 0;
         }
@@ -83,6 +120,13 @@ namespace Driverslog.Models {
         [IgnoreDataMember]
         public Dictionary<string, string> ValidationMessages { get; private set; }
 
-        
+        private void Notify<TProperty>(Expression<Func<TProperty>> property) {
+            var name = property.GetMemberInfo().Name;
+            if (PropertyChanged != null) {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

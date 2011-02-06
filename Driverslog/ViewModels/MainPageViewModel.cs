@@ -1,5 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Threading;
 using Caliburn.Micro;
 using Driverslog.Helpers;
 using Driverslog.Models;
@@ -12,10 +14,13 @@ namespace Driverslog.ViewModels {
         public MainPageViewModel(INavigationService navigationService) {
             _navigationService = navigationService;
             SelectedIndex = -1;
-            
-            //todo: async
-            Trip.Load();
-            Expense.Load();
+        }
+
+        protected override void OnInitialize() {
+            Deployment.Current.Dispatcher.BeginInvoke(() => {
+                Trip.Load();
+                Expense.Load();
+            });
         }
 
         public ObservableCollection<Trip> TripList {
@@ -49,12 +54,12 @@ namespace Driverslog.ViewModels {
 
         public void EditItem() {
             if (SelectedIndex == -1) return;
-            
+
             _navigationService.Navigate(GetItemUri());
 
             SelectedIndex = -1;
             NotifyOfPropertyChange(() => SelectedIndex);
-            
+
         }
 
         private Uri GetItemUri() {
@@ -64,11 +69,11 @@ namespace Driverslog.ViewModels {
             } else if (SelectedItem is Trip) {
                 uriString = "/EditView.xaml?TripId={0}";
             }
-            return new Uri(string.Format(uriString,SelectedItem.Id),UriKind.Relative);
+            return new Uri(string.Format(uriString, SelectedItem.Id), UriKind.Relative);
         }
 
         public void Settings() {
-            _navigationService.Navigate(new Uri("/SettingsView.xaml",UriKind.Relative));
+            _navigationService.Navigate(new Uri("/SettingsView.xaml", UriKind.Relative));
         }
     }
 }

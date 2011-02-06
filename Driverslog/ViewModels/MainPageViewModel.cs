@@ -66,5 +66,9 @@ namespace Driverslog.ViewModels {
             }
             return new Uri(string.Format(uriString,SelectedItem.Id),UriKind.Relative);
         }
+
+        public void Settings() {
+            _navigationService.Navigate(new Uri("/SettingsView.xaml",UriKind.Relative));
+        }
     }
 }

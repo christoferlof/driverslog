@@ -79,7 +79,10 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <cal:AppBarButton Text="trip" IconUri="/icons/appbar.new.rest.png" Message="CreateNewTrip"/>
             <cal:AppBarButton Text="expense" IconUri="/icons/appbar.favs.rest.png" Message="CreateNewExpense"/>
-            <cal:AppBarButton Text="Export" IconUri="/icons/appbar.feature.email.rest.png" Message="ExportTrips"/>
+            <shell:ApplicationBar.MenuItems>
+                <cal:AppBarMenuItem Text="Export" Message="ExportTrips"/>
+                <cal:AppBarMenuItem Text="Settings" Message="Settings"/>
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

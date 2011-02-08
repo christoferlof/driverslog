@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading;
@@ -8,48 +9,40 @@ namespace Driverslog.Models {
     public class Setting : ActiveRecord<Setting> {
 
         public static void Kill() {
-            _current = null;
+            Clear();
+            SaveChanges();
         }
-
-        private static Setting _current;
 
         public static Setting Current {
             get {
                 EnsureCurrent();
-                return _current;
+                return All.Single();
             }
         }
 
         private static void EnsureCurrent() {
-            if (_current == null) {
-                LoadCurrent();
-                if (_current == null) {
-                    CreateCurrent();
-                }
-            }
+
+            LoadIfEmpty();
+            
+            if (All.Count > 0) return;
+            
+            All.Add(new Setting() { DistanceUnit = GetDefaultDistanceUnit() });
+            SaveChanges();
         }
 
-        private static void LoadCurrent() {
-            Load();
-            _current = All.FirstOrDefault();
+        private static void LoadIfEmpty() {
+            if (All == null || All.Count == 0) Load();
         }
 
-        private static void CreateCurrent() {
-            _current = new Setting();
-            SetDefaultDistanceUnit();
-        }
 
-        private static void SetDefaultDistanceUnit() {
+        private static string GetDefaultDistanceUnit() {
             switch (Thread.CurrentThread.CurrentCulture.Name) {
                 case "en-US":
-                    _current.DistanceUnit = "miles";
-                    break;
+                    return "miles";
                 case "en-GB":
-                    _current.DistanceUnit = "miles";
-                    break;
+                    return "miles";
                 default:
-                    _current.DistanceUnit = "km";
-                    break;
+                    return "km";
             }
         }
 

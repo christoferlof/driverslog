@@ -44,10 +44,11 @@ namespace Driverslog.ViewModels {
         }
 
         public void ExportTrips() {
-            //MessageBox.Show(EmailHelper.Format(Trip.ByDateDescending()));
+            var bodyTemplate = "Trips---------\n{0}\nExpenses------\n{1}";
             var task = new EmailComposeTask() {
-                Subject = "Your drive log",
-                Body = EmailHelper.Format(Trip.All)
+                Subject = "My driver's log",
+                To = Setting.Current.Email,
+                Body = string.Format(bodyTemplate, EmailHelper.Format(Trip.All),EmailHelper.Format(Expense.All))
             };
             task.Show();
         }

@@ -11,16 +11,24 @@ namespace Driverslog.Helpers {
         private const string Delimiter = ",";
 
         public static string Format(IEnumerable<Trip> trips) {
-            var builder = new StringBuilder();
-            FormatHeader(builder);
+            return FormatInternal(trips, FormatTripHeader, FormatTripLineItem);
+        }
 
-            foreach (var trip in trips) {
-                FormatLineItem(builder, trip);
+        public static string Format(IEnumerable<Expense> expenses) {
+            return FormatInternal(expenses,FormatExpenseHeader, FormatExpenseLineItem);
+        }
+
+        private static string FormatInternal<T>(IEnumerable<T> items, Action<StringBuilder> headerFormatter, Action<StringBuilder,T> lineFormatter) {
+            var builder = new StringBuilder();
+            headerFormatter(builder);
+
+            foreach (var item in items) {
+                lineFormatter(builder, item);
             }
             return builder.ToString();
         }
 
-        private static void FormatLineItem(StringBuilder builder, Trip trip) {
+        private static void FormatTripLineItem(StringBuilder builder, Trip trip) {
             var line = new[] {
                 trip.Date.ToShortDateString(),
                 trip.Car,
@@ -31,12 +39,32 @@ namespace Driverslog.Helpers {
                 trip.Distance,
                 trip.Notes
             };
-            builder.AppendLine(string.Join(Delimiter,line));
+            Join(builder,line);
         }
 
-        private static void FormatHeader(StringBuilder builder) {
+        private static void FormatExpenseLineItem(StringBuilder builder, Expense expense) {
+            var line = new[] {
+                expense.Date.ToShortDateString(),
+                expense.Car,
+                expense.Title,
+                expense.AmountWithCurrency,
+                expense.Notes
+            };
+            Join(builder, line);
+        }
+
+        private static void FormatTripHeader(StringBuilder builder) {
             var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Notes" };
-            builder.AppendLine(string.Join(Delimiter, headers));
+            Join(builder,headers);
+        }
+
+        private static void FormatExpenseHeader(StringBuilder builder) {
+            var headers = new[]{"Date", "Car", "Title", "Amount", "Notes"};
+            Join(builder,headers);
+        }
+
+        private static void Join(StringBuilder builder, string[] line) {
+            builder.AppendLine(string.Join(Delimiter, line));
         }
     }
 }

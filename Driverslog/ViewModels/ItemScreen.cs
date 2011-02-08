@@ -12,6 +12,7 @@ namespace Driverslog.ViewModels {
         public ItemScreen(IMessageBoxService messageBoxService) {
             _messageBoxService = messageBoxService;
             _date = DateTime.Today;
+            _car = Setting.Current.DefaultCar;
         }
 
         protected IMessageBoxService MessageBoxService {

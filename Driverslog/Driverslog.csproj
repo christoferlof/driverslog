@@ -133,6 +133,7 @@
     <Compile Include="ViewModels\ItemScreen.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\TripScreen.cs" />
   </ItemGroup>
   <ItemGroup>

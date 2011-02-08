@@ -47,7 +47,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void ExportTrips() {
-            var bodyTemplate = "Trips---------\n{0}\nExpenses------\n{1}";
+            var bodyTemplate = "Trips\n{0}\nExpenses\n{1}";
             var task = new EmailComposeTask() {
                 Subject = "My driver's log",
                 To = Setting.Current.Email,

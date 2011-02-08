@@ -5,14 +5,17 @@ using System.Windows.Threading;
 using Caliburn.Micro;
 using Driverslog.Helpers;
 using Driverslog.Models;
+using Driverslog.Services;
 using Microsoft.Phone.Tasks;
 
 namespace Driverslog.ViewModels {
     public class MainPageViewModel : Screen {
         private readonly INavigationService _navigationService;
+        private readonly IMessageBoxService _messageBoxService;
 
-        public MainPageViewModel(INavigationService navigationService) {
+        public MainPageViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
             _navigationService = navigationService;
+            _messageBoxService = messageBoxService;
             SelectedIndex = -1;
         }
 
@@ -75,6 +78,16 @@ namespace Driverslog.ViewModels {
 
         public void Settings() {
             _navigationService.Navigate(new Uri("/SettingsView.xaml", UriKind.Relative));
+        }
+
+        public void Clear() {
+            var proceed = _messageBoxService.Confirm("All trips and expenses will be deleted. Make sure you've exported them.");
+            if (proceed) {
+                Trip.Clear();
+                Trip.SaveChanges();
+                Expense.Clear();
+                Expense.SaveChanges();
+            }
         }
     }
 }

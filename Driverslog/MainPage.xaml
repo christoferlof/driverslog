@@ -81,6 +81,7 @@
             <cal:AppBarButton Text="expense" IconUri="/icons/appbar.favs.rest.png" Message="CreateNewExpense"/>
             <shell:ApplicationBar.MenuItems>
                 <cal:AppBarMenuItem Text="Export" Message="ExportTrips"/>
+                <cal:AppBarMenuItem Text="Clear" Message="Clear"/>
                 <cal:AppBarMenuItem Text="Settings" Message="Settings"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

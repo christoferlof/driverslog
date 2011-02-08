@@ -27,6 +27,7 @@ namespace Driverslog.Models {
             set {
                 _amount = value;
                 Notify(() => Amount);
+                Notify(() => AmountWithCurrency);
             }
         }
 

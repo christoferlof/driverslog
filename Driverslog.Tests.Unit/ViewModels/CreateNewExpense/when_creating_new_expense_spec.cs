@@ -9,7 +9,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
 
         public override void Context() {
             NavigationService   = new NavigationServiceStub();
-            PageViewModel       = new MainPageViewModel(NavigationService);
+            PageViewModel       = new MainPageViewModel(NavigationService,null);
         }
 
         public override void Because() {

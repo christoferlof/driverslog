@@ -72,5 +72,21 @@ namespace Driverslog.Tests.Unit.Models {
 
             Assert.Equal(expense.Title,((Expense)collection[0]).Title);
         }
+
+        [Fact]
+        public void should_clear() {
+            var collection = new TripAndExpenseCollection();
+
+            Expense.Add(new Expense());
+            Trip.Add(new Trip());
+
+            Assert.Equal(2,collection.Count);
+
+            Expense.Clear();
+            Assert.Equal(1,collection.Count);
+
+            Trip.Clear();
+            Assert.Equal(0,collection.Count);
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Driverslog.Models {
     public class TripAndExpenseCollection : ObservableCollection<object> {
@@ -32,6 +33,12 @@ namespace Driverslog.Models {
                     case NotifyCollectionChangedAction.Remove:
                         if (e.OldItems == null) return;
                         foreach (var item in e.OldItems) {
+                            Remove(item);
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                        var items = this.Where(x => x.GetType() == typeof(T)).ToList();
+                        foreach (var item in items) {
                             Remove(item);
                         }
                         break;

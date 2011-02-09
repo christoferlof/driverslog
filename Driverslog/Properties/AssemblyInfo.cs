@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Driver's log")]
-[assembly: AssemblyCopyright("Copyright © Christofer Löf 2010")]
+[assembly: AssemblyCopyright("Copyright © Christofer Löf 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

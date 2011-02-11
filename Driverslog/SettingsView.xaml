@@ -5,7 +5,8 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -14,33 +15,30 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <controls:Pivot Title="Driver's log">
+            <controls:PivotItem Header="Settings">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Default car"/>
+                        <TextBox x:Name="Car"/>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Driver's log" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+                        <TextBlock Text="Default export to e-mail"/>
+                        <TextBox x:Name="Email" InputScope="EmailNameOrAddress"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ScrollViewer>
+                        <TextBlock Text="Distance unit"/>
+                        <TextBox x:Name="DistanceUnit" />
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:PivotItem Header="About">
                 <StackPanel>
-
-                    <TextBlock Text="Default car"/>
-                    <TextBox x:Name="Car"/>
-
-                    <TextBlock Text="Default export to e-mail"/>
-                    <TextBox x:Name="Email" InputScope="EmailNameOrAddress"/>
-
-                    <TextBlock Text="Distance unit"/>
-                    <TextBox x:Name="DistanceUnit" />
+                    <TextBlock Text="Driver's log" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock Text="Version 1.0.0.0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="Copyright 2011 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <HyperlinkButton Content="Technical Support" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
                 </StackPanel>
-            </ScrollViewer>
-        </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">

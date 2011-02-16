@@ -1,15 +1,26 @@
 using System;
 using Caliburn.Micro;
+using Driverslog.Models;
 using Driverslog.Services;
 using Microsoft.Phone.Controls;
 
 namespace Driverslog.ViewModels {
+    [SurviveTombstone]
     public class TripScreen : ItemScreen {
 
         public TripScreen(IMessageBoxService messageBoxService) : base(messageBoxService) {
         }
 
+        protected override void OnInitialize() {
+            base.OnInitialize();
+            //load if we're comming back from resume or are empty
+            if (!Trip.HasRecords) {
+                Trip.Load();
+            }
+        }
+
         private string _from;
+        [SurviveTombstone]
         public string From {
             get { return _from; }
             set {
@@ -19,6 +30,7 @@ namespace Driverslog.ViewModels {
         }
 
         private string _to;
+        [SurviveTombstone]
         public string To {
             get { return _to; }
             set {
@@ -28,6 +40,7 @@ namespace Driverslog.ViewModels {
         }
 
         private int _odometerStart;
+        [SurviveTombstone]
         public int OdometerStart {
             get { return _odometerStart; }
             set {
@@ -37,6 +50,7 @@ namespace Driverslog.ViewModels {
         }
 
         private int _odometerStop;
+        [SurviveTombstone]
         public int OdometerStop {
             get { return _odometerStop; }
             set {

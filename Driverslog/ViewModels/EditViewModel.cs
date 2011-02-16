@@ -18,6 +18,8 @@ namespace Driverslog.ViewModels {
         public string TripId { get; set; }
 
         protected override void OnInitialize() {
+            base.OnInitialize();
+            
             var id = new Guid(TripId);
             _trip = Trip.All.Single(x => x.Id == id);
             

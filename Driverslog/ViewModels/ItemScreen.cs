@@ -6,6 +6,7 @@ using Driverslog.Services;
 using Microsoft.Phone.Controls;
 
 namespace Driverslog.ViewModels {
+    [SurviveTombstone]
     public class ItemScreen : Screen {
         private readonly IMessageBoxService _messageBoxService;
 
@@ -29,6 +30,7 @@ namespace Driverslog.ViewModels {
         }
 
         private DateTime _date;
+        [SurviveTombstone]
         public DateTime Date {
             get { return _date; }
             set {
@@ -42,6 +44,7 @@ namespace Driverslog.ViewModels {
         }
 
         private string _car;
+        [SurviveTombstone]
         public string Car {
             get { return _car; }
             set {
@@ -51,6 +54,7 @@ namespace Driverslog.ViewModels {
         }
 
         private string _notes;
+        [SurviveTombstone]
         public string Notes {
             get { return _notes; }
             set {

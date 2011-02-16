@@ -11,6 +11,12 @@ namespace Driverslog.Models {
     [DataContract]
     public abstract class LogItem<T> : ActiveRecord<T>, IHaveId, ICanHaveValidationErrors, INotifyPropertyChanged where T : ActiveRecord<T>, new() {
 
+        public static bool HasRecords {
+            get {
+                return All != null && All.Count > 0;
+            }
+        }
+
         protected LogItem() {
             Id      = Guid.NewGuid();
             Date    = DateTime.Now.Date;

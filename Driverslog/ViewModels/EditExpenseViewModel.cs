@@ -15,6 +15,8 @@ namespace Driverslog.ViewModels {
         }
 
         protected override void OnInitialize() {
+            base.OnInitialize();
+
             var id = new Guid(ExpenseId);
             _expense = Expense.All.Single(x => x.Id == id);
 

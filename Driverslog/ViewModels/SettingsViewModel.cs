@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Reflection;
+using Caliburn.Micro;
 using Driverslog.Models;
 
 namespace Driverslog.ViewModels {
@@ -55,6 +56,10 @@ namespace Driverslog.ViewModels {
             Setting.SaveChanges();
 
             _navigationService.GoBack();
+        }
+
+        public string ApplicationVersion {
+            get { return "Version " + GetType().Assembly.FullName.Split('=')[1].Split(',')[0]; }
         }
     }
 }

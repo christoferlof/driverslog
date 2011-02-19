@@ -33,7 +33,7 @@
             <controls:PivotItem Header="About">
                 <StackPanel>
                     <TextBlock Text="Driver's log" Style="{StaticResource PhoneTextLargeStyle}"/>
-                    <TextBlock Text="Version 1.0.0.0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock x:Name="ApplicationVersion" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBlock Text="Copyright 2011 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <HyperlinkButton Content="Technical Support" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
                 </StackPanel>

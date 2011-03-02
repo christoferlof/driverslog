@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
-  <App xmlns="" ProductID="{f774542f-60bf-4c7c-88ed-6ff45b6008f5}" Title="Driver's log" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="Christofer Löf" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Driver's log">
+  <App xmlns="" ProductID="{f774542f-60bf-4c7c-88ed-6ff45b6008f5}" Title="Driver's log" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal" Author="Christofer Löf" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Christofer Löf">
     <IconPath IsRelative="true" IsResource="false">appicon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

@@ -7,7 +7,7 @@ properties {
   $slnfile    = "$basedir\Driverslog.sln"
   
   $releasedir = "$basedir\releases"
-  $version    = "1.1.0.0"
+  $version    = "1.2.0.0"
 }
 
 task default -depends Test
@@ -37,7 +37,7 @@ task Compile -depends Clean {
   exec {msbuild "$slnfile" /p:Configuration=Debug  "/p:OutDir=$builddir\" /Verbosity:Quiet /nologo}
 }
 
-task Release -depends Test, Clean, GenerateAssemblyInfo  {
+task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
   exec {msbuild "$slnfile" /p:Configuration=Release /p:IsPackaging=true "/p:OutDir=$releasedir\$version\" }
 }
 
@@ -50,6 +50,17 @@ task GenerateAssemblyInfo {
     -product "Driver's log $version" `
     -version $version `
     -copyright "Copyright © Christofer Löf 2011"
+}
+
+task GenerateManifest {
+  Generate-Manifest `
+    -file "$basedir\Driverslog\Properties\WMAppManifest.xml" `
+    -title "Driver's log" `
+    -author "Christofer Löf" `
+    -version $version `
+    -description "Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." `
+    -publisher "Christofer Löf"
+    
 }
 
 task Clean { 
@@ -73,7 +84,7 @@ function Get-Git-Commit
 function Generate-Assembly-Info
 {
 param(
-	[string]$clsCompliant = "true",
+	[string]$clsCompliant = "false",
 	[string]$title, 
 	[string]$description, 
 	[string]$company, 
@@ -88,7 +99,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: CLSCompliantAttribute($clsCompliant )]
+[assembly: CLSCompliantAttribute($clsCompliant)]
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyTitleAttribute(""$title"")]
 [assembly: AssemblyDescriptionAttribute(""$description"")]
@@ -109,4 +120,46 @@ using System.Runtime.InteropServices;
 	}
 	Write-Host "Generating assembly info file: $file"
 	out-file -filePath $file -encoding UTF8 -inputObject $asmInfo
+}
+
+function Generate-Manifest {
+  param(
+    [string]$title, 
+    [string]$author, 
+    [string]$description, 
+    [string]$publisher,  
+    [string]$version,
+    [string]$file = $(throw "file is a required parameter.")
+  )
+  
+  $manifestInfo = "<?xml version=""1.0"" encoding=""utf-8""?>
+<Deployment xmlns=""http://schemas.microsoft.com/windowsphone/2009/deployment"" AppPlatformVersion=""7.0"">
+  <App xmlns="""" ProductID=""{f774542f-60bf-4c7c-88ed-6ff45b6008f5}"" Title=""$title"" RuntimeType=""Silverlight"" Version=""$version"" Genre=""apps.normal"" Author=""$author"" Description=""$description"" Publisher=""$publisher"">
+    <IconPath IsRelative=""true"" IsResource=""false"">appicon.png</IconPath>
+    <Capabilities>
+      <Capability Name=""ID_CAP_NETWORKING"" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name=""_default"" NavigationPage=""MainPage.xaml"" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID=""DriverslogToken"" TaskName=""_default"">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative=""true"" IsResource=""false"">tile.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>$title</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>"
+    
+  $dir = [System.IO.Path]::GetDirectoryName($file)
+	if ([System.IO.Directory]::Exists($dir) -eq $false)
+	{
+		Write-Host "Creating directory $dir"
+		[System.IO.Directory]::CreateDirectory($dir)
+	}
+	Write-Host "Generating manifest file: $file"
+	out-file -filePath $file -encoding UTF8 -inputObject $manifestInfo
 }

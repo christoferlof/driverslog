@@ -59,6 +59,7 @@
       <HintPath>..\lib\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization">
       <Private>False</Private>
     </Reference>

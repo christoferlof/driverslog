@@ -91,6 +91,7 @@
     <Compile Include="ViewModels\Edit\when_resuming_application_spec.cs" />
     <Compile Include="ViewModels\Edit\when_selecting_existing_expense_spec.cs" />
     <Compile Include="ViewModels\Edit\when_selecting_existing_trip_spec.cs" />
+    <Compile Include="ViewModels\Edit\when_updating_amount_on_expense_spec.cs" />
     <Compile Include="ViewModels\Edit\when_updating_expense_spec.cs" />
     <Compile Include="ViewModels\Edit\when_updating_trip_spec.cs" />
     <Compile Include="ViewModels\Settings\when_chaning_settings_spec.cs" />

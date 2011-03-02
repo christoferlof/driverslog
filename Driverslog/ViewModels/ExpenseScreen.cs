@@ -7,7 +7,7 @@ namespace Driverslog.ViewModels {
     public class ExpenseScreen : ItemScreen {
 
         public ExpenseScreen(IMessageBoxService messageBoxService)
-            :base(messageBoxService) {
+            : base(messageBoxService) {
         }
 
         protected override void OnInitialize() {
@@ -33,8 +33,10 @@ namespace Driverslog.ViewModels {
         public double Amount {
             get { return _amount; }
             set {
-                _amount = value;
-                NotifyOfPropertyChange(() => Amount);
+                if (value != _amount) {
+                    _amount = value;
+                    NotifyOfPropertyChange(() => Amount);
+                }
             }
         }
     }

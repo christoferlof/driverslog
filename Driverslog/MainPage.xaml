@@ -9,13 +9,15 @@
     xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" 
     xmlns:helpers="clr-namespace:Driverslog.Helpers" 
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows" 
-    xmlns:model="clr-namespace:Driverslog.Models" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    xmlns:model="clr-namespace:Driverslog.Models" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     d:DataContext="{d:DesignData /SampleData/MainViewModelSampleData.xaml}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     >
     <phone:PhoneApplicationPage.Resources>
         <helpers:TypeToVisibilityConverter x:Key="TypeToVisibilityConverter"/>

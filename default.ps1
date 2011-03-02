@@ -39,6 +39,12 @@ task Compile -depends Clean {
 
 task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
   exec {msbuild "$slnfile" /p:Configuration=Release /p:IsPackaging=true "/p:OutDir=$releasedir\$version\" }
+  @(
+    "$basedir\gfx\screen*.png",
+    "$basedir\gfx\small-mobile-app-icon.png",
+    "$basedir\gfx\large-mobile-app-icon.png",
+    "$basedir\gfx\large-pc-app-icon.png"
+  ) | foreach { copy-item $_ "$releasedir\$version\" }
 }
 
 task GenerateAssemblyInfo {

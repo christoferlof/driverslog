@@ -1,0 +1,22 @@
+# Driver's log
+
+Description
+===========
+Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications.
+
+Versions
+===========
+
+1.2.0.0
+-------
+- Bugfix: Amount on expense now works with decimal as expected
+- List log items in pivot with views for "All", "Today", "Trips" and "Expenses"
+- Tilt effect on log items
+
+1.1.0.0
+-------
+- Updated icons
+
+1.0.0.0
+-------
+- Initial release

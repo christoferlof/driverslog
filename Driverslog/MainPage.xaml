@@ -82,7 +82,7 @@
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
-        <controls:Pivot Title="Driver's log">
+        <controls:Pivot Title="Driver's log" SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
             <controls:PivotItem Header="All">
                 <ListBox  
                      ItemsSource="{Binding Source={StaticResource AllViewSource}}"         

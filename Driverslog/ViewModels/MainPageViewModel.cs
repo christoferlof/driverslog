@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
@@ -9,6 +10,7 @@ using Driverslog.Services;
 using Microsoft.Phone.Tasks;
 
 namespace Driverslog.ViewModels {
+    [SurviveTombstone]
     public class MainPageViewModel : Screen {
         private readonly INavigationService _navigationService;
         private readonly IMessageBoxService _messageBoxService;
@@ -24,6 +26,12 @@ namespace Driverslog.ViewModels {
                 Trip.Load();
                 Expense.Load();
             });
+          
+        }
+
+        protected override void OnViewLoaded(object view) {
+            base.OnViewLoaded(view);
+            NotifyOfPropertyChange(() => SelectedPivotIndex);
         }
 
         public ObservableCollection<Trip> TripList {
@@ -38,7 +46,11 @@ namespace Driverslog.ViewModels {
 
         public int SelectedIndex { get; set; }
 
+        [SurviveTombstone]
+        public int SelectedPivotIndex { get; set; }
+
         public void CreateNewTrip() {
+
             _navigationService.Navigate(new Uri("/CreateView.xaml", UriKind.Relative));
         }
 
@@ -51,7 +63,7 @@ namespace Driverslog.ViewModels {
             var task = new EmailComposeTask() {
                 Subject = "My driver's log",
                 To = Setting.Current.Email,
-                Body = string.Format(bodyTemplate, EmailHelper.Format(Trip.All),EmailHelper.Format(Expense.All))
+                Body = string.Format(bodyTemplate, EmailHelper.Format(Trip.All), EmailHelper.Format(Expense.All))
             };
             task.Show();
         }

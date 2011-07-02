@@ -25,6 +25,8 @@ namespace Driverslog {
             _container.RegisterInstance(typeof(INavigationService), null, new FrameAdapter(RootFrame));
             _container.RegisterInstance(typeof(IPhoneService), null, new PhoneApplicationServiceAdapter(PhoneService));
             _container.RegisterInstance(typeof(IMessageBoxService), null, new MessageBoxService());
+            _container.RegisterInstance(typeof(ITrialService), null, new TrialService());
+
         }
 
         protected override object GetInstance(Type service, string key) {

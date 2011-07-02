@@ -17,7 +17,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
             NavigationService = new NavigationServiceStub();
             MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new CreateViewModel(NavigationService, MessageBoxService) {
+            ViewModel = new CreateViewModel(NavigationService, MessageBoxService, null) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",

@@ -11,7 +11,7 @@ namespace Driverslog.ViewModels {
         private Trip _trip;
 
         public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
-            :base (messageBoxService){
+            :base (messageBoxService, null){
             _navigationService = navigationService;
         }
 

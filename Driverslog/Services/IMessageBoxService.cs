@@ -3,5 +3,6 @@
         void ShowMessage(string message);
 
         bool Confirm(string message);
+        bool Confirm(string title, string message);
     }
 }

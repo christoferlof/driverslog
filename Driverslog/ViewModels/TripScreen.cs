@@ -8,7 +8,8 @@ namespace Driverslog.ViewModels {
     [SurviveTombstone]
     public class TripScreen : ItemScreen {
 
-        public TripScreen(IMessageBoxService messageBoxService) : base(messageBoxService) {
+        public TripScreen(IMessageBoxService messageBoxService, ITrialService trialService) 
+            : base(messageBoxService, trialService) {
         }
 
         protected override void OnInitialize() {

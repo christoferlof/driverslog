@@ -9,7 +9,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         
         [Fact]
         public void should_update_date() {
-            var viewModel = new CreateViewModel(new NavigationServiceStub(), new MessageBoxServiceStub());
+            var viewModel = new CreateViewModel(new NavigationServiceStub(), new MessageBoxServiceStub(), null);
             var date = new DateTime(1979,1,3);
 
             viewModel.ChangeDate(new DateTimeValueChangedEventArgs(null,date));

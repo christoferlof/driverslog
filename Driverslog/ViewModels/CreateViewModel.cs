@@ -8,12 +8,16 @@ namespace Driverslog.ViewModels {
     public class CreateViewModel : TripScreen {
         private readonly INavigationService _navigationService;
 
-        public CreateViewModel(INavigationService navigationService, IMessageBoxService messageBoxService)
-            : base(messageBoxService) {
+        public CreateViewModel(INavigationService navigationService, 
+            IMessageBoxService messageBoxService, ITrialService trialService)
+            : base(messageBoxService, trialService) {
             _navigationService = navigationService;
         }
 
         public void CreateTrip() {
+            
+            if(IsTrialLimitReached()) return;
+            
             var trip = new Trip {
                 Car = Car,
                 From = From,

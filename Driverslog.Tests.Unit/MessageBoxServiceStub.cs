@@ -16,6 +16,9 @@ namespace Driverslog.Tests.Unit {
             return ConfirmReturns;
         }
 
-
+        public bool Confirm(string title, string message) {
+            ConfirmWasInvoked = true;
+            return ConfirmReturns;
+        }
     }
 }

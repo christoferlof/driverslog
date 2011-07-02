@@ -9,9 +9,11 @@ namespace Driverslog.ViewModels {
     [SurviveTombstone]
     public class ItemScreen : Screen {
         private readonly IMessageBoxService _messageBoxService;
+        private readonly ITrialService _trialService;
 
-        public ItemScreen(IMessageBoxService messageBoxService) {
+        public ItemScreen(IMessageBoxService messageBoxService, ITrialService trialService) {
             _messageBoxService = messageBoxService;
+            _trialService = trialService;
             _date = DateTime.Today;
             _car = Setting.Current.DefaultCar;
         }
@@ -27,6 +29,22 @@ namespace Driverslog.ViewModels {
                 return false;
             }
             return true;
+        }
+
+        protected bool IsTrialLimitReached() {
+            if(_trialService == null) return false;
+
+            bool reached = _trialService.LimitReached();
+            if (reached) {
+                bool buy = MessageBoxService.Confirm("Trial limit reached", string.Format(
+                    "You've reached the trial limit.\nYour log can contain {0} items in this trial version.\n" +
+                    "Select OK in order to buy the full version of Driver's log.",
+                    _trialService.Limit));
+                if (buy) {
+                    _trialService.Buy();
+                }
+            }
+            return reached;
         }
 
         private DateTime _date;

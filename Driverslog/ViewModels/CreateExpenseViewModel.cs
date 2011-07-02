@@ -8,12 +8,16 @@ namespace Driverslog.ViewModels {
     public class CreateExpenseViewModel : ExpenseScreen {
         private readonly INavigationService _navigationService;
 
-        public CreateExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
-            : base(messageBoxService){
+        public CreateExpenseViewModel(INavigationService navigationService, 
+            IMessageBoxService messageBoxService, ITrialService trialService) 
+            : base(messageBoxService, trialService){
             _navigationService = navigationService;
         }
 
         public void CreateExpense() {
+
+            if (IsTrialLimitReached()) return;
+            
             var expense = new Expense {
                 Car     = Car,
                 Date    = Date,

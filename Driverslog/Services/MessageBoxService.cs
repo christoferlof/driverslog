@@ -8,7 +8,11 @@ namespace Driverslog.Services {
         }
 
         public bool Confirm(string message) {
-            return MessageBox.Show(message,"Confirm",MessageBoxButton.OKCancel) == MessageBoxResult.OK; 
+            return Confirm("Confirm",message);
+        }
+
+        public bool Confirm(string title, string message) {
+            return MessageBox.Show(message, title, MessageBoxButton.OKCancel) == MessageBoxResult.OK;
         }
     }
 }

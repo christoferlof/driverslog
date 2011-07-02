@@ -10,7 +10,7 @@ namespace Driverslog.ViewModels {
         private Expense _expense;
 
         public EditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
-            : base(messageBoxService){
+            : base(messageBoxService, null){
             _navigationService = navigationService;
         }
 

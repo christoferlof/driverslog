@@ -18,7 +18,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
             NavigationService = new NavigationServiceStub();
             MessageBoxService = new MessageBoxServiceStub();
 
-            ViewModel = new CreateExpenseViewModel(NavigationService, MessageBoxService) {
+            ViewModel = new CreateExpenseViewModel(NavigationService, MessageBoxService,null) {
                 Car     = "car",
                 Date    = DateTime.Now,
                 Amount  = 2.99,

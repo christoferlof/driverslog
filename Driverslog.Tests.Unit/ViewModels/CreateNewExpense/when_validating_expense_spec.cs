@@ -8,7 +8,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
 
         public override void Context() {
             MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new CreateExpenseViewModel(new NavigationServiceStub(), MessageBoxService);
+            ViewModel = new CreateExpenseViewModel(new NavigationServiceStub(), MessageBoxService, null);
         }
 
         public override void Because() {

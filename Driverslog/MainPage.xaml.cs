@@ -17,11 +17,12 @@ using System.Windows.Shapes;
 using Driverslog.Models;
 using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Marketplace;
 
 namespace Driverslog {
     public partial class MainPage : PhoneApplicationPage {
         public MainPage() {
-            InitializeComponent();
+            InitializeComponent();   
         }
 
         private void TodayViewSourceFilter(object sender, FilterEventArgs e) {

@@ -9,7 +9,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
         public override void Context() {
             MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new CreateViewModel(new NavigationServiceStub(), MessageBoxService);
+            ViewModel = new CreateViewModel(new NavigationServiceStub(), MessageBoxService, null);
         }
         
         public override void Because() {

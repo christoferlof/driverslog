@@ -72,14 +72,29 @@ namespace Driverslog.Models {
             }
         }
 
+        private int _milage;
+
+        [DataMember(IsRequired=false, Order=1)]
+        public int Mileage {
+            get { return _milage; }
+            set {
+                _milage = value;
+                Notify(() => Mileage);
+                Notify(() => Distance);
+            }
+        }
+
         private string FormatDistance() {
-            return string.Format("{0} {1}",(OdometerStop - OdometerStart),Setting.Current.DistanceUnit);
+            int distance = (Mileage > 0) ? Mileage : OdometerStop - OdometerStart;
+            return string.Format("{0} {1}",distance,Setting.Current.DistanceUnit);
         }
 
         private bool HasValidDistance() {
-            return OdometerStop - OdometerStart > 0 &&
+            return 
+                    (Mileage > 0) || (
+                    OdometerStop - OdometerStart > 0 &&
                     OdometerStart > 0 &&
-                    OdometerStop > 0;
+                    OdometerStop > 0);
         }
 
         protected override void OnValidating() {

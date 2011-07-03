@@ -28,14 +28,25 @@ namespace Driverslog.Tests.Unit.Models {
 
         [Fact]
         public void should_include_unit_of_distance() {
-            
+
             Setting.Current.DistanceUnit = "km";
             var trip = new Trip {
                 OdometerStart = 1,
                 OdometerStop = 2
             };
 
-            Assert.Equal("1 km",trip.Distance);
+            Assert.Equal("1 km", trip.Distance);
+        }
+
+        [Fact]
+        public void should_use_user_mileage_as_distance_in_first_place() {
+            var trip          = new Trip() {
+                OdometerStart = 1,
+                OdometerStop  = 2,
+                Mileage       = 4
+            };
+
+            Assert.True(trip.Distance.Contains("4"));
         }
 
         [Fact]
@@ -68,16 +79,16 @@ namespace Driverslog.Tests.Unit.Models {
         public void should_clear_previous_validation_errors_on_validate() {
             var trip = new Trip();
 
-            trip.ValidationMessages.Add("foo","bar");
+            trip.ValidationMessages.Add("foo", "bar");
             trip.ValidationMessages.Add("baz", "zap");
             trip.IsValid(); //should clear the above two messages and add one for "From"
 
-            Assert.Equal(1,trip.ValidationMessages.Count);
+            Assert.Equal(1, trip.ValidationMessages.Count);
         }
 
         [Fact]
         public void should_set_date_to_today_as_default() {
-            Assert.Equal(DateTime.Now.Date,new Trip().Date);
+            Assert.Equal(DateTime.Now.Date, new Trip().Date);
         }
     }
 }

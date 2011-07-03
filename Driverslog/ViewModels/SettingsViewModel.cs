@@ -1,16 +1,19 @@
 ﻿using System.Reflection;
 using Caliburn.Micro;
 using Driverslog.Models;
+using Driverslog.Services;
 
 namespace Driverslog.ViewModels {
     public class SettingsViewModel : Screen {
         private readonly INavigationService _navigationService;
+        private readonly ITrialService _trialService;
         private string _car;
         private string _email;
         private string _distanceUnit;
 
-        public SettingsViewModel(INavigationService navigationService) {
+        public SettingsViewModel(INavigationService navigationService, ITrialService trialService) {
             _navigationService = navigationService;
+            _trialService = trialService;
         }
 
         public string Car {
@@ -59,7 +62,11 @@ namespace Driverslog.ViewModels {
         }
 
         public string ApplicationVersion {
-            get { return "Version " + GetType().Assembly.FullName.Split('=')[1].Split(',')[0]; }
+            get {
+                return string.Format("Version {0}{1}",
+                    GetType().Assembly.FullName.Split('=')[1].Split(',')[0],
+                    (_trialService.IsTrial) ? " Trial" : "");
+            }
         }
     }
 }

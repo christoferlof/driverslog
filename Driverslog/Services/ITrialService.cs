@@ -3,5 +3,6 @@ namespace Driverslog.Services {
         int Limit{get;}
         bool LimitReached();
         void Buy();
+        bool IsTrial{get;}
     }
 }

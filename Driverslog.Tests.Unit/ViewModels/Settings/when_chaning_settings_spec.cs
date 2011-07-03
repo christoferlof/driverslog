@@ -12,7 +12,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Settings {
         public override void Context() {
 
             NavigationService = new NavigationServiceStub();
-            ViewModel = new SettingsViewModel(NavigationService) {
+            ViewModel = new SettingsViewModel(NavigationService, new TrialServiceStub()) {
                 Car     = "car",
                 Email   = "email",
                 DistanceUnit = "km"

@@ -12,6 +12,10 @@ namespace Driverslog.Services {
             _isTrial = new LicenseInformation().IsTrial();
         }
 
+        public bool IsTrial {
+            get{ return _isTrial;}
+        }
+
         public int Limit {
             get { return 15; }
         }

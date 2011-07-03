@@ -15,5 +15,9 @@ namespace Driverslog.Tests.Unit {
         }
 
         public void Buy(){}
+
+        public bool IsTrial {
+            get {return true;}
+        }
     }
 }

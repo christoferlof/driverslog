@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:Converters="clr-namespace:Driverslog.Converters" 
     x:Class="Driverslog.CreateView"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -15,6 +16,9 @@
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <Converters:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
+    </phone:PhoneApplicationPage.Resources>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <cal:AppBarButton IconUri="/icons/appbar.check.rest.png" Text="Save" Message="CreateTrip"/>
@@ -38,28 +42,38 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Date" />
+                    <TextBlock Text="Date" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
 
-                    <TextBlock Text="From" />
+                    <TextBlock Text="From" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="From" />
 
-                    <TextBlock Text="To" />
+                    <TextBlock Text="To" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="To" />
 
-                    <TextBlock Text="Car" />
+                    <TextBlock Text="Car" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Car" />
 
-                    <TextBlock Text="Odometer Start" />
-                    <TextBox x:Name="OdometerStart" InputScope="Number"/>
+                    <TextBlock Text="Odometer Start" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+                    <TextBox x:Name="OdometerStart" 
+                             InputScope="Number" 
+                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
-                    <TextBlock Text="Odometer Stop" />
-                    <TextBox x:Name="OdometerStop" InputScope="Number"/>
-                   
-                    <TextBlock Text="Mileage" />
-                    <TextBox x:Name="Mileage" InputScope="Number"/>
-                    
-                    <TextBlock Text="Notes" />
+                    <TextBlock Text="Odometer Stop" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                    <TextBox x:Name="OdometerStop" 
+                             InputScope="Number" 
+                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+
+                    <TextBlock Text="Mileage" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                    <TextBox x:Name="Mileage" InputScope="Number" Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+
+                    <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Notes" />
 
                 </StackPanel>

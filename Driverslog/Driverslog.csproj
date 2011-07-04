@@ -94,6 +94,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\YesNoToIndexConverter.cs" />
     <Compile Include="CreateExpenseView.xaml.cs">
       <DependentUpon>CreateExpenseView.xaml</DependentUpon>
     </Compile>

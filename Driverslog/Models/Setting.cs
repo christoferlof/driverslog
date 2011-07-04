@@ -55,5 +55,10 @@ namespace Driverslog.Models {
         [DataMember]
         public string DefaultCar { get; set; }
 
+        [DataMember(IsRequired = false, Order = 1)]
+        public bool HideMileageField { get; set; }
+
+        [DataMember(IsRequired = false, Order = 1)]
+        public bool HideOdoFields { get; set; }
     }
 }

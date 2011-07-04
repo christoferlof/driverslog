@@ -30,19 +30,19 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Date"/>
+                    <TextBlock Text="Date" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
-                    
-                    <TextBlock Text="Title"/>
+
+                    <TextBlock Text="Title" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Title"/>
 
-                    <TextBlock Text="Car"/>
+                    <TextBlock Text="Car" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Car"/>
 
-                    <TextBlock Text="Notes"/>
+                    <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Notes"/>
 
-                    <TextBlock Text="Amount"/>
+                    <TextBlock Text="Amount" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Amount" InputScope="CurrencyAmount"/>
                 </StackPanel>
             </ScrollViewer>

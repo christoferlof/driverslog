@@ -70,5 +70,13 @@ namespace Driverslog.ViewModels {
             }
         }
 
+        public bool HideOdoFields {
+            get{ return Setting.Current.HideOdoFields;}
+        }
+
+        public bool HideMileageField {
+            get { return Setting.Current.HideMileageField; }
+        }
+
     }
 }

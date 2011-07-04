@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using Driverslog.Models;
 using Driverslog.Services;
@@ -47,15 +49,19 @@ namespace Driverslog.ViewModels {
         }
 
         protected override void OnInitialize() {
-            Email = Setting.Current.Email;
-            DistanceUnit = Setting.Current.DistanceUnit;
-            Car = Setting.Current.DefaultCar;
+            Email            = Setting.Current.Email;
+            DistanceUnit     = Setting.Current.DistanceUnit;
+            Car              = Setting.Current.DefaultCar;
+            HideOdoFields    = Setting.Current.HideOdoFields;
+            HideMileageField = Setting.Current.HideMileageField;
         }
 
         public void SaveSettings() {
-            Setting.Current.Email = Email;
-            Setting.Current.DistanceUnit = DistanceUnit;
-            Setting.Current.DefaultCar = Car;
+            Setting.Current.Email            = Email;
+            Setting.Current.DistanceUnit     = DistanceUnit;
+            Setting.Current.DefaultCar       = Car;
+            Setting.Current.HideMileageField = HideMileageField;
+            Setting.Current.HideOdoFields    = HideOdoFields;
             Setting.SaveChanges();
 
             _navigationService.GoBack();
@@ -67,6 +73,22 @@ namespace Driverslog.ViewModels {
                     GetType().Assembly.FullName.Split('=')[1].Split(',')[0],
                     (_trialService.IsTrial) ? " Trial" : "");
             }
+        }
+
+        public bool HideOdoFields { get; set; }
+
+        public void OnHideOdoFieldsChanged(SelectionChangedEventArgs args) {
+            HideOdoFields = SelectionChangedToBool(args);
+        }
+
+        public bool HideMileageField { get; set; }
+
+        public void OnHideMileageFieldChanged(SelectionChangedEventArgs args) {
+            HideMileageField = SelectionChangedToBool(args);
+        }
+
+        private static bool SelectionChangedToBool(SelectionChangedEventArgs args) {
+            return ((ContentControl)args.AddedItems[0]).Content.ToString().ToLower().Equals("yes");
         }
     }
 }

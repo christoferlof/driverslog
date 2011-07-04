@@ -16,6 +16,5 @@ namespace Driverslog {
         public SettingsView() {
             InitializeComponent();
         }
-
     }
 }

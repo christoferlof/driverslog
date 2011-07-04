@@ -5,7 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:Converters="clr-namespace:Driverslog.Converters" FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -13,6 +13,9 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
+    <phone:PhoneApplicationPage.Resources>
+        <Converters:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
+    </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,28 +32,36 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Date" />
+                    <TextBlock Text="Date" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
 
-                    <TextBlock Text="From" />
+                    <TextBlock Text="From" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="From" />
 
-                    <TextBlock Text="To" />
+                    <TextBlock Text="To" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="To" />
 
-                    <TextBlock Text="Car" />
+                    <TextBlock Text="Car" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Car" />
 
-                    <TextBlock Text="Odometer Start" />
-                    <TextBox x:Name="OdometerStart" InputScope="Number"/>
+                    <TextBlock Text="Odometer Start" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+                    <TextBox x:Name="OdometerStart" 
+                             InputScope="Number" 
+                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
-                    <TextBlock Text="Odometer Stop" />
-                    <TextBox x:Name="OdometerStop" InputScope="Number"/>
+                    <TextBlock Text="Odometer Stop" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                    <TextBox x:Name="OdometerStop" InputScope="Number" Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
-                    <TextBlock Text="Mileage" />
-                    <TextBox x:Name="Mileage" InputScope="Number"/>
+                    <TextBlock Text="Mileage" 
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                    <TextBox x:Name="Mileage" InputScope="Number" Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
-                    <TextBlock Text="Notes" />
+                    <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Notes" />
 
                 </StackPanel>

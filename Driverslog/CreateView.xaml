@@ -50,9 +50,15 @@
                     <TextBlock Text="Car" />
                     <TextBox x:Name="Car" />
 
-                    <TextBlock Text="Odometer" />
+                    <TextBlock Text="Odometer Start" />
                     <TextBox x:Name="OdometerStart" InputScope="Number"/>
 
+                    <TextBlock Text="Odometer Stop" />
+                    <TextBox x:Name="OdometerStop" InputScope="Number"/>
+                   
+                    <TextBlock Text="Mileage" />
+                    <TextBox x:Name="Mileage" InputScope="Number"/>
+                    
                     <TextBlock Text="Notes" />
                     <TextBox x:Name="Notes" />
 

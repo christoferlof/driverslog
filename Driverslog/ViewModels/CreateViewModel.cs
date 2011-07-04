@@ -18,13 +18,14 @@ namespace Driverslog.ViewModels {
             
             if(IsTrialLimitReached()) return;
             
-            var trip = new Trip {
-                Car = Car,
-                From = From,
-                Notes = Notes,
+            var trip          = new Trip {
+                Car           = Car,
+                From          = From,
+                Notes         = Notes,
                 OdometerStart = OdometerStart,
-                To = To,
-                Date = Date
+                To            = To,
+                Date          = Date,
+                Mileage       = Mileage
             };
 
             if (!IsValid(trip)) return;

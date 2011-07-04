@@ -23,23 +23,25 @@ namespace Driverslog.ViewModels {
             var id = new Guid(TripId);
             _trip = Trip.All.Single(x => x.Id == id);
             
-            From = _trip.From;
-            To = _trip.To;
-            OdometerStart = _trip.OdometerStart;
-            OdometerStop = _trip.OdometerStop;
-            Notes = _trip.Notes;
-            Car = _trip.Car;
-            Date = _trip.Date;
+            From            = _trip.From;
+            To              = _trip.To;
+            OdometerStart   = _trip.OdometerStart;
+            OdometerStop    = _trip.OdometerStop;
+            Notes           = _trip.Notes;
+            Car             = _trip.Car;
+            Date            = _trip.Date;
+            Mileage         = _trip.Mileage;
         }
 
         public void UpdateTrip() {
-            _trip.From = From;
-            _trip.Notes = Notes;
+            _trip.From          = From;
+            _trip.Notes         = Notes;
             _trip.OdometerStart = OdometerStart;
-            _trip.OdometerStop = OdometerStop;
-            _trip.Car = Car;
-            _trip.To = To;
-            _trip.Date = Date;
+            _trip.OdometerStop  = OdometerStop;
+            _trip.Car           = Car;
+            _trip.To            = To;
+            _trip.Date          = Date;
+            _trip.Mileage       = Mileage;
 
             if(!IsValid(_trip)) return;
 

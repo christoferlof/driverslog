@@ -60,5 +60,15 @@ namespace Driverslog.ViewModels {
             }
         }
 
+        private int _mileage;
+        [SurviveTombstone]
+        public int Mileage {
+            get { return _mileage; }
+            set {
+                _mileage = value;
+                NotifyOfPropertyChange(() => Mileage);
+            }
+        }
+
     }
 }

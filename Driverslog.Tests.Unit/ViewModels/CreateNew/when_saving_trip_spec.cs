@@ -15,16 +15,16 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             Trip.Clear();
             Trip.SaveChanges();
 
-            NavigationService = new NavigationServiceStub();
-            MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new CreateViewModel(NavigationService, MessageBoxService, null) {
+            NavigationService   = new NavigationServiceStub();
+            MessageBoxService   = new MessageBoxServiceStub();
+            ViewModel           = new CreateViewModel(NavigationService, MessageBoxService, null) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",
                 OdometerStart   = 1,
                 To              = "to",
-                Date            = new DateTime(1979,1,3)
-                
+                Date            = new DateTime(1979,1,3),
+                Mileage         = 2
             };
 
         }
@@ -47,6 +47,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             Assert.Equal(ViewModel.OdometerStart, trip.OdometerStart);
             Assert.Equal(ViewModel.To, trip.To);
             Assert.Equal(ViewModel.Date, trip.Date);
+            Assert.Equal(ViewModel.Mileage, trip.Mileage);
         }
 
         [Fact]

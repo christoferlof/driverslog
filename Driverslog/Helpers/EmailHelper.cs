@@ -18,7 +18,9 @@ namespace Driverslog.Helpers {
             return FormatInternal(expenses,FormatExpenseHeader, FormatExpenseLineItem);
         }
 
-        private static string FormatInternal<T>(IEnumerable<T> items, Action<StringBuilder> headerFormatter, Action<StringBuilder,T> lineFormatter) {
+        private static string FormatInternal<T>(IEnumerable<T> items, 
+            Action<StringBuilder> headerFormatter, Action<StringBuilder,T> lineFormatter) {
+            
             var builder = new StringBuilder();
             headerFormatter(builder);
 
@@ -37,6 +39,7 @@ namespace Driverslog.Helpers {
                 trip.OdometerStart.ToString(CultureInfo.InvariantCulture),
                 trip.OdometerStop.ToString(CultureInfo.InvariantCulture),
                 trip.Distance,
+                trip.Mileage.ToString(CultureInfo.InvariantCulture),
                 trip.Notes
             };
             Join(builder,line);
@@ -54,7 +57,7 @@ namespace Driverslog.Helpers {
         }
 
         private static void FormatTripHeader(StringBuilder builder) {
-            var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Notes" };
+            var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Mileage","Notes" };
             Join(builder,headers);
         }
 

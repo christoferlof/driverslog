@@ -10,8 +10,22 @@ namespace Driverslog.Tests.Unit.Helpers {
 
         public override void Context() {
             Trip.Clear();
-            Trip.Add(new Trip { Date = DateTime.Now, Car = "car1", From = "from1", To = "to1", OdometerStart = 1, OdometerStop = 2, Notes = "notes1" });
-            Trip.Add(new Trip { Date = DateTime.Now.AddDays(-1), Car = "car2", From = "from2", To = "to2", OdometerStart = 3, OdometerStop = 4, Notes = "notes2" });
+            Trip.Add(new Trip {
+                Date          = DateTime.Now,
+                Car           = "car1",
+                From          = "from1",
+                To            = "to1",
+                OdometerStart = 1,
+                OdometerStop  = 2, Notes = "notes1"
+            });
+            Trip.Add(new Trip {
+                Date          = DateTime.Now.AddDays(-1),
+                Car           = "car2",
+                From          = "from2",
+                To            = "to2",
+                Mileage       = 3,
+                Notes         = "notes2"
+            });
         }
 
         public override void Because() {
@@ -21,7 +35,7 @@ namespace Driverslog.Tests.Unit.Helpers {
         [Fact]
         public void should_contain_one_trip_per_row() {
             var rows = Result.Split('\n');
-            Assert.Equal(2,rows.Length-2); //subtract header and last row (empty)
+            Assert.Equal(2, rows.Length - 2); //subtract header and last row (empty)
         }
 
         [Fact]
@@ -35,6 +49,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             Assert.True(header.Contains("Start"));
             Assert.True(header.Contains("Stop"));
             Assert.True(header.Contains("Distance"));
+            Assert.True(header.Contains("Mileage"));
             Assert.True(header.Contains("Date"));
         }
 
@@ -43,7 +58,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             var firstTrip = Result.Split('\n')[1];
             var cols = firstTrip.Split(',');
 
-            Assert.Equal(8, cols.Length);
+            Assert.Equal(9, cols.Length);
 
         }
 

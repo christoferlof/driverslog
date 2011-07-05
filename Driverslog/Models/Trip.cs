@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -95,6 +96,17 @@ namespace Driverslog.Models {
                     OdometerStop - OdometerStart > 0 &&
                     OdometerStart > 0 &&
                     OdometerStop > 0);
+        }
+
+        private bool _isRoundTrip;
+
+        [DataMember(IsRequired = false, Order = 1)]
+        public bool IsRoundTrip {
+            get { return _isRoundTrip; }
+            set {
+                _isRoundTrip = value;
+                Notify(() => IsRoundTrip);
+            }
         }
 
         protected override void OnValidating() {

@@ -24,7 +24,8 @@ namespace Driverslog.Tests.Unit.Helpers {
                 From          = "from2",
                 To            = "to2",
                 Mileage       = 3,
-                Notes         = "notes2"
+                Notes         = "notes2",
+                IsRoundTrip   = true
             });
         }
 
@@ -50,6 +51,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             Assert.True(header.Contains("Stop"));
             Assert.True(header.Contains("Distance"));
             Assert.True(header.Contains("Mileage"));
+            Assert.True(header.Contains("Round trip"));
             Assert.True(header.Contains("Date"));
         }
 
@@ -58,7 +60,7 @@ namespace Driverslog.Tests.Unit.Helpers {
             var firstTrip = Result.Split('\n')[1];
             var cols = firstTrip.Split(',');
 
-            Assert.Equal(9, cols.Length);
+            Assert.Equal(10, cols.Length);
 
         }
 

@@ -78,5 +78,14 @@ namespace Driverslog.ViewModels {
             get { return Setting.Current.HideMileageField; }
         }
 
+        private bool _isRoundtrip;
+        [SurviveTombstone]
+        public bool IsRoundtrip {
+            get { return _isRoundtrip; }
+            set {
+                _isRoundtrip = value;
+                NotifyOfPropertyChange(() => IsRoundtrip);
+            }
+        }
     }
 }

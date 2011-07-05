@@ -22,6 +22,7 @@
     >
     <phone:PhoneApplicationPage.Resources>
         <helpers:TypeToVisibilityConverter x:Key="TypeToVisibilityConverter"/>
+    	<cal:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
@@ -55,6 +56,12 @@
                     <StackPanel Visibility="{Binding Converter={StaticResource TypeToVisibilityConverter}, ConverterParameter=Trip}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="From" Text="{Binding From}" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                            <Border Width="16" RenderTransformOrigin="0.5,0.5" Visibility="{Binding IsRoundTrip, Converter={StaticResource BoolToVisibilityConverter}}">
+                            	<Border.RenderTransform>
+                            		<CompositeTransform ScaleX="-1"/>
+                            	</Border.RenderTransform>
+                            	<Path Height="16" Width="11" Fill="{StaticResource PhoneAccentBrush}" Stretch="Fill" Margin="0,6,0,0" HorizontalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z" VerticalAlignment="Center"/>
+                            </Border>
                             <Border Width="16">
                                 <Path Height="16" Width="11" Fill="{StaticResource PhoneAccentBrush}" Stretch="Fill" Margin="0,6,0,0" HorizontalAlignment="Center" UseLayoutRounding="False" Data="M337.59924,129.61948 L337.59924,141.51501 L345.5704,135.87381 z" VerticalAlignment="Center"/>
                             </Border>

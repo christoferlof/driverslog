@@ -40,6 +40,7 @@ namespace Driverslog.Helpers {
                 trip.OdometerStop.ToString(CultureInfo.InvariantCulture),
                 trip.Distance,
                 trip.Mileage.ToString(CultureInfo.InvariantCulture),
+                trip.IsRoundTrip? "Yes" : string.Empty,
                 trip.Notes
             };
             Join(builder,line);
@@ -57,7 +58,7 @@ namespace Driverslog.Helpers {
         }
 
         private static void FormatTripHeader(StringBuilder builder) {
-            var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Mileage","Notes" };
+            var headers = new[] { "Date", "Car", "To", "From", "Start", "Stop", "Distance", "Mileage","Round trip","Notes" };
             Join(builder,headers);
         }
 

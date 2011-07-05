@@ -25,7 +25,8 @@ namespace Driverslog.ViewModels {
                 OdometerStart = OdometerStart,
                 To            = To,
                 Date          = Date,
-                Mileage       = Mileage
+                Mileage       = Mileage,
+                IsRoundTrip   = IsRoundtrip
             };
 
             if (!IsValid(trip)) return;

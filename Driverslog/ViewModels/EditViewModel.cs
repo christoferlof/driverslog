@@ -31,6 +31,7 @@ namespace Driverslog.ViewModels {
             Car             = _trip.Car;
             Date            = _trip.Date;
             Mileage         = _trip.Mileage;
+            IsRoundtrip     = _trip.IsRoundTrip;
         }
 
         public void UpdateTrip() {
@@ -42,6 +43,7 @@ namespace Driverslog.ViewModels {
             _trip.To            = To;
             _trip.Date          = Date;
             _trip.Mileage       = Mileage;
+            _trip.IsRoundTrip   = IsRoundtrip;
 
             if(!IsValid(_trip)) return;
 

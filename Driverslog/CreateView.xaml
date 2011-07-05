@@ -73,6 +73,9 @@
                                Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
                     <TextBox x:Name="Mileage" InputScope="Number" Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
+                    <toolkit:ToggleSwitch IsChecked="{Binding IsRoundtrip}" Header="Round trip" 
+                        Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"/>
+                    
                     <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Notes" />
 

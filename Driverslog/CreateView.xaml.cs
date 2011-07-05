@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -17,5 +18,14 @@ namespace Driverslog {
         public CreateView() {
             InitializeComponent();
         }
+
+        private void ToggleSwitch_Checked(object sender, RoutedEventArgs e) {
+            ((CreateViewModel)DataContext).IsRoundtrip = true;
+        }
+
+        private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e) {
+            ((CreateViewModel)DataContext).IsRoundtrip = false;
+        }
+
     }
 }

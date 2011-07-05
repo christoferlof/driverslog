@@ -7,7 +7,7 @@ properties {
   $slnfile    = "$basedir\Driverslog.sln"
   
   $releasedir = "$basedir\releases"
-  $version    = "1.2.0.0"
+  $version    = "1.3.0.0"
 }
 
 task default -depends Test

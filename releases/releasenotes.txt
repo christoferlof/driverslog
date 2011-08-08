@@ -8,22 +8,22 @@ Versions
 ===========
 
 1.3.0.0
--------
+
 - Trial version is now available. The application is fully functional but limits the log to 15 items.
 - Round trips
 - Manual entering of mileage
 - Settings which allow you to hide odometer and mileage fields. Use what works best for you.
 
 1.2.0.0
--------
+
 - Bugfix: Amount on expense now works with decimal as expected
 - List log items in pivot with views for "All", "Today", "Trips" and "Expenses"
 - Tilt effect on log items
 
 1.1.0.0
--------
+
 - Updated icons
 
 1.0.0.0
--------
+
 - Initial release

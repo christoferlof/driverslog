@@ -89,8 +89,8 @@
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
-        <controls:Pivot Title="Driver's log" SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
-            <controls:PivotItem Header="All">
+        <controls:Pivot Title="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
+            <controls:PivotItem Header="{Binding Path=Localized.MainPageAll, Source={StaticResource Strings}}">
                 <ListBox  
                      ItemsSource="{Binding Source={StaticResource AllViewSource}}"         
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
@@ -98,7 +98,7 @@
                      cal:Message.Attach="[Event SelectionChanged] = [Action EditItem]"
                      ItemTemplate="{StaticResource ItemTemplate}"/>
             </controls:PivotItem>
-            <controls:PivotItem Header="Today">
+            <controls:PivotItem Header="{Binding Path=Localized.MainPageToday, Source={StaticResource Strings}}">
                 <ListBox  
                      ItemsSource="{Binding Source={StaticResource TodayViewSource}}"         
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
@@ -106,7 +106,7 @@
                      cal:Message.Attach="[Event SelectionChanged] = [Action EditItem]"
                      ItemTemplate="{StaticResource ItemTemplate}"/>
             </controls:PivotItem>
-            <controls:PivotItem Header="Trips">
+            <controls:PivotItem Header="{Binding Path=Localized.MainPageTrips, Source={StaticResource Strings}}">
                 <ListBox  
                      ItemsSource="{Binding Source={StaticResource TripsViewSource}}"         
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
@@ -114,7 +114,7 @@
                      cal:Message.Attach="[Event SelectionChanged] = [Action EditItem]"
                      ItemTemplate="{StaticResource ItemTemplate}"/>
             </controls:PivotItem>
-            <controls:PivotItem Header="Expenses">
+            <controls:PivotItem Header="{Binding Path=Localized.MainPageExpenses, Source={StaticResource Strings}}">
                 <ListBox  
                      ItemsSource="{Binding Source={StaticResource ExpensesViewSource}}"         
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
@@ -124,7 +124,7 @@
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <cal:AppBarButton Text="trip" IconUri="/icons/appbar.newtrip.png" Message="CreateNewTrip"/>
             <cal:AppBarButton Text="expense" IconUri="/icons/appbar.newexpense.png" Message="CreateNewExpense"/>
@@ -134,5 +134,5 @@
                 <cal:AppBarMenuItem Text="Settings" Message="Settings"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 </phone:PhoneApplicationPage>

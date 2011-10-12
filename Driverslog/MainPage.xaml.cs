@@ -14,15 +14,18 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Resources;
 using System.Windows.Shapes;
+using Caliburn.Micro;
 using Driverslog.Models;
 using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Marketplace;
+using Microsoft.Phone.Shell;
 
 namespace Driverslog {
     public partial class MainPage : PhoneApplicationPage {
         public MainPage() {
-            InitializeComponent();   
+            InitializeComponent();
+            CreateApplicationBar();
         }
 
         private void TodayViewSourceFilter(object sender, FilterEventArgs e) {
@@ -40,6 +43,38 @@ namespace Driverslog {
 
         private void ExpenseViewSourceFilter(object sender, FilterEventArgs e) {
             e.Accepted = e.Item is Expense;
+        }
+
+        private void CreateApplicationBar() {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBar.Buttons.Add(new AppBarButton {
+                IconUri = new Uri("/icons/appbar.newtrip.png", UriKind.Relative),
+                Message = "CreateNewTrip",
+                Text    = Strings.MainPageAppBarTrip
+            });
+
+            ApplicationBar.Buttons.Add(new AppBarButton {
+                IconUri = new Uri("/icons/appbar.newexpense.png", UriKind.Relative),
+                Message = "CreateNewExpense",
+                Text    = Strings.MainPageAppBarExpense
+            });
+
+            ApplicationBar.MenuItems.Add(new AppBarMenuItem {
+                Message = "ExportTrips",
+                Text    = Strings.MainPageAppBarExport
+            });
+
+            ApplicationBar.MenuItems.Add(new AppBarMenuItem {
+                Message = "Clear",
+                Text    = Strings.MainPageAppBarClear
+            });
+
+            ApplicationBar.MenuItems.Add(new AppBarMenuItem {
+                Message = "Settings",
+                Text = Strings.MainPageAppBarSettings
+            });
+
         }
     }
 }

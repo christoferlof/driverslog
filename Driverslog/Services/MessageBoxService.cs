@@ -8,7 +8,7 @@ namespace Driverslog.Services {
         }
 
         public bool Confirm(string message) {
-            return Confirm("Confirm",message);
+            return Confirm(Strings.MessageBoxConfirm,message);
         }
 
         public bool Confirm(string title, string message) {

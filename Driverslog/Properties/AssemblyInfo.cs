@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Resources;
 
 [assembly: CLSCompliantAttribute(false)]
 [assembly: ComVisibleAttribute(false)]
@@ -15,3 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersionAttribute("1.3.0.0")]
 [assembly: AssemblyDelaySignAttribute(false)]
 
+[assembly: NeutralResourcesLanguageAttribute("en-US")]

@@ -93,7 +93,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void Clear() {
-            var proceed = _messageBoxService.Confirm("All trips and expenses will be deleted. Make sure you've exported them.");
+            var proceed = _messageBoxService.Confirm(Strings.MainPageClearConfirm);
             if (proceed) {
                 Trip.Clear();
                 Trip.SaveChanges();

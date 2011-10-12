@@ -116,6 +116,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersionAttribute(""$version / $commit"")]
 [assembly: AssemblyFileVersionAttribute(""$version"")]
 [assembly: AssemblyDelaySignAttribute(false)]
+[assembly: NeutralResourcesLanguageAttribute(""en-US"")]
 "
 
 	$dir = [System.IO.Path]::GetDirectoryName($file)

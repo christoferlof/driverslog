@@ -34,7 +34,7 @@ task Test -depends Compile, Clean {
 }
 
 task Compile -depends Clean { 
-  exec {msbuild "$slnfile" /p:Configuration=Debug  "/p:OutDir=$builddir\" /Verbosity:Quiet /nologo}
+  exec {msbuild "$slnfile" /p:Configuration=Release  "/p:OutDir=$builddir\" /Verbosity:Quiet /nologo}
 }
 
 task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
@@ -43,7 +43,8 @@ task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
     "$basedir\gfx\screen*.png",
     "$basedir\gfx\small-mobile-app-icon.png",
     "$basedir\gfx\large-mobile-app-icon.png",
-    "$basedir\gfx\large-pc-app-icon.png"
+    "$basedir\gfx\large-pc-app-icon.png",
+    "$basedir\gfx\background.png",
   ) | foreach { copy-item $_ "$releasedir\$version\" }
 }
 

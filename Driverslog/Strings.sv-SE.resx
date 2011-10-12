@@ -120,6 +120,9 @@
   <data name="AppTitle" xml:space="preserve">
     <value>KÖRJOURNAL</value>
   </data>
+  <data name="CreateViewTitle" xml:space="preserve">
+    <value>ny resa</value>
+  </data>
   <data name="MainPageAll" xml:space="preserve">
     <value>alla</value>
   </data>
@@ -152,5 +155,35 @@
   </data>
   <data name="MessageBoxConfirm" xml:space="preserve">
     <value>Bekräfta</value>
+  </data>
+  <data name="TripCar" xml:space="preserve">
+    <value>Bil</value>
+  </data>
+  <data name="TripDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="TripFrom" xml:space="preserve">
+    <value>Från</value>
+  </data>
+  <data name="TripMileage" xml:space="preserve">
+    <value>Körsträcka</value>
+  </data>
+  <data name="TripNotes" xml:space="preserve">
+    <value>Noteringar</value>
+  </data>
+  <data name="TripOdometerStart" xml:space="preserve">
+    <value>Mätarställning start</value>
+  </data>
+  <data name="TripOdometerStop" xml:space="preserve">
+    <value>Mätarställning stopp</value>
+  </data>
+  <data name="TripRoundTrip" xml:space="preserve">
+    <value>Tur och retur</value>
+  </data>
+  <data name="TripSave" xml:space="preserve">
+    <value>spara</value>
+  </data>
+  <data name="TripTo" xml:space="preserve">
+    <value>Till</value>
   </data>
 </root>

@@ -10,8 +10,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Caliburn.Micro;
 using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace Driverslog {
     public partial class CreateView : PhoneApplicationPage {
@@ -27,5 +29,15 @@ namespace Driverslog {
             ((CreateViewModel)DataContext).IsRoundtrip = false;
         }
 
+        private void CreateApplicationBar() {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBar.Buttons.Add(new AppBarButton {
+                IconUri = new Uri("/icons/appbar.check.rest.png", UriKind.Relative),
+                Message = "CreateTrip",
+                Text = Strings.TripSave
+            });
+
+        }
     }
 }

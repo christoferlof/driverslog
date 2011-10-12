@@ -124,15 +124,4 @@
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <cal:AppBarButton Text="trip" IconUri="/icons/appbar.newtrip.png" Message="CreateNewTrip"/>
-            <cal:AppBarButton Text="expense" IconUri="/icons/appbar.newexpense.png" Message="CreateNewExpense"/>
-            <shell:ApplicationBar.MenuItems>
-                <cal:AppBarMenuItem Text="Export" Message="ExportTrips"/>
-                <cal:AppBarMenuItem Text="Clear" Message="Clear"/>
-                <cal:AppBarMenuItem Text="Settings" Message="Settings"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 </phone:PhoneApplicationPage>

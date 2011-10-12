@@ -70,6 +70,15 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to new trip.
+        /// </summary>
+        public static string CreateViewTitle {
+            get {
+                return ResourceManager.GetString("CreateViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to all.
         /// </summary>
         public static string MainPageAll {
@@ -165,6 +174,96 @@ namespace Driverslog {
         public static string MessageBoxConfirm {
             get {
                 return ResourceManager.GetString("MessageBoxConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car.
+        /// </summary>
+        public static string TripCar {
+            get {
+                return ResourceManager.GetString("TripCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string TripDate {
+            get {
+                return ResourceManager.GetString("TripDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string TripFrom {
+            get {
+                return ResourceManager.GetString("TripFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mileage.
+        /// </summary>
+        public static string TripMileage {
+            get {
+                return ResourceManager.GetString("TripMileage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string TripNotes {
+            get {
+                return ResourceManager.GetString("TripNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odometer Start.
+        /// </summary>
+        public static string TripOdometerStart {
+            get {
+                return ResourceManager.GetString("TripOdometerStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odometer Stop.
+        /// </summary>
+        public static string TripOdometerStop {
+            get {
+                return ResourceManager.GetString("TripOdometerStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Round Trip.
+        /// </summary>
+        public static string TripRoundTrip {
+            get {
+                return ResourceManager.GetString("TripRoundTrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string TripSave {
+            get {
+                return ResourceManager.GetString("TripSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        public static string TripTo {
+            get {
+                return ResourceManager.GetString("TripTo", resourceCulture);
             }
         }
     }

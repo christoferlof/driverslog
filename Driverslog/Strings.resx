@@ -120,6 +120,9 @@
   <data name="AppTitle" xml:space="preserve">
     <value>DRIVER'S LOG</value>
   </data>
+  <data name="CreateViewTitle" xml:space="preserve">
+    <value>new trip</value>
+  </data>
   <data name="MainPageAll" xml:space="preserve">
     <value>all</value>
   </data>
@@ -152,5 +155,35 @@
   </data>
   <data name="MessageBoxConfirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="TripCar" xml:space="preserve">
+    <value>Car</value>
+  </data>
+  <data name="TripDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TripFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="TripMileage" xml:space="preserve">
+    <value>Mileage</value>
+  </data>
+  <data name="TripNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="TripOdometerStart" xml:space="preserve">
+    <value>Odometer Start</value>
+  </data>
+  <data name="TripOdometerStop" xml:space="preserve">
+    <value>Odometer Stop</value>
+  </data>
+  <data name="TripRoundTrip" xml:space="preserve">
+    <value>Round Trip</value>
+  </data>
+  <data name="TripSave" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="TripTo" xml:space="preserve">
+    <value>To</value>
   </data>
 </root>

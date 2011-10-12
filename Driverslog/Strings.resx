@@ -120,8 +120,29 @@
   <data name="AppTitle" xml:space="preserve">
     <value>DRIVER'S LOG</value>
   </data>
+  <data name="CreateExpenseViewTitle" xml:space="preserve">
+    <value>new expense</value>
+  </data>
   <data name="CreateViewTitle" xml:space="preserve">
     <value>new trip</value>
+  </data>
+  <data name="ExpenseAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="ExpenseCar" xml:space="preserve">
+    <value>Car</value>
+  </data>
+  <data name="ExpenseDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ExpenseNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="ExpenseSave" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="ExpenseTitle" xml:space="preserve">
+    <value>Title</value>
   </data>
   <data name="MainPageAll" xml:space="preserve">
     <value>all</value>

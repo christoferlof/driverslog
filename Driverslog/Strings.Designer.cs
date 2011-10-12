@@ -70,11 +70,74 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to new expense.
+        /// </summary>
+        public static string CreateExpenseViewTitle {
+            get {
+                return ResourceManager.GetString("CreateExpenseViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new trip.
         /// </summary>
         public static string CreateViewTitle {
             get {
                 return ResourceManager.GetString("CreateViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string ExpenseAmount {
+            get {
+                return ResourceManager.GetString("ExpenseAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car.
+        /// </summary>
+        public static string ExpenseCar {
+            get {
+                return ResourceManager.GetString("ExpenseCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string ExpenseDate {
+            get {
+                return ResourceManager.GetString("ExpenseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string ExpenseNotes {
+            get {
+                return ResourceManager.GetString("ExpenseNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string ExpenseSave {
+            get {
+                return ResourceManager.GetString("ExpenseSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string ExpenseTitle {
+            get {
+                return ResourceManager.GetString("ExpenseTitle", resourceCulture);
             }
         }
         

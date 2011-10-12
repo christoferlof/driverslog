@@ -22,27 +22,27 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Driver's log" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="New Expense" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=Localized.CreateExpenseViewTitle, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Date" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.ExpenseDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
 
-                    <TextBlock Text="Title" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.ExpenseTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Title"/>
 
-                    <TextBlock Text="Car" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.ExpenseCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Car"/>
 
-                    <TextBlock Text="Notes" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.ExpenseNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Notes"/>
 
-                    <TextBlock Text="Amount" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.ExpenseAmount, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBox x:Name="Amount" InputScope="CurrencyAmount"/>
                 </StackPanel>
             </ScrollViewer>

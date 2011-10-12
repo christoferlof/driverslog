@@ -19,6 +19,7 @@ namespace Driverslog {
     public partial class CreateView : PhoneApplicationPage {
         public CreateView() {
             InitializeComponent();
+            CreateApplicationBar();
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e) {

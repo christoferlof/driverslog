@@ -120,8 +120,29 @@
   <data name="AppTitle" xml:space="preserve">
     <value>KÖRJOURNAL</value>
   </data>
+  <data name="CreateExpenseViewTitle" xml:space="preserve">
+    <value>nytt utlägg</value>
+  </data>
   <data name="CreateViewTitle" xml:space="preserve">
     <value>ny resa</value>
+  </data>
+  <data name="ExpenseAmount" xml:space="preserve">
+    <value>Belopp</value>
+  </data>
+  <data name="ExpenseCar" xml:space="preserve">
+    <value>Bil</value>
+  </data>
+  <data name="ExpenseDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="ExpenseNotes" xml:space="preserve">
+    <value>Noteringar</value>
+  </data>
+  <data name="ExpenseSave" xml:space="preserve">
+    <value>spara</value>
+  </data>
+  <data name="ExpenseTitle" xml:space="preserve">
+    <value>Titel</value>
   </data>
   <data name="MainPageAll" xml:space="preserve">
     <value>alla</value>

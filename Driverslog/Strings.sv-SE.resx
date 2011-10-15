@@ -126,6 +126,12 @@
   <data name="CreateViewTitle" xml:space="preserve">
     <value>ny resa</value>
   </data>
+  <data name="EditExpenseDeleteConfirm" xml:space="preserve">
+    <value>Vill du verkligen ta bort detta utlägg?</value>
+  </data>
+  <data name="EditExpenseViewTitle" xml:space="preserve">
+    <value>utlägg</value>
+  </data>
   <data name="ExpenseAmount" xml:space="preserve">
     <value>Belopp</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="ExpenseDate" xml:space="preserve">
     <value>Datum</value>
+  </data>
+  <data name="ExpenseDelete" xml:space="preserve">
+    <value>ta bort</value>
   </data>
   <data name="ExpenseNotes" xml:space="preserve">
     <value>Noteringar</value>

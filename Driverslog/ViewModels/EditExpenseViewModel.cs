@@ -43,7 +43,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void DeleteExpense() {
-            if (!MessageBoxService.Confirm("Do you really wan't to delete this expense?")) return;
+            if (!MessageBoxService.Confirm(Strings.EditExpenseDeleteConfirm)) return;
             Expense.All.Remove(_expense);
             Expense.SaveChanges();
             NavigateToMain();

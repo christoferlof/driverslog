@@ -88,6 +88,24 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really wan&apos;t to delete this expense?.
+        /// </summary>
+        public static string EditExpenseDeleteConfirm {
+            get {
+                return ResourceManager.GetString("EditExpenseDeleteConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to expense.
+        /// </summary>
+        public static string EditExpenseViewTitle {
+            get {
+                return ResourceManager.GetString("EditExpenseViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string ExpenseAmount {
@@ -111,6 +129,15 @@ namespace Driverslog {
         public static string ExpenseDate {
             get {
                 return ResourceManager.GetString("ExpenseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string ExpenseDelete {
+            get {
+                return ResourceManager.GetString("ExpenseDelete", resourceCulture);
             }
         }
         

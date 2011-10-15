@@ -126,6 +126,12 @@
   <data name="CreateViewTitle" xml:space="preserve">
     <value>new trip</value>
   </data>
+  <data name="EditExpenseDeleteConfirm" xml:space="preserve">
+    <value>Do you really wan't to delete this expense?</value>
+  </data>
+  <data name="EditExpenseViewTitle" xml:space="preserve">
+    <value>expense</value>
+  </data>
   <data name="ExpenseAmount" xml:space="preserve">
     <value>Amount</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="ExpenseDate" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="ExpenseDelete" xml:space="preserve">
+    <value>delete</value>
   </data>
   <data name="ExpenseNotes" xml:space="preserve">
     <value>Notes</value>

@@ -7,7 +7,7 @@ properties {
   $slnfile    = "$basedir\Driverslog.sln"
   
   $releasedir = "$basedir\releases"
-  $version    = "1.3.0.0"
+  $version    = "1.4.0.0"
 }
 
 task default -depends Test
@@ -34,7 +34,7 @@ task Test -depends Compile, Clean {
 }
 
 task Compile -depends Clean { 
-  exec {msbuild "$slnfile" /p:Configuration=Release  "/p:OutDir=$builddir\" /Verbosity:Quiet /nologo}
+  exec {msbuild "$slnfile" /p:Configuration=Debug  "/p:OutDir=$builddir\" /Verbosity:Quiet /nologo}
 }
 
 task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
@@ -102,6 +102,7 @@ param(
   $commit = Get-Git-Commit
   $asmInfo = "using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

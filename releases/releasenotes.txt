@@ -2,7 +2,14 @@
 
 Description
 ===========
+en
+
 Keep track of your car travels and related expenses. Export your log, in a comma separated format, through e-mail for easy import to Excel and similar applications.
+
+sv-SE
+
+Registrera dina bilresor och relaterade utgifter i journalen. Exportera din journal, i ett kommaseparerat format, via e-post för vidare import i Excel eller liknande applikationer.
+
 
 Versions
 ===========

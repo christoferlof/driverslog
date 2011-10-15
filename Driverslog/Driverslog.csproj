@@ -176,6 +176,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppResLib.dll.0409.mui" />
+    <Content Include="AppResLib.dll.041d.mui" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -183,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="appicon.png" />
+    <Content Include="AppResLib.dll" />
     <Content Include="icons\appbar.check.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

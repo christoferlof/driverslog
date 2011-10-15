@@ -62,7 +62,6 @@ task GenerateAssemblyInfo {
 task GenerateManifest {
   Generate-Manifest `
     -file "$basedir\Driverslog\Properties\WMAppManifest.xml" `
-    -title "Driver's log" `
     -author "Christofer Löf" `
     -version $version `
     -description "Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." `
@@ -132,7 +131,6 @@ using System.Runtime.InteropServices;
 
 function Generate-Manifest {
   param(
-    [string]$title, 
     [string]$author, 
     [string]$description, 
     [string]$publisher,  
@@ -142,7 +140,7 @@ function Generate-Manifest {
   
   $manifestInfo = "<?xml version=""1.0"" encoding=""utf-8""?>
 <Deployment xmlns=""http://schemas.microsoft.com/windowsphone/2009/deployment"" AppPlatformVersion=""7.0"">
-  <App xmlns="""" ProductID=""{f774542f-60bf-4c7c-88ed-6ff45b6008f5}"" Title=""$title"" RuntimeType=""Silverlight"" Version=""$version"" Genre=""apps.normal"" Author=""$author"" Description=""$description"" Publisher=""$publisher"">
+  <App xmlns="""" ProductID=""{f774542f-60bf-4c7c-88ed-6ff45b6008f5}"" Title=""@AppResLib.dll,-100"" RuntimeType=""Silverlight"" Version=""$version"" Genre=""apps.normal"" Author=""$author"" Description=""$description"" Publisher=""$publisher"">
     <IconPath IsRelative=""true"" IsResource=""false"">appicon.png</IconPath>
     <Capabilities>
       <Capability Name=""ID_CAP_NETWORKING"" />
@@ -155,7 +153,7 @@ function Generate-Manifest {
         <TemplateType5>
           <BackgroundImageURI IsRelative=""true"" IsResource=""false"">tile.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>$title</Title>
+          <Title>@AppResLib.dll,-200</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

@@ -132,6 +132,12 @@
   <data name="EditExpenseViewTitle" xml:space="preserve">
     <value>utlägg</value>
   </data>
+  <data name="EditTripDeleteConfirm" xml:space="preserve">
+    <value>Vill du verkligen ta bort resan?</value>
+  </data>
+  <data name="EditViewTitle" xml:space="preserve">
+    <value>resa</value>
+  </data>
   <data name="ExpenseAmount" xml:space="preserve">
     <value>Belopp</value>
   </data>
@@ -191,6 +197,9 @@
   </data>
   <data name="TripDate" xml:space="preserve">
     <value>Datum</value>
+  </data>
+  <data name="TripDelete" xml:space="preserve">
+    <value>ta bort</value>
   </data>
   <data name="TripFrom" xml:space="preserve">
     <value>Från</value>

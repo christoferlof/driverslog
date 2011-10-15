@@ -106,6 +106,24 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really wan&apos;t to delete this trip?.
+        /// </summary>
+        public static string EditTripDeleteConfirm {
+            get {
+                return ResourceManager.GetString("EditTripDeleteConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trip.
+        /// </summary>
+        public static string EditViewTitle {
+            get {
+                return ResourceManager.GetString("EditViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string ExpenseAmount {
@@ -282,6 +300,15 @@ namespace Driverslog {
         public static string TripDate {
             get {
                 return ResourceManager.GetString("TripDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string TripDelete {
+            get {
+                return ResourceManager.GetString("TripDelete", resourceCulture);
             }
         }
         

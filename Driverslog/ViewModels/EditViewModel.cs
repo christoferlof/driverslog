@@ -56,7 +56,7 @@ namespace Driverslog.ViewModels {
         }
 
         public void DeleteTrip() {
-            if(!MessageBoxService.Confirm("Do you really wan't to delete this trip?")) return;
+            if(!MessageBoxService.Confirm(Strings.EditTripDeleteConfirm)) return;
             Trip.All.Remove(_trip);
             Trip.SaveChanges();
             NavigateToMain();

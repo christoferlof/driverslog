@@ -102,7 +102,6 @@ param(
   $commit = Get-Git-Commit
   $asmInfo = "using System;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -117,7 +116,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersionAttribute(""$version / $commit"")]
 [assembly: AssemblyFileVersionAttribute(""$version"")]
 [assembly: AssemblyDelaySignAttribute(false)]
-[assembly: NeutralResourcesLanguageAttribute(""en-US"")]
 "
 
 	$dir = [System.IO.Path]::GetDirectoryName($file)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -12,8 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProductAttribute("Driver's log 1.4.0.0")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Christofer Löf 2011")]
 [assembly: AssemblyVersionAttribute("1.4.0.0")]
-[assembly: AssemblyInformationalVersionAttribute("1.4.0.0 / 426abf5")]
+[assembly: AssemblyInformationalVersionAttribute("1.4.0.0 / dac3f4d")]
 [assembly: AssemblyFileVersionAttribute("1.4.0.0")]
 [assembly: AssemblyDelaySignAttribute(false)]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
 

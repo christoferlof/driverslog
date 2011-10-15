@@ -19,52 +19,47 @@
     <phone:PhoneApplicationPage.Resources>
         <Converters:YesNoToIndexConverter x:Key="YesNoToIndexConverter" />
     </phone:PhoneApplicationPage.Resources>
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <cal:AppBarButton IconUri="/icons/appbar.check.rest.png" Text="Save" Message="SaveSettings"/>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot Title="Driver's log">
-            <controls:PivotItem Header="Settings">
+        <controls:Pivot Title="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}">
+            <controls:PivotItem Header="{Binding Path=Localized.SettingsViewTitle, Source={StaticResource Strings}}">
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="Default car" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding Path=Localized.SettingsDefaultCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <TextBox x:Name="Car"/>
 
-                        <TextBlock Text="Default export to e-mail" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding Path=Localized.SettingsDefaultExportToEmail, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <TextBox x:Name="Email" InputScope="EmailNameOrAddress"/>
 
-                        <TextBlock Text="Distance unit" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding Path=Localized.SettingsDistanceUnit, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <TextBox x:Name="DistanceUnit" />
 
-                        <TextBlock Text="Hide odometer fields" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding Path=Localized.SettingsHideOdometerFields, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <toolkit:ListPicker 
                             SelectedIndex="{Binding HideOdoFields, Converter={StaticResource YesNoToIndexConverter}}" 
                             cal:Message.Attach="[Event SelectionChanged] = [Action OnHideOdoFieldsChanged($eventArgs)]">
-                            <ListBoxItem Content="No"/>
-                            <ListBoxItem Content="Yes"/>
+                            <ListBoxItem Content="{Binding Path=Localized.No, Source={StaticResource Strings}}"/>
+                            <ListBoxItem Content="{Binding Path=Localized.Yes, Source={StaticResource Strings}}"/>
                         </toolkit:ListPicker>
 
-                        <TextBlock Text="Hide mileage field" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBlock Text="{Binding Path=Localized.SettingsHideMileageField, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
                         <toolkit:ListPicker 
                             SelectedIndex="{Binding HideMileageField, Converter={StaticResource YesNoToIndexConverter}}"
                             cal:Message.Attach="[Event SelectionChanged] = [Action OnHideMileageFieldChanged($eventArgs)]">
-                            <ListBoxItem Content="No"/>
-                            <ListBoxItem Content="Yes"/>
+                            <ListBoxItem Content="{Binding Path=Localized.No, Source={StaticResource Strings}}"/>
+                            <ListBoxItem Content="{Binding Path=Localized.Yes, Source={StaticResource Strings}}"/>
                         </toolkit:ListPicker>
 
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>
-            <controls:PivotItem Header="About">
+            <controls:PivotItem Header="{Binding Path=Localized.AboutViewTitle, Source={StaticResource Strings}}">
                 <StackPanel>
-                    <TextBlock Text="Driver's log" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}"/>
                     <TextBlock x:Name="ApplicationVersion" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBlock Text="Copyright 2011 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <HyperlinkButton Content="Technical Support" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
+                    <HyperlinkButton Content="{Binding Path=Localized.AboutTechSupport, Source={StaticResource Strings}}" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>

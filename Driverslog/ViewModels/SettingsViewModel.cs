@@ -88,7 +88,7 @@ namespace Driverslog.ViewModels {
         }
 
         private static bool SelectionChangedToBool(SelectionChangedEventArgs args) {
-            return ((ContentControl)args.AddedItems[0]).Content.ToString().ToLower().Equals("yes");
+            return ((ContentControl)args.AddedItems[0]).Content.ToString().ToLower().Equals(Strings.Yes.ToLower());
         }
     }
 }

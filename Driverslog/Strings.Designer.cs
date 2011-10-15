@@ -61,6 +61,24 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technical support.
+        /// </summary>
+        public static string AboutTechSupport {
+            get {
+                return ResourceManager.GetString("AboutTechSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to about.
+        /// </summary>
+        public static string AboutViewTitle {
+            get {
+                return ResourceManager.GetString("AboutViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DRIVER&apos;S LOG.
         /// </summary>
         public static string AppTitle {
@@ -286,6 +304,78 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default car.
+        /// </summary>
+        public static string SettingsDefaultCar {
+            get {
+                return ResourceManager.GetString("SettingsDefaultCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default export to e-mail.
+        /// </summary>
+        public static string SettingsDefaultExportToEmail {
+            get {
+                return ResourceManager.GetString("SettingsDefaultExportToEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance unit.
+        /// </summary>
+        public static string SettingsDistanceUnit {
+            get {
+                return ResourceManager.GetString("SettingsDistanceUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide mileage field.
+        /// </summary>
+        public static string SettingsHideMileageField {
+            get {
+                return ResourceManager.GetString("SettingsHideMileageField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide odometer fields.
+        /// </summary>
+        public static string SettingsHideOdometerFields {
+            get {
+                return ResourceManager.GetString("SettingsHideOdometerFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string SettingsSave {
+            get {
+                return ResourceManager.GetString("SettingsSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string SettingsViewTitle {
+            get {
+                return ResourceManager.GetString("SettingsViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car.
         /// </summary>
         public static string TripCar {
@@ -381,6 +471,15 @@ namespace Driverslog {
         public static string TripTo {
             get {
                 return ResourceManager.GetString("TripTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

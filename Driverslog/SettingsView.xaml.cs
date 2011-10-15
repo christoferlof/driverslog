@@ -9,12 +9,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Caliburn.Micro;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace Driverslog {
     public partial class SettingsView : PhoneApplicationPage {
         public SettingsView() {
             InitializeComponent();
+            CreateApplicationBar();
+        }
+
+        private void CreateApplicationBar() {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBar.Buttons.Add(new AppBarButton {
+                IconUri = new Uri("/icons/appbar.check.rest.png", UriKind.Relative),
+                Message = "SaveSettings",
+                Text = Strings.SettingsSave
+            });
+
+            
         }
     }
 }

@@ -7,6 +7,12 @@ Keep track of your car travels and related expenses. Export your log, in a comma
 Versions
 ===========
 
+1.4.0.0
+
+- Available in English and Swedish
+- Refreshed tile
+- View titles updated in order to match the design guidelines
+
 1.3.0.0
 
 - Trial version is now available. The application is fully functional but limits the log to 15 items.

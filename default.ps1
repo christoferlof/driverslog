@@ -44,7 +44,7 @@ task Release -depends Test, Clean, GenerateAssemblyInfo, GenerateManifest  {
     "$basedir\gfx\small-mobile-app-icon.png",
     "$basedir\gfx\large-mobile-app-icon.png",
     "$basedir\gfx\large-pc-app-icon.png",
-    "$basedir\gfx\background.png",
+    "$basedir\gfx\background.png"
   ) | foreach { copy-item $_ "$releasedir\$version\" }
 }
 

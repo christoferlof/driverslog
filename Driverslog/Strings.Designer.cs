@@ -205,6 +205,15 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must specify a title of the expense.
+        /// </summary>
+        public static string ExpenseValidateTitleEmpty {
+            get {
+                return ResourceManager.GetString("ExpenseValidateTitleEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to all.
         /// </summary>
         public static string MainPageAll {
@@ -376,6 +385,26 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve reached the trial limit.
+        ///Your log can contain {0} items in this trial version.
+        ///Select OK in order to buy the full version of Driver&apos;s log..
+        /// </summary>
+        public static string TrialLimitReachedMessage {
+            get {
+                return ResourceManager.GetString("TrialLimitReachedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trial limit reached.
+        /// </summary>
+        public static string TrialLimitReachedTitle {
+            get {
+                return ResourceManager.GetString("TrialLimitReachedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car.
         /// </summary>
         public static string TripCar {
@@ -471,6 +500,24 @@ namespace Driverslog {
         public static string TripTo {
             get {
                 return ResourceManager.GetString("TripTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown distance.
+        /// </summary>
+        public static string TripUnknownDistance {
+            get {
+                return ResourceManager.GetString("TripUnknownDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify where you&apos;re traveling from.
+        /// </summary>
+        public static string TripValidateFromEmpty {
+            get {
+                return ResourceManager.GetString("TripValidateFromEmpty", resourceCulture);
             }
         }
         

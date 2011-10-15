@@ -36,10 +36,8 @@ namespace Driverslog.ViewModels {
 
             bool reached = _trialService.LimitReached();
             if (reached) {
-                bool buy = MessageBoxService.Confirm("Trial limit reached", string.Format(
-                    "You've reached the trial limit.\nYour log can contain {0} items in this trial version.\n" +
-                    "Select OK in order to buy the full version of Driver's log.",
-                    _trialService.Limit));
+                bool buy = MessageBoxService.Confirm(Strings.TrialLimitReachedTitle, 
+                    string.Format(Strings.TrialLimitReachedMessage, _trialService.Limit));
                 if (buy) {
                     _trialService.Buy();
                 }

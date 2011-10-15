@@ -69,7 +69,7 @@ namespace Driverslog.Models {
         [IgnoreDataMember]
         public string Distance {
             get {
-                return (HasValidDistance()) ? FormatDistance() : "Unknown distance";
+                return (HasValidDistance()) ? FormatDistance() : Strings.TripUnknownDistance;
             }
         }
 
@@ -111,7 +111,7 @@ namespace Driverslog.Models {
 
         protected override void OnValidating() {
             if (string.IsNullOrEmpty(From)) {
-                ValidationMessages.Add("From", "You must specify where you're traveling from.");
+                ValidationMessages.Add("From", Strings.TripValidateFromEmpty);
             }
         }
     }

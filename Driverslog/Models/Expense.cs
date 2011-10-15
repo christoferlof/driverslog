@@ -38,7 +38,7 @@ namespace Driverslog.Models {
 
         protected override void OnValidating() {
             if (string.IsNullOrEmpty(Title)) {
-                ValidationMessages.Add("Title", "You must specify a title of the expense");
+                ValidationMessages.Add("Title", Strings.ExpenseValidateTitleEmpty);
             }
         }
 

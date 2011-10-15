@@ -165,6 +165,9 @@
   <data name="ExpenseTitle" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="ExpenseValidateTitleEmpty" xml:space="preserve">
+    <value>You must specify a title of the expense</value>
+  </data>
   <data name="MainPageAll" xml:space="preserve">
     <value>all</value>
   </data>
@@ -222,6 +225,14 @@
   <data name="SettingsViewTitle" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="TrialLimitReachedMessage" xml:space="preserve">
+    <value>You've reached the trial limit.
+Your log can contain {0} items in this trial version.
+Select OK in order to buy the full version of Driver's log.</value>
+  </data>
+  <data name="TrialLimitReachedTitle" xml:space="preserve">
+    <value>Trial limit reached</value>
+  </data>
   <data name="TripCar" xml:space="preserve">
     <value>Car</value>
   </data>
@@ -254,6 +265,12 @@
   </data>
   <data name="TripTo" xml:space="preserve">
     <value>To</value>
+  </data>
+  <data name="TripUnknownDistance" xml:space="preserve">
+    <value>Unknown distance</value>
+  </data>
+  <data name="TripValidateFromEmpty" xml:space="preserve">
+    <value>You must specify where you're traveling from</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

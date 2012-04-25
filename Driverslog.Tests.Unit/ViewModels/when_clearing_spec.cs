@@ -8,7 +8,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
         [Fact]
         public void should_confirm_clearing() {
             var messageBoxService = new MessageBoxServiceStub();
-            var viewModel = new MainPageViewModel(null,messageBoxService);
+            var viewModel = new MainPageViewModel(null,messageBoxService, new AnalyticsServiceStub());
             viewModel.Clear();
             Assert.True(messageBoxService.ConfirmWasInvoked);
         }
@@ -21,7 +21,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
             
             var messageBoxService = new MessageBoxServiceStub();
             messageBoxService.ConfirmReturns = true;
-            var viewModel = new MainPageViewModel(null, messageBoxService);
+            var viewModel = new MainPageViewModel(null, messageBoxService, new AnalyticsServiceStub());
             viewModel.Clear();
 
             Assert.Equal(0,Trip.All.Count);

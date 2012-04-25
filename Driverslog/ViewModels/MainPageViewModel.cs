@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
@@ -14,10 +15,12 @@ namespace Driverslog.ViewModels {
     public class MainPageViewModel : Screen {
         private readonly INavigationService _navigationService;
         private readonly IMessageBoxService _messageBoxService;
+        private readonly IAnalyticsService _analyticsService;
 
-        public MainPageViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) {
+        public MainPageViewModel(INavigationService navigationService, IMessageBoxService messageBoxService, IAnalyticsService analyticsService) {
             _navigationService = navigationService;
             _messageBoxService = messageBoxService;
+            _analyticsService = analyticsService;
             SelectedIndex = -1;
         }
 
@@ -65,6 +68,7 @@ namespace Driverslog.ViewModels {
                 To = Setting.Current.Email,
                 Body = string.Format(bodyTemplate, EmailHelper.Format(Trip.All), EmailHelper.Format(Expense.All))
             };
+            LogCountEvent("Export");
             task.Show();
         }
 
@@ -95,11 +99,17 @@ namespace Driverslog.ViewModels {
         public void Clear() {
             var proceed = _messageBoxService.Confirm(Strings.MainPageClearConfirm);
             if (proceed) {
+                LogCountEvent("Clear");
                 Trip.Clear();
                 Trip.SaveChanges();
                 Expense.Clear();
                 Expense.SaveChanges();
             }
+        }
+
+        private void LogCountEvent(string eventName) {
+            _analyticsService.LogEvent(eventName,
+                new Dictionary<string, string> { { "Item.Count", (Trip.All.Count + Expense.All.Count).ToString() } });
         }
     }
 }

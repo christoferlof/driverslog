@@ -25,7 +25,7 @@ namespace Driverslog.Tests.Unit.ViewModels {
         }
 
         public override void Because() {
-            PageViewModel = new MainPageViewModel(NavigationService,null);
+            PageViewModel = new MainPageViewModel(NavigationService,null,new AnalyticsServiceStub());
         }
 
         [Fact]

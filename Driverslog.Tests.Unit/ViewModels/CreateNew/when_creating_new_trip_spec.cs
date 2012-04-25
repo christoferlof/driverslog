@@ -10,7 +10,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
         public override void Context() {
             NavigationService = new NavigationServiceStub();
-            PageViewModel = new MainPageViewModel(NavigationService,null);
+            PageViewModel = new MainPageViewModel(NavigationService,null, new AnalyticsServiceStub());
         }
 
         public override void Because() {

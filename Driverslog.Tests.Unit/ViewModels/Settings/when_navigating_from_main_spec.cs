@@ -8,7 +8,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Settings {
         public void should_navigate_to_settings() {
             
             var navigationService = new NavigationServiceStub();
-            var viewModel = new MainPageViewModel(navigationService,null);
+            var viewModel = new MainPageViewModel(navigationService,null, new AnalyticsServiceStub());
 
             viewModel.Settings();
 

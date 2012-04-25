@@ -13,7 +13,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
         public override void Context() {
             NavigationService = new NavigationServiceStub();
-            ViewModel = new MainPageViewModel(NavigationService,null);
+            ViewModel = new MainPageViewModel(NavigationService,null, new AnalyticsServiceStub());
             Id = new Guid("E0F6658A-A510-4864-A9AA-E79EB06B3E0D");
         }
 

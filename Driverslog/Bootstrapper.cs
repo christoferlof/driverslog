@@ -53,5 +53,10 @@ namespace Driverslog {
             base.OnActivate(sender, e);
             FlurryWP7SDK.Api.StartSession(FlurryKey);
         }
+
+        protected override void OnUnhandledException(object sender, System.Windows.ApplicationUnhandledExceptionEventArgs e) {
+            FlurryWP7SDK.Api.LogError("Unhandled Exception", e.ExceptionObject);
+            base.OnUnhandledException(sender, e);
+        }
     }
 }

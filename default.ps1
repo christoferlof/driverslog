@@ -7,7 +7,7 @@ properties {
   $slnfile    = "$basedir\Driverslog.sln"
   
   $releasedir = "$basedir\releases"
-  $version    = "1.4.0.0"
+  $version    = "1.5.0.0"
 }
 
 task default -depends Test
@@ -56,7 +56,7 @@ task GenerateAssemblyInfo {
     -company "" `
     -product "Driver's log $version" `
     -version $version `
-    -copyright "Copyright © Christofer Löf 2011"
+    -copyright "Copyright © Christofer Löf 2012"
 }
 
 task GenerateManifest {
@@ -140,7 +140,7 @@ function Generate-Manifest {
   )
   
   $manifestInfo = "<?xml version=""1.0"" encoding=""utf-8""?>
-<Deployment xmlns=""http://schemas.microsoft.com/windowsphone/2009/deployment"" AppPlatformVersion=""7.0"">
+<Deployment xmlns=""http://schemas.microsoft.com/windowsphone/2009/deployment"" AppPlatformVersion=""7.1"">
   <App xmlns="""" ProductID=""{f774542f-60bf-4c7c-88ed-6ff45b6008f5}"" Title=""@AppResLib.dll,-100"" RuntimeType=""Silverlight"" Version=""$version"" Genre=""apps.normal"" Author=""$author"" Description=""$description"" Publisher=""$publisher"">
     <IconPath IsRelative=""true"" IsResource=""false"">appicon.png</IconPath>
     <Capabilities>

@@ -10,8 +10,8 @@ namespace Driverslog.ViewModels {
         private readonly INavigationService _navigationService;
         private Trip _trip;
 
-        public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
-            :base (messageBoxService, null){
+        public EditViewModel(INavigationService navigationService, IMessageBoxService messageBoxService, IAnalyticsService analyticsService) 
+            :base (messageBoxService, null, analyticsService){
             _navigationService = navigationService;
         }
 
@@ -48,6 +48,8 @@ namespace Driverslog.ViewModels {
             if(!IsValid(_trip)) return;
 
             Trip.SaveChanges();
+
+            AnalyticsService.LogEvent("Trip.Edit");
             NavigateToMain();
         }
 

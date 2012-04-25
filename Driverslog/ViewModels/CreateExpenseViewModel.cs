@@ -8,9 +8,9 @@ namespace Driverslog.ViewModels {
     public class CreateExpenseViewModel : ExpenseScreen {
         private readonly INavigationService _navigationService;
 
-        public CreateExpenseViewModel(INavigationService navigationService, 
-            IMessageBoxService messageBoxService, ITrialService trialService) 
-            : base(messageBoxService, trialService){
+        public CreateExpenseViewModel(INavigationService navigationService,
+            IMessageBoxService messageBoxService, ITrialService trialService, IAnalyticsService analyticsService) 
+            : base(messageBoxService, trialService, analyticsService){
             _navigationService = navigationService;
         }
 
@@ -31,6 +31,7 @@ namespace Driverslog.ViewModels {
             Expense.Add(expense);
             Expense.SaveChanges();
 
+            AnalyticsService.LogEvent("Expense.Create");
             _navigationService.GoBack();
         }
     }

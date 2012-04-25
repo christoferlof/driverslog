@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalyticsServiceStub.cs" />
     <Compile Include="Helpers\TypeToVisibilityConverterTests.cs" />
     <Compile Include="Helpers\when_formatting_email_spec.cs" />
     <Compile Include="Helpers\when_formatting_expenses_for_email_spec.cs" />

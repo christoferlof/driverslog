@@ -9,17 +9,23 @@ namespace Driverslog.ViewModels {
     [SurviveTombstone]
     public class ItemScreen : Screen {
         private readonly IMessageBoxService _messageBoxService;
-        private readonly ITrialService _trialService;
+        private readonly ITrialService      _trialService;
+        private readonly IAnalyticsService  _analyticsService;
 
-        public ItemScreen(IMessageBoxService messageBoxService, ITrialService trialService) {
-            _messageBoxService = messageBoxService;
-            _trialService = trialService;
-            _date = DateTime.Today;
-            _car = Setting.Current.DefaultCar;
+        public ItemScreen(IMessageBoxService messageBoxService, ITrialService trialService, IAnalyticsService analyticsService) {
+            _messageBoxService  = messageBoxService;
+            _trialService       = trialService;
+            _analyticsService   = analyticsService;
+            _date               = DateTime.Today;
+            _car                = Setting.Current.DefaultCar;
         }
 
         protected IMessageBoxService MessageBoxService {
-            get{return _messageBoxService;}
+            get { return _messageBoxService; }
+        }
+
+        protected IAnalyticsService AnalyticsService {
+            get { return _analyticsService; }
         }
 
         protected bool IsValid(ICanHaveValidationErrors iCanHaveValidationErrors) {

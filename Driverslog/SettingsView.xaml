@@ -58,7 +58,7 @@
                 <StackPanel>
                     <TextBlock Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}"/>
                     <TextBlock x:Name="ApplicationVersion" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <TextBlock Text="Copyright 2011 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBlock Text="Copyright 2011 - 2012 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <HyperlinkButton Content="{Binding Path=Localized.AboutTechSupport, Source={StaticResource Strings}}" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
                 </StackPanel>
             </controls:PivotItem>

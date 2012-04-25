@@ -6,8 +6,8 @@ namespace Driverslog.ViewModels {
     [SurviveTombstone]
     public class ExpenseScreen : ItemScreen {
 
-        public ExpenseScreen(IMessageBoxService messageBoxService, ITrialService trialService)
-            : base(messageBoxService, trialService) {
+        public ExpenseScreen(IMessageBoxService messageBoxService, ITrialService trialService, IAnalyticsService analyticsService)
+            : base(messageBoxService, trialService, analyticsService) {
         }
 
         protected override void OnInitialize() {

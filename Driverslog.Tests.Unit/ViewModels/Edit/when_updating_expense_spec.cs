@@ -9,6 +9,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
         protected NavigationServiceStub NavigationService;
         protected Expense CurrentExpense;
         protected MessageBoxServiceStub MessageBoxService;
+        protected AnalyticsServiceStub AnalyticsService;
 
         public override void Context() {
 
@@ -17,8 +18,9 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             CurrentExpense = new Expense();
             Expense.Add(CurrentExpense);
 
-            NavigationService = new NavigationServiceStub();
-            ViewModel = new TestableEditExpenseViewModel(NavigationService, MessageBoxService);
+            NavigationService   = new NavigationServiceStub();
+            AnalyticsService    = new AnalyticsServiceStub();
+            ViewModel           = new TestableEditExpenseViewModel(NavigationService, MessageBoxService, AnalyticsService);
 
             ViewModel.ExpenseId = CurrentExpense.Id.ToString();
         }
@@ -47,5 +49,9 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             Assert.True(NavigationService.GoBackWasCalled);
         }
 
+        [Fact]
+        public void shoud_log_update_event() {
+            Assert.True(AnalyticsService.LogEventWasInvoked);
+        }
     }
 }

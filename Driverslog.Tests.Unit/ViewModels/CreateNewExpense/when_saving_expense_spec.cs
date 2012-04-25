@@ -10,6 +10,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
         protected CreateExpenseViewModel    ViewModel;
         protected NavigationServiceStub     NavigationService;
         protected MessageBoxServiceStub     MessageBoxService;
+        protected AnalyticsServiceStub      AnalyticsService;
 
         public override void Context() {
             Expense.Clear();
@@ -17,8 +18,9 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
 
             NavigationService = new NavigationServiceStub();
             MessageBoxService = new MessageBoxServiceStub();
+            AnalyticsService =  new AnalyticsServiceStub();
 
-            ViewModel = new CreateExpenseViewModel(NavigationService, MessageBoxService,null) {
+            ViewModel = new CreateExpenseViewModel(NavigationService, MessageBoxService, null, AnalyticsService) {
                 Car     = "car",
                 Date    = DateTime.Now,
                 Amount  = 2.99,
@@ -56,6 +58,11 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNewExpense {
         [Fact]
         public void should_not_display_validation_message() {
             Assert.Equal(false, MessageBoxService.ShowMessageWasInvoked);
+        }
+
+        [Fact]
+        public void should_raise_create_event() {
+            Assert.True(AnalyticsService.LogEventWasInvoked);
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Driverslog.ViewModels {
     public class CreateViewModel : TripScreen {
         private readonly INavigationService _navigationService;
 
-        public CreateViewModel(INavigationService navigationService, 
-            IMessageBoxService messageBoxService, ITrialService trialService)
-            : base(messageBoxService, trialService) {
+        public CreateViewModel(INavigationService navigationService,
+            IMessageBoxService messageBoxService, ITrialService trialService, IAnalyticsService analyticsService)
+            : base(messageBoxService, trialService, analyticsService) {
             _navigationService = navigationService;
         }
 
@@ -34,6 +34,7 @@ namespace Driverslog.ViewModels {
             Trip.Add(trip);
             Trip.SaveChanges();
 
+            AnalyticsService.LogEvent("Trip.Create");
             _navigationService.GoBack();
         }
     }

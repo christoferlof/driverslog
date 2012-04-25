@@ -15,7 +15,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             Trip.SaveChanges();
             Trip.Clear();
 
-            var viewModel = new TestableEditViewModel(new NavigationServiceStub(), new MessageBoxServiceStub()) {
+            var viewModel = new TestableEditViewModel() {
                 TripId = trip.Id.ToString()
             };
             viewModel.Initialize();

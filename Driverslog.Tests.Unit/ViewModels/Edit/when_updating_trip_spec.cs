@@ -8,6 +8,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
         protected NavigationServiceStub NavigationService;
         protected Trip CurrentTrip;
         protected MessageBoxServiceStub MessageBoxService;
+        protected AnalyticsServiceStub AnalyticsService;
 
         public override void Context() {
 
@@ -17,7 +18,8 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
             Trip.Add(CurrentTrip);
 
             NavigationService = new NavigationServiceStub();
-            ViewModel = new TestableEditViewModel(NavigationService, MessageBoxService);
+            AnalyticsService = new AnalyticsServiceStub();
+            ViewModel = new TestableEditViewModel(NavigationService, MessageBoxService, AnalyticsService);
 
             ViewModel.TripId = CurrentTrip.Id.ToString();
         }
@@ -38,6 +40,11 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
         [Fact]
         public void should_navigate_back_to_main() {
             Assert.True(NavigationService.GoBackWasCalled);
+        }
+
+        [Fact]
+        public void should_log_update_event() {
+            Assert.True(AnalyticsService.LogEventWasInvoked);
         }
     }
 }

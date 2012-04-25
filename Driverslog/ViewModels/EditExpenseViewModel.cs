@@ -9,8 +9,8 @@ namespace Driverslog.ViewModels {
         private readonly INavigationService _navigationService;
         private Expense _expense;
 
-        public EditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService) 
-            : base(messageBoxService, null){
+        public EditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxService, IAnalyticsService analyticsService) 
+            : base(messageBoxService, null, analyticsService){
             _navigationService = navigationService;
         }
 
@@ -39,6 +39,8 @@ namespace Driverslog.ViewModels {
             if (!IsValid(_expense)) return;
 
             Expense.SaveChanges();
+
+            AnalyticsService.LogEvent("Expense.Edit");
             _navigationService.GoBack();
         }
 

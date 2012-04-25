@@ -10,6 +10,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         protected CreateViewModel   ViewModel;
         protected NavigationServiceStub NavigationService;
         protected MessageBoxServiceStub MessageBoxService;
+        protected AnalyticsServiceStub  AnalyticsService;
 
         public override void Context() {
             Trip.Clear();
@@ -17,7 +18,8 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
             NavigationService   = new NavigationServiceStub();
             MessageBoxService   = new MessageBoxServiceStub();
-            ViewModel           = new CreateViewModel(NavigationService, MessageBoxService, null) {
+            AnalyticsService    = new AnalyticsServiceStub();
+            ViewModel           = new CreateViewModel(NavigationService, MessageBoxService, null, AnalyticsService) {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",
@@ -58,6 +60,11 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         [Fact]
         public void should_not_display_validation_message() {
             Assert.Equal(false,MessageBoxService.ShowMessageWasInvoked);
+        }
+
+        [Fact]
+        public void should_raise_create_event() {
+            Assert.True(AnalyticsService.LogEventWasInvoked);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
         protected NavigationServiceStub NavigationService;
         protected MessageBoxServiceStub MessageBoxService;
         protected TrialServiceStub      TrialService;
+        protected AnalyticsServiceStub  AnalyticsService;
 
         public override void Context() {
             TrialService = new TrialServiceStub {Limit = 5};
@@ -33,7 +34,8 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
 
             NavigationService = new NavigationServiceStub();
             MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new CreateViewModel(NavigationService, MessageBoxService, TrialService) {
+            AnalyticsService  = new AnalyticsServiceStub();
+            ViewModel = new CreateViewModel(NavigationService, MessageBoxService, TrialService, AnalyticsService) {
                 Car = "car",
                 From = "from",
                 Notes = "notes",

@@ -5,7 +5,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
         
         [Fact]
         public void should_not_fire_notify_if_amount_is_same() {
-            var viewModel = new TestableEditExpenseViewModel(null,null);
+            var viewModel = new TestableEditExpenseViewModel();
             bool fired = false;
             viewModel.Amount = 1.0;
             viewModel.PropertyChanged += (s,e) => fired = true;
@@ -17,7 +17,7 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
         [Fact]
         public void should_fire_notify_if_amount_is_different() {
-            var viewModel = new TestableEditExpenseViewModel(null, null);
+            var viewModel = new TestableEditExpenseViewModel();
             bool fired = false;
             viewModel.Amount = 1.0;
             viewModel.PropertyChanged += (s, e) => fired = true;

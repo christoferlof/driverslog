@@ -4,8 +4,12 @@ using Driverslog.ViewModels;
 
 namespace Driverslog.Tests.Unit.ViewModels.Edit {
     public class TestableEditExpenseViewModel : EditExpenseViewModel {
-        public TestableEditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxSerice) :
-            base(navigationService,messageBoxSerice){
+        
+        public TestableEditExpenseViewModel() : 
+            base(new NavigationServiceStub(), new MessageBoxServiceStub(), new AnalyticsServiceStub()){}
+        
+        public TestableEditExpenseViewModel(INavigationService navigationService, IMessageBoxService messageBoxSerice, IAnalyticsService analyticsService) :
+            base(navigationService,messageBoxSerice, analyticsService){
         }
 
         public void Initialize() {

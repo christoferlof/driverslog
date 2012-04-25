@@ -6,8 +6,9 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
         protected TestableEditViewModel ViewModel;
         protected NavigationServiceStub NavigationService;
-        protected Trip CurrentTrip;
+        protected Trip                  CurrentTrip;
         protected MessageBoxServiceStub MessageBoxService;
+        protected AnalyticsServiceStub  AnalyticsService;
 
         public override void Context() {
 
@@ -18,7 +19,8 @@ namespace Driverslog.Tests.Unit.ViewModels.Edit {
 
             NavigationService = new NavigationServiceStub();
             MessageBoxService = new MessageBoxServiceStub();
-            ViewModel = new TestableEditViewModel(NavigationService, MessageBoxService);
+            AnalyticsService =  new AnalyticsServiceStub();
+            ViewModel = new TestableEditViewModel(NavigationService, MessageBoxService, AnalyticsService);
 
             ViewModel.TripId = CurrentTrip.Id.ToString();
         }

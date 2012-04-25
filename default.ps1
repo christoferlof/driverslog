@@ -20,7 +20,8 @@ task Test -depends Compile, Clean {
     "$builddir\Caliburn.Micro.dll",
     "$toolsdir\Victoria.Test.Runner.dll",
     "$toolsdir\System.Xml.Linq.dll",
-    "$builddir\Microsoft.Phone.Controls.Toolkit.dll"
+    "$builddir\Microsoft.Phone.Controls.Toolkit.dll",
+    "$builddir\FlurryWP7SDK.dll"
   ) | foreach { copy-item $_ $packagedir }
   
   $env:path = "$toolsdir;$env:path"
@@ -145,6 +146,8 @@ function Generate-Manifest {
     <IconPath IsRelative=""true"" IsResource=""false"">appicon.png</IconPath>
     <Capabilities>
       <Capability Name=""ID_CAP_NETWORKING"" />
+      <Capability Name=""ID_CAP_IDENTITY_USER""/>
+      <Capability Name=""ID_CAP_IDENTITY_DEVICE""/>
     </Capabilities>
     <Tasks>
       <DefaultTask Name=""_default"" NavigationPage=""MainPage.xaml"" />

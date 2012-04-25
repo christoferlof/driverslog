@@ -40,5 +40,17 @@ namespace Driverslog {
         protected override void BuildUp(object instance) {
             _container.BuildUp(instance);
         }
+
+        private const string FlurryKey = "KJU8ELY9LC2WN4UA83PU";
+
+        protected override void OnLaunch(object sender, Microsoft.Phone.Shell.LaunchingEventArgs e) {
+            base.OnLaunch(sender, e);
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
+        }
+
+        protected override void OnActivate(object sender, Microsoft.Phone.Shell.ActivatedEventArgs e) {
+            base.OnActivate(sender, e);
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace Driverslog {
     public partial class SettingsView : PhoneApplicationPage {
@@ -30,6 +31,10 @@ namespace Driverslog {
             });
 
             
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e) {
+            new MarketplaceReviewTask().Show();
         }
     }
 }

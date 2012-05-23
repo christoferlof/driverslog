@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutRateAndReview" xml:space="preserve">
+    <value>Rate and Review</value>
+  </data>
   <data name="AboutTechSupport" xml:space="preserve">
     <value>Technical support</value>
   </data>

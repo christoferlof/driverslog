@@ -13,7 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <phone:PhoneApplicationPage.Resources>
@@ -60,6 +60,7 @@
                     <TextBlock x:Name="ApplicationVersion" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <TextBlock Text="Copyright 2011 - 2012 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}"/>
                     <HyperlinkButton Content="{Binding Path=Localized.AboutTechSupport, Source={StaticResource Strings}}" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" />
+                    <Button Content="{Binding Path=Localized.AboutRateAndReview, Source={StaticResource Strings}}" Height="72" Name="ReviewButton" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,24,0,0" Click="button1_Click" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>

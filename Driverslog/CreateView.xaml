@@ -66,7 +66,9 @@
                     <TextBlock Text="{Binding Path=Localized.TripMileage, Source={StaticResource Strings}}" 
                                Style="{StaticResource PhoneTextNormalStyle}"
                                Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
-                    <TextBox x:Name="Mileage" InputScope="Number" Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                    <TextBox x:Name="Mileage" 
+                             InputScope="Number" 
+                             Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
 
                     <toolkit:ToggleSwitch IsChecked="{Binding IsRoundtrip}" Header="{Binding Path=Localized.TripRoundTrip, Source={StaticResource Strings}}" 
                         Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"/>

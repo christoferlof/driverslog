@@ -40,9 +40,9 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        private int _odometerStart;
+        private string _odometerStart;
         [SurviveTombstone]
-        public int OdometerStart {
+        public string OdometerStart {
             get { return _odometerStart; }
             set {
                 _odometerStart = value;
@@ -50,9 +50,9 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        private int _odometerStop;
+        private string _odometerStop;
         [SurviveTombstone]
-        public int OdometerStop {
+        public string OdometerStop {
             get { return _odometerStop; }
             set {
                 _odometerStop = value;
@@ -60,9 +60,9 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        private int _mileage;
+        private string _mileage;
         [SurviveTombstone]
-        public int Mileage {
+        public string Mileage {
             get { return _mileage; }
             set {
                 _mileage = value;

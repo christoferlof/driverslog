@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Driverslog.Helpers;
 using Driverslog.Models;
 using Driverslog.Services;
 using Driverslog.ViewModels;
@@ -39,7 +40,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
                 Car = "car",
                 From = "from",
                 Notes = "notes",
-                OdometerStart = 1,
+                OdometerStart = 1.AsString(),
                 To = "to",
                 Date = new DateTime(1979, 1, 3)
 

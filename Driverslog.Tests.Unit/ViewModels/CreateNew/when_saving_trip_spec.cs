@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Driverslog.Helpers;
 using Driverslog.Models;
 using Driverslog.ViewModels;
 using Victoria.Test;
@@ -23,10 +24,11 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
                 Car             = "car",
                 From            = "from",
                 Notes           = "notes",
-                OdometerStart   = 1,
+                OdometerStart   = 1.AsString(),
+                OdometerStop    = 3.AsString(),
                 To              = "to",
                 Date            = new DateTime(1979,1,3),
-                Mileage         = 2
+                Mileage         = 2.AsString()
             };
 
         }
@@ -46,10 +48,11 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             Assert.Equal(ViewModel.Car, trip.Car);
             Assert.Equal(ViewModel.From, trip.From);
             Assert.Equal(ViewModel.Notes, trip.Notes);
-            Assert.Equal(ViewModel.OdometerStart, trip.OdometerStart);
+            Assert.Equal(ViewModel.OdometerStart, trip.OdometerStart.AsString());
+            Assert.Equal(ViewModel.OdometerStop, trip.OdometerStop.AsString());
             Assert.Equal(ViewModel.To, trip.To);
             Assert.Equal(ViewModel.Date, trip.Date);
-            Assert.Equal(ViewModel.Mileage, trip.Mileage);
+            Assert.Equal(ViewModel.Mileage, trip.Mileage.AsString());
         }
 
         [Fact]

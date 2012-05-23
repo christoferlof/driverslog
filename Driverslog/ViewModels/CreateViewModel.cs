@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Caliburn.Micro;
+using Driverslog.Helpers;
 using Driverslog.Models;
 using Driverslog.Services;
 
@@ -22,10 +23,11 @@ namespace Driverslog.ViewModels {
                 Car           = Car,
                 From          = From,
                 Notes         = Notes,
-                OdometerStart = OdometerStart,
+                OdometerStart = OdometerStart.AsInt(),
+                OdometerStop  = OdometerStop.AsInt(),
                 To            = To,
                 Date          = Date,
-                Mileage       = Mileage,
+                Mileage       = Mileage.AsInt(),
                 IsRoundTrip   = IsRoundtrip
             };
 

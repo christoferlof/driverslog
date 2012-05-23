@@ -148,7 +148,7 @@ function Configure-BuildEnvironment
               $bitness = 'Framework64'
               $programFiles = ${env:ProgramFiles(x86)} 
             }
-      $null {
+      '' {
         $ptrSize = [System.IntPtr]::Size
         switch ($ptrSize)
         {

@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using Caliburn.Micro;
+using Driverslog.Helpers;
 using Driverslog.Models;
 using Driverslog.Services;
 
@@ -25,24 +26,24 @@ namespace Driverslog.ViewModels {
             
             From            = _trip.From;
             To              = _trip.To;
-            OdometerStart   = _trip.OdometerStart;
-            OdometerStop    = _trip.OdometerStop;
+            OdometerStart   = _trip.OdometerStart.AsString();
+            OdometerStop    = _trip.OdometerStop.AsString();
             Notes           = _trip.Notes;
             Car             = _trip.Car;
             Date            = _trip.Date;
-            Mileage         = _trip.Mileage;
+            Mileage         = _trip.Mileage.AsString();
             IsRoundtrip     = _trip.IsRoundTrip;
         }
 
         public void UpdateTrip() {
             _trip.From          = From;
             _trip.Notes         = Notes;
-            _trip.OdometerStart = OdometerStart;
-            _trip.OdometerStop  = OdometerStop;
+            _trip.OdometerStart = OdometerStart.AsInt();
+            _trip.OdometerStop  = OdometerStop.AsInt();
             _trip.Car           = Car;
             _trip.To            = To;
             _trip.Date          = Date;
-            _trip.Mileage       = Mileage;
+            _trip.Mileage       = Mileage.AsInt();
             _trip.IsRoundTrip   = IsRoundtrip;
 
             if(!IsValid(_trip)) return;

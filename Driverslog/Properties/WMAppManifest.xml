@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{f774542f-60bf-4c7c-88ed-6ff45b6008f5}" Title="@AppResLib.dll,-100" RuntimeType="Silverlight" Version="1.6.0.0" Genre="apps.normal" Author="Christofer Löf" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Christofer Löf">
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+  <DefaultLanguage xmlns="" code="" />
+  <Languages xmlns="">
+    <Language code="sv-SE" />
+  </Languages>
+  <App xmlns="" ProductID="{669137ac-c4da-4ec4-94fd-2c6a90032959}" Title="@AppResLib.dll,-100" RuntimeType="Silverlight" Version="1.6.0.0" Genre="apps.normal" Author="Christofer Löf" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Christofer Löf" PublisherID="{afec3f69-fd13-4000-9cc4-9833890a16ed}">
     <IconPath IsRelative="true" IsResource="false">appicon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_IDENTITY_USER"/>
-      <Capability Name="ID_CAP_IDENTITY_DEVICE"/>
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="DriverslogToken" TaskName="_default">
-        <TemplateType5>
-          <BackgroundImageURI IsRelative="true" IsResource="false">tile.png</BackgroundImageURI>
+        <TemplateFlip>
+          <SmallImageURI IsResource="false" IsRelative="true">tile.png</SmallImageURI>
           <Count>0</Count>
+          <BackgroundImageURI IsResource="false" IsRelative="true">tile.png</BackgroundImageURI>
           <Title>@AppResLib.dll,-200</Title>
-        </TemplateType5>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
+          <DeviceLockImageURI></DeviceLockImageURI>
+          <HasLarge>false</HasLarge>
+        </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
   </App>
 </Deployment>

@@ -12,7 +12,7 @@
     xmlns:model="clr-namespace:Driverslog.Models" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
-    d:DataContext="{d:DesignData /SampleData/MainViewModelSampleData.xaml}"
+    xmlns:rma="clr-namespace:RateMyApp.Controls;assembly=RateMyApp"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -123,5 +123,9 @@
                      ItemTemplate="{StaticResource ItemTemplate}"/>
             </controls:PivotItem>
         </controls:Pivot>
+        <rma:FeedbackOverlay x:Name="FeedbackOverlay" 
+                             FeedbackTo="christofer.lof@live.se" 
+                             ApplicationName="Driver's log" 
+                             CompanyName="Löf Co" />
     </Grid>
 </phone:PhoneApplicationPage>

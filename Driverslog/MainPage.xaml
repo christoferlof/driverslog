@@ -124,7 +124,7 @@
             </controls:PivotItem>
         </controls:Pivot>
         <rma:FeedbackOverlay x:Name="FeedbackOverlay" 
-                             FeedbackTo="christofer.lof@live.se" 
+                             FeedbackTo="apps@christoferlof.com" 
                              ApplicationName="Driver's log" 
                              CompanyName="Löf Co" />
     </Grid>

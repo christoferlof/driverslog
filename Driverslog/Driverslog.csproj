@@ -223,8 +223,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppResLib.dll.0409.mui" />
-    <Content Include="AppResLib.dll.041d.mui" />
+    <Content Include="ApplicationIcon.png" />
+    <Content Include="tile-medium.png" />
+    <Content Include="tile-small.png" />
+    <Content Include="tile-wide.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
@@ -235,8 +237,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="appicon.png" />
-    <Content Include="AppResLib.dll" />
     <Content Include="icons\appbar.check.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -256,9 +256,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
-    <Content Include="tile.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
   </ItemGroup>

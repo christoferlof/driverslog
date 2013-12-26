@@ -47,6 +47,8 @@ namespace Driverslog {
 
         private void CreateApplicationBar() {
             ApplicationBar = new ApplicationBar();
+            ApplicationBar.BackgroundColor = (Color)Application.Current.Resources["AppDarkAccentColor"];
+            ApplicationBar.ForegroundColor = (Color)Application.Current.Resources["AppForegroundColor"];
 
             ApplicationBar.Buttons.Add(new AppBarButton {
                 IconUri = new Uri("/icons/appbar.newtrip.png", UriKind.Relative),

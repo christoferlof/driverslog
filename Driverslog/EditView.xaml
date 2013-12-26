@@ -9,14 +9,13 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <phone:PhoneApplicationPage.Resources>
         <Converters:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
     </phone:PhoneApplicationPage.Resources>
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

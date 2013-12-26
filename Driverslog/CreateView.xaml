@@ -13,15 +13,14 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
 
     <phone:PhoneApplicationPage.Resources>
         <Converters:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
     </phone:PhoneApplicationPage.Resources>
-    
+
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -29,52 +28,57 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Path=Localized.CreateViewTitle, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=Localized.CreateViewTitle, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource AppForegroundBrush}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="{Binding Path=Localized.TripDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]"/>
+                    <TextBlock Text="{Binding Path=Localized.TripDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}"/>
 
-                    <TextBlock Text="{Binding Path=Localized.TripFrom, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <TextBox x:Name="From" />
+                    <TextBlock Text="{Binding Path=Localized.TripFrom, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <TextBox x:Name="From" Style="{StaticResource TextBoxStyle}" />
 
-                    <TextBlock Text="{Binding Path=Localized.TripTo, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <TextBox x:Name="To" />
+                    <TextBlock Text="{Binding Path=Localized.TripTo, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <TextBox x:Name="To" Style="{StaticResource TextBoxStyle}"/>
 
-                    <TextBlock Text="{Binding Path=Localized.TripCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <TextBox x:Name="Car" />
+                    <TextBlock Text="{Binding Path=Localized.TripCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <TextBox x:Name="Car" Style="{StaticResource TextBoxStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripOdometerStart, Source={StaticResource Strings}}" 
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}" 
+                               Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBox x:Name="OdometerStart" 
                              InputScope="Number" 
-                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
+                             Style="{StaticResource TextBoxStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripOdometerStop, Source={StaticResource Strings}}" 
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                               Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}" 
+                               Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBox x:Name="OdometerStop" 
                              InputScope="Number" 
-                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                             Visibility="{Binding HideOdoFields, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
+                             Style="{StaticResource TextBoxStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripMileage, Source={StaticResource Strings}}" 
                                Style="{StaticResource PhoneTextNormalStyle}"
-                               Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                               Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}" Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBox x:Name="Mileage" 
                              InputScope="Number" 
-                             Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                             Visibility="{Binding HideMileageField, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
+                             Style="{StaticResource TextBoxStyle}"/>
 
                     <toolkit:ToggleSwitch IsChecked="{Binding IsRoundtrip}" Header="{Binding Path=Localized.TripRoundTrip, Source={StaticResource Strings}}" 
-                        Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked"/>
+                        Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" Foreground="{StaticResource AppForegroundBrush}" Style="{StaticResource ToggleSwitchStyle}"/>
 
-                    <TextBlock Text="{Binding Path=Localized.TripNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-                    <TextBox x:Name="Notes" />
+                    <TextBlock Text="{Binding Path=Localized.TripNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <TextBox x:Name="Notes" Style="{StaticResource TextBoxStyle}"/>
 
                 </StackPanel>
             </ScrollViewer>

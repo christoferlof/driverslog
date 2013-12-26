@@ -14,10 +14,10 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     xmlns:rma="clr-namespace:RateMyApp.Controls;assembly=RateMyApp"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    Foreground="{StaticResource AppForegroundBrush}"
     toolkit:TiltEffect.IsTiltEnabled="True"
     >
     <phone:PhoneApplicationPage.Resources>

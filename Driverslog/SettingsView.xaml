@@ -14,14 +14,14 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <phone:PhoneApplicationPage.Resources>
         <Converters:YesNoToIndexConverter x:Key="YesNoToIndexConverter" />
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
         <controls:Pivot Title="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}">
             <controls:PivotItem Header="{Binding Path=Localized.SettingsViewTitle, Source={StaticResource Strings}}">
                 <ScrollViewer>

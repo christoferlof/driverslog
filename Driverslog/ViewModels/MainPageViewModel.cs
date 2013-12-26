@@ -109,7 +109,7 @@ namespace Driverslog.ViewModels {
 
         private void LogCountEvent(string eventName) {
             _analyticsService.LogEvent(eventName,
-                new Dictionary<string, string> { { "Item.Count", (Trip.All.Count + Expense.All.Count).ToString() } });
+                new Dictionary<string, object> { { "Item.Count", (Trip.All.Count + Expense.All.Count).ToString() } });
         }
     }
 }

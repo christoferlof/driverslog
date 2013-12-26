@@ -101,9 +101,6 @@
     <Reference Include="Caliburn.Micro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\lib\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="FlurryWP7SDK">
-      <HintPath>..\lib\FlurryWP7SDK.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -289,4 +286,5 @@
   </Target>
   -->
   <ProjectExtensions />
+  <Import Project="..\packages\Microsoft.ApplicationInsights.Telemetry.WindowsPhone.0.6.56.3\build\wp80\Microsoft.ApplicationInsights.Telemetry.WindowsPhone.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.Telemetry.WindowsPhone.0.6.56.3\build\wp80\Microsoft.ApplicationInsights.Telemetry.WindowsPhone.targets')" />
 </Project>

@@ -9,7 +9,7 @@ namespace Driverslog.Tests.Unit {
             LogEventWasInvoked = true;
         }
 
-        public void LogEvent(string eventName, Dictionary<string,string> parameters) {
+        public void LogEvent(string eventName, Dictionary<string,object> parameters) {
             LogEventWasInvoked = true;
         }
     }

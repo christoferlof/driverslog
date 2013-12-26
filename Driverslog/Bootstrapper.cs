@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Caliburn.Micro;
 using Driverslog.Services;
 using Driverslog.ViewModels;
+using Microsoft.ApplicationInsights.Telemetry.WindowsStore;
 using Microsoft.Phone.Tasks;
 
 namespace Driverslog {
@@ -42,20 +43,8 @@ namespace Driverslog {
             _container.BuildUp(instance);
         }
 
-        private const string FlurryKey = "KJU8ELY9LC2WN4UA83PU";
-
-        protected override void OnLaunch(object sender, Microsoft.Phone.Shell.LaunchingEventArgs e) {
-            base.OnLaunch(sender, e);
-            FlurryWP7SDK.Api.StartSession(FlurryKey);
-        }
-
-        protected override void OnActivate(object sender, Microsoft.Phone.Shell.ActivatedEventArgs e) {
-            base.OnActivate(sender, e);
-            FlurryWP7SDK.Api.StartSession(FlurryKey);
-        }
-
         protected override void OnUnhandledException(object sender, System.Windows.ApplicationUnhandledExceptionEventArgs e) {
-            FlurryWP7SDK.Api.LogError("Unhandled Exception", e.ExceptionObject);
+            ClientAnalyticsChannel.Default.LogEvent("exception", new Dictionary<string, object> { {"message", e.ExceptionObject.Message}});
             base.OnUnhandledException(sender, e);
         }
     }

@@ -29,6 +29,9 @@
             <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}" />
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
         </Style>
+        <Style x:Key="DatePickerStyle" TargetType="toolkit:DatePickerPage">
+            <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}" />
+        </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>

@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:Converters="clr-namespace:Driverslog.Converters" FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -32,7 +33,7 @@
             <ScrollViewer>
                 <StackPanel>
                     <TextBlock Text="{Binding Path=Localized.TripDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <telerikInput:RadDatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}" Style="{StaticResource RadDatePickerStyle}" SelectorStyle="{StaticResource RadDateSelectorStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripFrom, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBox x:Name="From" Style="{StaticResource TextBoxStyle}" />

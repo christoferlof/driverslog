@@ -2,6 +2,7 @@ using System;
 using Driverslog.Services;
 using Driverslog.ViewModels;
 using Microsoft.Phone.Controls;
+using Telerik.Windows.Controls;
 using Victoria.Test;
 
 namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
@@ -12,7 +13,7 @@ namespace Driverslog.Tests.Unit.ViewModels.CreateNew {
             var viewModel = new CreateViewModel(new NavigationServiceStub(), new MessageBoxServiceStub(), null, new AnalyticsServiceStub());
             var date = new DateTime(1979,1,3);
 
-            viewModel.ChangeDate(new DateTimeValueChangedEventArgs(null,date));
+            viewModel.ChangeDate(new ValueChangedEventArgs<object>(null, date));
 
             Assert.Equal(date,viewModel.Date);
         }

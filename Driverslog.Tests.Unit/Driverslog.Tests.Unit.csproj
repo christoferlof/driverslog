@@ -99,6 +99,7 @@
     <Reference Include="System.Windows.Interactivity, Version=3.7.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\lib\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.3.1127.3040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Victoria.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\lib\Victoria.Data.dll</HintPath>
     </Reference>

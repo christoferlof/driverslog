@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Driverslog.Models;
 using Driverslog.Services;
 using Microsoft.Phone.Controls;
+using Telerik.Windows.Controls;
 
 namespace Driverslog.ViewModels {
     [SurviveTombstone]
@@ -61,8 +62,11 @@ namespace Driverslog.ViewModels {
             }
         }
 
-        public void ChangeDate(DateTimeValueChangedEventArgs e) {
-            if (e.NewDateTime != null) Date = (DateTime)e.NewDateTime;
+        public void ChangeDate(ValueChangedEventArgs<object> e) {
+            var date = e.NewValue as DateTime?;
+            if (date.HasValue) {
+                Date = date.Value;
+            }
         }
 
         private string _car;

@@ -5,7 +5,13 @@
     xmlns:local="clr-namespace:Driverslog"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:Controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:telerikLooping="clr-namespace:Telerik.Windows.Controls.LoopingList;assembly=Telerik.Windows.Controls.Primitives" 
+    xmlns:telerikDate="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:PickerBox="clr-namespace:Telerik.Windows.Controls.PickerBox;assembly=Telerik.Windows.Controls.Primitives" 
     x:Class="Driverslog.App"
     >
     <Application.Resources>
@@ -15,16 +21,18 @@
         <Color x:Key="AppDarkAccentColor">#11262C</Color>
         <Color x:Key="AppForegroundColor">#FFFFFF</Color>
         <Color x:Key="AppLightAccentColor">#83C0B8</Color>
-        <SolidColorBrush x:Key="AppDarkestBrush" Color="{StaticResource AppDarkAccentColor}" />
+        <Color x:Key="AppBackgroundColor">#2B5F6E</Color>
+        <SolidColorBrush x:Key="AppDarkestBrush" Color="{StaticResource AppDarkestColor}" />
+        <SolidColorBrush x:Key="AppDarkAccentBrush" Color="{StaticResource AppDarkAccentColor}" />
         <SolidColorBrush x:Key="AppForegroundBrush" Color="{StaticResource AppForegroundColor}" />
-        <SolidColorBrush x:Key="AppBackgroundBrush" Color="#2B5F6E"/>
+        <SolidColorBrush x:Key="AppBackgroundBrush" Color="{StaticResource AppBackgroundColor}"/>
         <SolidColorBrush x:Key="AppLightAccentBrush" Color="{StaticResource AppLightAccentColor}"/>
         <Style TargetType="Grid">
             <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}"/>
         </Style>
         <Style TargetType="phone:Pivot">
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        </Style>
+        </Style> 
         <Style TargetType="phone:PhoneApplicationPage">
             <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}" />
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
@@ -223,6 +231,296 @@
                                 <ContentControl x:Name="Header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{StaticResource AppForegroundBrush}" FontSize="{StaticResource PhoneFontSizeNormal}" FontFamily="{StaticResource PhoneFontFamilyNormal}" HorizontalAlignment="Left" IsTabStop="False" Margin="-1,0,0,0" Opacity="{TemplateBinding Opacity}" VerticalAlignment="Bottom"/>
                                 <ContentControl x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsTabStop="False" Margin="-1,1,0,-7" Opacity="{TemplateBinding Opacity}" Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 <toolkitPrimitives:ToggleSwitchButton x:Name="Switch" Background="{StaticResource AppBackgroundBrush}" Style="{StaticResource ToggleSwitchButtonStyle}" Grid.Column="1" Margin="-22,-29,-24,-28" Opacity="{TemplateBinding Opacity}" Grid.RowSpan="2" SwitchForeground="{StaticResource AppLightAccentBrush}" VerticalAlignment="Bottom"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InputControlHeaderStyle" TargetType="ContentControl">
+            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+            <Setter Property="Margin" Value="12,12,12,-4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Controls:RadPlaneProjectionAnimation x:Key="CloseAnimation" Axes="X" Duration="0:0:.2" EndAngleX="90" StartAngleX="0">
+            <Controls:RadPlaneProjectionAnimation.Easing>
+                <ExponentialEase EasingMode="EaseIn" Exponent="4"/>
+            </Controls:RadPlaneProjectionAnimation.Easing>
+        </Controls:RadPlaneProjectionAnimation>
+        <Controls:RadPlaneProjectionAnimation x:Key="OpenAnimation" Axes="X" Duration="0:0:.2" EndAngleX="0" StartAngleX="-90">
+            <Controls:RadPlaneProjectionAnimation.Easing>
+                <ExponentialEase EasingMode="EaseOut" Exponent="4"/>
+            </Controls:RadPlaneProjectionAnimation.Easing>
+        </Controls:RadPlaneProjectionAnimation>
+        <telerikInput:EnumerableToCountConverter x:Key="countConverter"/>
+        <Style TargetType="PickerBox:PickerBoxToggleButton" x:Key="PickerBoxToggleButtonStyle">
+            <Setter Property="Controls:InteractionEffectManager.IsInteractionEnabled" Value="True"/>
+            <Setter Property="Padding" Value="8, 8, 8, 7"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppForegroundBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PickerBox:PickerBoxToggleButton">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="EnabledBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DisabledBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="EnabledBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="EnabledBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="EnabledContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Unchecked"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="EnabledBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                                <ContentControl x:Name="EnabledContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <Border x:Name="DisabledBackground" BorderBrush="{StaticResource PhoneDisabledBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" IsHitTestVisible="False" Margin="{StaticResource PhoneTouchTargetOverhang}" Visibility="Collapsed">
+                                <ContentControl x:Name="DisabledContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{StaticResource PhoneDisabledBrush}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="telerikInput:RadDatePicker" x:Key="RadDatePickerStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HeaderStyle" Value="{StaticResource InputControlHeaderStyle}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:RadDatePicker">
+                        <telerikDate:RadPickerBox x:Name="PART_PickerBox" ContentTemplate="{TemplateBinding EmptyContentTemplate}" HeaderTemplate="{TemplateBinding HeaderTemplate}" HeaderStyle="{TemplateBinding HeaderStyle}" Header="{TemplateBinding Header}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" PopupCloseAnimation="{StaticResource CloseAnimation}" PickerButtonStyle="{StaticResource PickerBoxToggleButtonStyle}" PopupOpenAnimation="{StaticResource OpenAnimation}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <telerikDate:RadPickerBox.ApplicationBarInfo>
+                                <telerikDate:ApplicationBarInfo x:Name="PART_AppBarInfo" BackgroundColor="{StaticResource AppDarkAccentColor}" ForegroundColor="{StaticResource AppForegroundColor}">
+                                    <telerikDate:ApplicationBarButton x:Name="PART_OKButton"/>
+                                    <telerikDate:ApplicationBarButton x:Name="PART_CancelButton"/>
+                                </telerikDate:ApplicationBarInfo>
+                            </telerikDate:RadPickerBox.ApplicationBarInfo>
+                            <Grid Background="{StaticResource AppBackgroundBrush}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <ContentControl x:Name="PART_PopupHeader" ContentTemplate="{TemplateBinding PopupHeaderTemplate}" Content="{TemplateBinding PopupHeader}" FontWeight="SemiBold" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" HorizontalContentAlignment="Left" Margin="24, 55, 0, 24" Grid.Row="0" Foreground="{StaticResource AppForegroundBrush}"/>
+                                <telerikInput:RadDateSelector  Background="{StaticResource AppBackgroundBrush}"  Foreground="{StaticResource AppForegroundBrush}" x:Name="PART_Selector" AppointmentSource="{TemplateBinding AppointmentSource}" DayStepBehavior="{TemplateBinding DayStepBehavior}" ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}" MonthStepBehavior="{TemplateBinding MonthStepBehavior}" Grid.Row="1" Style="{StaticResource RadDateSelectorStyle}" Step="{TemplateBinding Step}" YearStepBehavior="{TemplateBinding YearStepBehavior}"/>
+                            </Grid>
+                        </telerikDate:RadPickerBox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplateSelector">
+                <Setter.Value>
+                    <telerikInput:AppointmentTemplateSelector>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid HorizontalAlignment="Right" Margin="2" VerticalAlignment="Top">
+                                    <Ellipse Fill="Red" Height="25" Width="25"/>
+                                    <TextBlock FontSize="16" HorizontalAlignment="Center" Text="{Binding Appointments, Converter={StaticResource countConverter}}" VerticalAlignment="Center"/>
+                                </Grid>
+                                <StackPanel HorizontalAlignment="Left" Margin="4" MinHeight="100" VerticalAlignment="Bottom">
+                                    <TextBlock FontSize="54" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="0,0,0,-8" Text="{Binding HeaderText}"/>
+                                    <TextBlock Foreground="Red" FontSize="20" FontFamily="{StaticResource PhoneFontFamilyNormal}" Text="{Binding ContentText}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </telerikInput:AppointmentTemplateSelector>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DateTimeListItemStyle" TargetType="telerikInput:DateTimeListItem">
+            <Setter Property="CacheMode" Value="BitmapCache" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:DateTimeListItem">
+                        <Border x:Name="root" BorderBrush="{StaticResource AppDarkAccentBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Padding}"
+								>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.2" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Collapsed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="root"
+													Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+													Storyboard.TargetName="root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+													Storyboard.TargetName="contentText">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+														Value="{StaticResource AppForegroundColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetName="root"
+													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="contentPresenter"
+													Storyboard.TargetProperty="Opacity" To=".6" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+													Storyboard.TargetName="root">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+														Value="{StaticResource AppDarkAccentColor}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+													Storyboard.TargetName="root">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+														Value="{StaticResource AppDarkAccentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+													Storyboard.TargetName="contentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+													Storyboard.TargetName="contentText">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetName="root"
+													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="contentPresenter"
+													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+													Storyboard.TargetName="root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation Storyboard.TargetName="root"
+													Storyboard.TargetProperty="Opacity" To=".3" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentControl x:Name="contentPresenter" DataContext="{TemplateBinding DataContext}"
+									HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+									Padding="{TemplateBinding Padding}">
+                                <Grid MinHeight="100" Margin="4">
+                                    <ContentControl Content="{TemplateBinding Content}"
+											ContentTemplate="{TemplateBinding ContentTemplate}"
+											VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                    <TextBlock Text="{Binding Path=ContentText}" DataContext="{TemplateBinding Content}"
+											x:Name="contentText" FontSize="20" VerticalAlignment="Bottom"
+											HorizontalAlignment="Left"
+											FontFamily="{StaticResource PhoneFontFamilyNormal}" />
+                                </Grid>
+                            </ContentControl>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DateTimeListStyle" TargetType="telerikInput:DateTimeList">
+            <Setter Property="ItemStyle" Value="{StaticResource DateTimeListItemStyle}" />
+            <Setter Property="Width" Value="148" />
+            <Setter Property="Margin" Value="2,0,2,0" />
+            <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}" />
+            <Setter Property="IsCentered" Value="True" />
+            <Setter Property="IsExpanded" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:DateTimeList">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <telerikLooping:LoopingPanel x:Name="itemsPanel" HorizontalAlignment="Center" Width="138" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=HeaderText}" HorizontalAlignment="Left"
+								VerticalAlignment="Center" FontSize="54"
+								FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="0,0,0,-8" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="telerikInput:RadDateSelector" x:Key="RadDateSelectorStyle">
+        	<Setter Property="Background" Value="{StaticResource AppBackgroundBrush}"/>
+        	<Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource AppForegroundBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:RadDateSelector">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <Grid x:Name="RootElement" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <telerikInput:DateTimeList Step="{TemplateBinding Step}"
+										Style="{StaticResource DateTimeListStyle}"
+										DateStepBehavior="{TemplateBinding DayStepBehavior}" ComponentType="Day"
+										x:Name="DayList" Grid.Column="0"
+										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+										AppointmentSource="{TemplateBinding AppointmentSource}" />
+                                <telerikInput:DateTimeList Step="{TemplateBinding Step}"
+										Style="{StaticResource DateTimeListStyle}"
+										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+										DateStepBehavior="{TemplateBinding MonthStepBehavior}" ComponentType="Month"
+										x:Name="MonthList" Grid.Column="1" />
+                                <telerikInput:DateTimeList Step="{TemplateBinding Step}"
+										Style="{StaticResource DateTimeListStyle}"
+										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+										DateStepBehavior="{TemplateBinding YearStepBehavior}" ComponentType="Year"
+										x:Name="YearList" Grid.Column="2" />
                             </Grid>
                         </Border>
                     </ControlTemplate>

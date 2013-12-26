@@ -1,56 +1,57 @@
-﻿<phone:PhoneApplicationPage 
-    x:Class="Driverslog.CreateExpenseView"
+﻿<phone:PhoneApplicationPage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
+    xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
+    x:Class="Driverslog.CreateExpenseView"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480">
-
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="{StaticResource AppForegroundBrush}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Path=Localized.CreateExpenseViewTitle, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource AppForegroundBrush}"/>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ScrollViewer>
-                <StackPanel>
-                    <TextBlock Text="{Binding Path=Localized.ExpenseDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <toolkit:DatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}"/>
-
-                    <TextBlock Text="{Binding Path=Localized.ExpenseTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="Title" Style="{StaticResource TextBoxStyle}"/>
-
-                    <TextBlock Text="{Binding Path=Localized.ExpenseCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="Car" Style="{StaticResource TextBoxStyle}"/>
-
-                    <TextBlock Text="{Binding Path=Localized.ExpenseNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="Notes" Style="{StaticResource TextBoxStyle}"/>
-
-                    <TextBlock Text="{Binding Path=Localized.ExpenseAmount, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="Amount" InputScope="CurrencyAmount" Style="{StaticResource TextBoxStyle}"/>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-    </Grid>
-
+	
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="{StaticResource AppDarkAccentColor}" ForegroundColor="{StaticResource AppForegroundColor}">
             <cal:AppBarButton IconUri="/icons/appbar.check.rest.png" Text="Save" Message="CreateExpense"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+
+<!--LayoutRoot is the root grid where all page content is placed-->
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock x:Name="ApplicationTitle" Text="{Binding Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="{StaticResource AppForegroundBrush}"/>
+			<TextBlock x:Name="PageTitle" Text="{Binding Localized.CreateExpenseViewTitle, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource AppForegroundBrush}"/>
+		</StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<ScrollViewer>
+				<StackPanel>
+					<TextBlock Text="{Binding Localized.ExpenseDate, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+					<telerikInput:RadDatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" Style="{StaticResource RadDatePickerStyle}" />
+
+					<TextBlock Text="{Binding Localized.ExpenseTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+					<TextBox x:Name="Title" Style="{StaticResource TextBoxStyle}"/>
+
+					<TextBlock Text="{Binding Localized.ExpenseCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+					<TextBox x:Name="Car" Style="{StaticResource TextBoxStyle}"/>
+
+					<TextBlock Text="{Binding Localized.ExpenseNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+					<TextBox x:Name="Notes" Style="{StaticResource TextBoxStyle}"/>
+
+					<TextBlock Text="{Binding Localized.ExpenseAmount, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+					<TextBox x:Name="Amount" InputScope="CurrencyAmount" Style="{StaticResource TextBoxStyle}"/>
+				</StackPanel>
+			</ScrollViewer>
+		</Grid>
+	</Grid>
 
 </phone:PhoneApplicationPage>

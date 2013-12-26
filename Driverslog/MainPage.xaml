@@ -129,6 +129,10 @@
         <rma:FeedbackOverlay x:Name="FeedbackOverlay" 
                              FeedbackTo="apps@christoferlof.com" 
                              ApplicationName="Driver's log" 
-                             CompanyName="Löf Co" />
+                             CompanyName="Löf &amp; Co" 
+                             BorderBrush="{StaticResource AppBackgroundBrush}" 
+                             Foreground="{StaticResource AppForegroundBrush}" 
+                             Background="{StaticResource AppBackgroundBrush}" 
+                             />
     </Grid>
 </phone:PhoneApplicationPage>

@@ -61,7 +61,7 @@
                 <StackPanel>
                     <TextBlock Text="{Binding Path=Localized.AppTitle, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBlock x:Name="ApplicationVersion" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBlock Text="Copyright 2011 - 2014 Christofer Löf" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
+                    <TextBlock Text="Copyright 2011 - 2014 Löf &amp; Co" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
                     <HyperlinkButton Content="{Binding Path=Localized.AboutTechSupport, Source={StaticResource Strings}}" NavigateUri="http://twitter.com/chrislof" TargetName="_blank" HorizontalContentAlignment="Left" Foreground="{StaticResource AppForegroundBrush}" />
                     <Button Content="{Binding Path=Localized.AboutRateAndReview, Source={StaticResource Strings}}" Height="72" Name="ReviewButton" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,24,0,0" Click="button1_Click" Foreground="{StaticResource AppForegroundBrush}" BorderBrush="{StaticResource AppForegroundBrush}" />
                 </StackPanel>

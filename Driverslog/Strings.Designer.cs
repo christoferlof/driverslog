@@ -97,6 +97,24 @@ namespace Driverslog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear suggestions.
+        /// </summary>
+        public static string ClearSuggestions {
+            get {
+                return ResourceManager.GetString("ClearSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All suggestions will be deleted. Continue?.
+        /// </summary>
+        public static string ClearSuggestionsConfirm {
+            get {
+                return ResourceManager.GetString("ClearSuggestionsConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new expense.
         /// </summary>
         public static string CreateExpenseViewTitle {

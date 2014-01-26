@@ -129,6 +129,12 @@
   <data name="AppTitle" xml:space="preserve">
     <value>DRIVER'S LOG</value>
   </data>
+  <data name="ClearSuggestions" xml:space="preserve">
+    <value>Clear suggestions</value>
+  </data>
+  <data name="ClearSuggestionsConfirm" xml:space="preserve">
+    <value>All suggestions will be deleted. Continue?</value>
+  </data>
   <data name="CreateExpenseViewTitle" xml:space="preserve">
     <value>new expense</value>
   </data>

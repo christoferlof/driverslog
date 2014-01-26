@@ -53,7 +53,7 @@
                             <ListBoxItem Content="{Binding Path=Localized.No, Source={StaticResource Strings}}" Foreground="{StaticResource AppForegroundBrush}" BorderBrush="{StaticResource AppForegroundBrush}"/>
                             <ListBoxItem Content="{Binding Path=Localized.Yes, Source={StaticResource Strings}}"/>
                         </toolkit:ListPicker>
-
+                        <Button Name="ClearSuggestions" Content="{Binding Path=Localized.ClearSuggestions, Source={StaticResource Strings}}" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}"/>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>

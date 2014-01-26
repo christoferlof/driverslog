@@ -9,13 +9,17 @@ namespace Driverslog.ViewModels {
     public class SettingsViewModel : Screen {
         private readonly INavigationService _navigationService;
         private readonly ITrialService _trialService;
+
+        private readonly IMessageBoxService messageBoxService;
+
         private string _car;
         private string _email;
         private string _distanceUnit;
 
-        public SettingsViewModel(INavigationService navigationService, ITrialService trialService) {
+        public SettingsViewModel(INavigationService navigationService, ITrialService trialService, IMessageBoxService messageBoxService) {
             _navigationService = navigationService;
             _trialService = trialService;
+            this.messageBoxService = messageBoxService;
         }
 
         public string Car {
@@ -85,6 +89,17 @@ namespace Driverslog.ViewModels {
 
         public void OnHideMileageFieldChanged(SelectionChangedEventArgs args) {
             HideMileageField = SelectionChangedToBool(args);
+        }
+
+        public void ClearSuggestions()
+        {
+            if (!this.messageBoxService.Confirm(Strings.ClearSuggestions, Strings.ClearSuggestionsConfirm))
+            {
+                return;
+            }
+
+            Location.Clear();
+            Location.SaveChanges();
         }
 
         private static bool SelectionChangedToBool(SelectionChangedEventArgs args) {

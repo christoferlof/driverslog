@@ -36,10 +36,10 @@
                     <telerikInput:RadDatePicker x:Name="DatePicker" Value="{Binding Date}" cal:Message.Attach="[Event ValueChanged] = [Action ChangeDate($eventArgs)]" BorderBrush="{StaticResource AppForegroundBrush}" Foreground="{StaticResource AppForegroundBrush}" Style="{StaticResource RadDatePickerStyle}" SelectorStyle="{StaticResource RadDateSelectorStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripFrom, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="From" Style="{StaticResource TextBoxStyle}" />
+                    <telerikInput:RadAutoCompleteBox x:Name="From" Style="{StaticResource RadAutoCompleteBoxStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripTo, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
-                    <TextBox x:Name="To" Style="{StaticResource TextBoxStyle}" />
+                    <telerikInput:RadAutoCompleteBox x:Name="To" Style="{StaticResource RadAutoCompleteBoxStyle}"/>
 
                     <TextBlock Text="{Binding Path=Localized.TripCar, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource AppForegroundBrush}"/>
                     <TextBox x:Name="Car" Style="{StaticResource TextBoxStyle}" />

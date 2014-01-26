@@ -12,6 +12,9 @@
     xmlns:telerikLooping="clr-namespace:Telerik.Windows.Controls.LoopingList;assembly=Telerik.Windows.Controls.Primitives" 
     xmlns:telerikDate="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:PickerBox="clr-namespace:Telerik.Windows.Controls.PickerBox;assembly=Telerik.Windows.Controls.Primitives" 
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:PhoneTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives" 
+    xmlns:AutoCompleteTextBox="clr-namespace:Telerik.Windows.Controls.AutoCompleteTextBox;assembly=Telerik.Windows.Controls.Input" 
     x:Class="Driverslog.App"
     >
     <Application.Resources>
@@ -32,7 +35,7 @@
         </Style>
         <Style TargetType="phone:Pivot">
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        </Style> 
+        </Style>
         <Style TargetType="phone:PhoneApplicationPage">
             <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}" />
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
@@ -374,7 +377,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="telerikInput:DateTimeListItem">
                         <Border x:Name="root" BorderBrush="{StaticResource AppDarkAccentBrush}"
-								BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Padding}"
+        					BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Padding}"
 								>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -384,76 +387,76 @@
                                     <VisualState x:Name="Collapsed">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="root"
-													Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Expanded">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-													Storyboard.TargetName="root">
+        										Storyboard.TargetName="root">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-													Storyboard.TargetName="contentText">
+        										Storyboard.TargetName="contentText">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-														Value="{StaticResource AppForegroundColor}" />
+        											Value="{StaticResource AppForegroundColor}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="root"
-													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                             <DoubleAnimation Storyboard.TargetName="contentPresenter"
-													Storyboard.TargetProperty="Opacity" To=".6" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To=".6" Duration="0" />
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Selected">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-													Storyboard.TargetName="root">
+        										Storyboard.TargetName="root">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-														Value="{StaticResource AppDarkAccentColor}" />
+        											Value="{StaticResource AppDarkAccentColor}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-													Storyboard.TargetName="root">
+        										Storyboard.TargetName="root">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-														Value="{StaticResource AppDarkAccentBrush}" />
+        											Value="{StaticResource AppDarkAccentBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-													Storyboard.TargetName="contentPresenter">
+        										Storyboard.TargetName="contentPresenter">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-													Storyboard.TargetName="contentText">
+        										Storyboard.TargetName="contentText">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="root"
-													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                             <DoubleAnimation Storyboard.TargetName="contentPresenter"
-													Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-													Storyboard.TargetName="root">
+        										Storyboard.TargetName="root">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <DoubleAnimation Storyboard.TargetName="root"
-													Storyboard.TargetProperty="Opacity" To=".3" Duration="0" />
+        										Storyboard.TargetProperty="Opacity" To=".3" Duration="0" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <ContentControl x:Name="contentPresenter" DataContext="{TemplateBinding DataContext}"
-									HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-									Padding="{TemplateBinding Padding}">
+        						HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        						Padding="{TemplateBinding Padding}">
                                 <Grid MinHeight="100" Margin="4">
                                     <ContentControl Content="{TemplateBinding Content}"
-											ContentTemplate="{TemplateBinding ContentTemplate}"
-											VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-											HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                                    <TextBlock Text="{Binding Path=ContentText}" DataContext="{TemplateBinding Content}"
-											x:Name="contentText" FontSize="20" VerticalAlignment="Bottom"
-											HorizontalAlignment="Left"
-											FontFamily="{StaticResource PhoneFontFamilyNormal}" />
+        								ContentTemplate="{TemplateBinding ContentTemplate}"
+        								VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+        								HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                    <TextBlock Text="{Binding ContentText}" DataContext="{TemplateBinding Content}"
+        								x:Name="contentText" FontSize="20" VerticalAlignment="Bottom"
+        								HorizontalAlignment="Left"
+        								FontFamily="{StaticResource PhoneFontFamilyNormal}" />
                                 </Grid>
                             </ContentControl>
                         </Border>
@@ -474,7 +477,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="telerikInput:DateTimeList">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-								BorderThickness="{TemplateBinding BorderThickness}">
+        					BorderThickness="{TemplateBinding BorderThickness}">
                             <telerikLooping:LoopingPanel x:Name="itemsPanel" HorizontalAlignment="Center" Width="138" />
                         </Border>
                     </ControlTemplate>
@@ -483,16 +486,16 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=HeaderText}" HorizontalAlignment="Left"
-								VerticalAlignment="Center" FontSize="54"
-								FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="0,0,0,-8" />
+                        <TextBlock Text="{Binding HeaderText}" HorizontalAlignment="Left"
+        					VerticalAlignment="Center" FontSize="54"
+        					FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="0,0,0,-8" />
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style TargetType="telerikInput:RadDateSelector" x:Key="RadDateSelectorStyle">
-        	<Setter Property="Background" Value="{StaticResource AppBackgroundBrush}"/>
-        	<Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="{StaticResource AppBackgroundBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
             <Setter Property="BorderBrush" Value="{StaticResource AppForegroundBrush}" />
             <Setter Property="Template">
@@ -506,23 +509,195 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <telerikInput:DateTimeList Step="{TemplateBinding Step}"
-										Style="{StaticResource DateTimeListStyle}"
-										DateStepBehavior="{TemplateBinding DayStepBehavior}" ComponentType="Day"
-										x:Name="DayList" Grid.Column="0"
-										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-										AppointmentSource="{TemplateBinding AppointmentSource}" />
+        							Style="{StaticResource DateTimeListStyle}"
+        							DateStepBehavior="{TemplateBinding DayStepBehavior}" ComponentType="Day"
+        							x:Name="DayList" Grid.Column="0"
+        							ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+        							AppointmentSource="{TemplateBinding AppointmentSource}" />
                                 <telerikInput:DateTimeList Step="{TemplateBinding Step}"
-										Style="{StaticResource DateTimeListStyle}"
-										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-										DateStepBehavior="{TemplateBinding MonthStepBehavior}" ComponentType="Month"
-										x:Name="MonthList" Grid.Column="1" />
+        							Style="{StaticResource DateTimeListStyle}"
+        							ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+        							DateStepBehavior="{TemplateBinding MonthStepBehavior}" ComponentType="Month"
+        							x:Name="MonthList" Grid.Column="1" />
                                 <telerikInput:DateTimeList Step="{TemplateBinding Step}"
-										Style="{StaticResource DateTimeListStyle}"
-										ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-										DateStepBehavior="{TemplateBinding YearStepBehavior}" ComponentType="Year"
-										x:Name="YearList" Grid.Column="2" />
+        							Style="{StaticResource DateTimeListStyle}"
+        							ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+        							DateStepBehavior="{TemplateBinding YearStepBehavior}" ComponentType="Year"
+        							x:Name="YearList" Grid.Column="2" />
                             </Grid>
                         </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RadAutoCompleteBoxStyle" TargetType="telerikInput:RadAutoCompleteBox">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+            <Setter Property="Background" Value="{StaticResource AppForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource AppDarkestBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppForegroundBrush}"/>
+            <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+            <Setter Property="HeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+                        <Setter Property="Padding" Value="0,0,0,8"/>
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ClearButtonVisibility" Value="Collapsed"/>
+            <Setter Property="ActionButtonVisibility" Value="Collapsed"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="SuggestionItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerikInput:RadAutoCompleteBox">
+                        <Grid Background="Transparent" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="EnabledBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DisabledOrReadonlyBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="ReadOnly">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="EnabledBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DisabledOrReadonlyBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="DisabledOrReadonlyBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="DisabledOrReadonlyBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="DisabledOrReadonlyContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppDarkestBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="EnabledBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="EnabledBorder">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppLightAccentBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="FocusedInvalid"/>
+
+                                    <VisualState x:Name="FocusedValid"/>
+                                    <VisualState x:Name="Unfocused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="NotValidated"/>
+                                    <VisualState x:Name="Validating">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ValidationMessage">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneSubtleBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="ValidationImage">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsRunning" Storyboard.TargetName="BusyIndicator">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <System:Boolean>True</System:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="Invalid"/>
+
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="EnabledBorder" BorderBrush="{StaticResource AppForegroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentControl x:Name="ContentElement" BorderThickness="0" HorizontalContentAlignment="Stretch" Margin="{StaticResource PhoneTextBoxInnerMargin}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch"/>
+                                    <TextBlock x:Name="PART_Watermark" Foreground="Gray" Margin="{StaticResource PhoneTextBoxInnerMargin}" Padding="{TemplateBinding Padding}" Text="{TemplateBinding Watermark}"/>
+                                    <PhoneTextBox:TextBoxSecondaryButton x:Name="PART_ClearButton" ButtonType="Clear" Grid.Column="1" Style="{TemplateBinding ClearButtonStyle}"/>
+                                    <PhoneTextBox:TextBoxActionButton x:Name="PART_ActionButton" Grid.Column="2" Style="{TemplateBinding ActionButtonStyle}" Visibility="{TemplateBinding ActionButtonVisibility}"/>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="ValidationBorder" BorderThickness="0 0 0 3" Grid.Row="1"/>
+                            <telerikDate:RadBusyIndicator x:Name="BusyIndicator" AnimationStyle="AnimationStyle9" Content="{x:Null}" Margin="0,0,0,-10" Grid.Row="1" VerticalAlignment="Bottom"/>
+                            <Border x:Name="DisabledOrReadonlyBorder" BorderBrush="{StaticResource PhoneDisabledBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" Grid.Row="1" Visibility="Collapsed">
+                                <TextBox x:Name="DisabledOrReadonlyContent" Background="Transparent" Foreground="{StaticResource PhoneDisabledBrush}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" IsReadOnly="True" SelectionForeground="{TemplateBinding SelectionForeground}" SelectionBackground="{TemplateBinding SelectionBackground}" TextAlignment="{TemplateBinding TextAlignment}" TextWrapping="{TemplateBinding TextWrapping}" Text="{TemplateBinding Text}"/>
+                            </Border>
+                            <telerikInput:AutoCompleteBoxWindow x:Name="PART_Popup" CloseAnimation="{x:Null}" PlacementTarget="{Binding ElementName=EnabledBorder}" Grid.Row="1" WindowSizeMode="AutoSize">
+                                <telerikInput:AutoCompleteBoxWindow.OpenAnimation>
+                                    <Controls:RadResizeHeightAnimation Duration="0:0:0.3" FillBehavior="Stop" StartHeight="0">
+                                        <Controls:RadResizeHeightAnimation.Easing>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </Controls:RadResizeHeightAnimation.Easing>
+                                    </Controls:RadResizeHeightAnimation>
+                                </telerikInput:AutoCompleteBoxWindow.OpenAnimation>
+                                <Border x:Name="PART_SuggestionsHolder" MinHeight="46">
+                                    <AutoCompleteTextBox:AutoCompleteItemsControl x:Name="PART_SuggestionsControl" BorderBrush="{StaticResource AppLightAccentBrush}" ItemTemplate="{TemplateBinding SuggestionItemTemplate}" Style="{TemplateBinding PopupStyle}">
+                                        <AutoCompleteTextBox:AutoCompleteItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel/>
+                                            </ItemsPanelTemplate>
+                                        </AutoCompleteTextBox:AutoCompleteItemsControl.ItemsPanel>
+                                    </AutoCompleteTextBox:AutoCompleteItemsControl>
+                                </Border>
+                            </telerikInput:AutoCompleteBoxWindow>
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

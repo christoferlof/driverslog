@@ -5,6 +5,8 @@ using Driverslog.Services;
 using Microsoft.Phone.Controls;
 
 namespace Driverslog.ViewModels {
+    using System.Collections.ObjectModel;
+
     [SurviveTombstone]
     public class TripScreen : ItemScreen {
 
@@ -15,8 +17,14 @@ namespace Driverslog.ViewModels {
         protected override void OnInitialize() {
             base.OnInitialize();
             //load if we're comming back from resume or are empty
-            if (!Trip.HasRecords) {
+            if (!Trip.HasRecords) 
+            {
                 Trip.Load();
+            }
+
+            if (!Location.HasRecords)
+            {
+                Location.Load();
             }
         }
 
@@ -39,6 +47,14 @@ namespace Driverslog.ViewModels {
                 NotifyOfPropertyChange(() => To);
             }
         }
+
+        public ObservableCollection<Location> AutoCompleteLocations
+        {
+            get
+            {
+                return Location.All;
+            }
+        } 
 
         private string _odometerStart;
         [SurviveTombstone]

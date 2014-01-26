@@ -15,10 +15,17 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
 namespace Driverslog {
+    using Driverslog.Models;
+
     public partial class EditView : PhoneApplicationPage {
         public EditView() {
             InitializeComponent();
             CreateApplicationBar();
+
+            From.SuggestionsSource = Location.All;
+            From.FilterKeyPath = "Name";
+            To.SuggestionsSource = Location.All;
+            To.FilterKeyPath = "Name";
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e) {

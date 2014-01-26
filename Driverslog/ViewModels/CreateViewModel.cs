@@ -36,6 +36,9 @@ namespace Driverslog.ViewModels {
             Trip.Add(trip);
             Trip.SaveChanges();
 
+            Location.AddIfNew(trip);
+            Location.SaveChanges();
+
             AnalyticsService.LogEvent("Trip.Create");
             _navigationService.GoBack();
         }

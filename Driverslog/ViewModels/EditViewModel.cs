@@ -50,6 +50,9 @@ namespace Driverslog.ViewModels {
 
             Trip.SaveChanges();
 
+            Location.AddIfNew(_trip);
+            Location.SaveChanges();
+
             AnalyticsService.LogEvent("Trip.Edit");
             NavigateToMain();
         }

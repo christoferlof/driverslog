@@ -129,6 +129,12 @@
   <data name="AppTitle" xml:space="preserve">
     <value>KÖRJOURNAL</value>
   </data>
+  <data name="ClearSuggestions" xml:space="preserve">
+    <value>Radera förslag</value>
+  </data>
+  <data name="ClearSuggestionsConfirm" xml:space="preserve">
+    <value>Alla förslag kommer att raderas. Fortsätta?</value>
+  </data>
   <data name="CreateExpenseViewTitle" xml:space="preserve">
     <value>nytt utlägg</value>
   </data>

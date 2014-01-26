@@ -11,3 +11,5 @@ _ReSharper.*/
 TestResults/
 tools/
 packages/
+lib/vfx
+[Bb]ackup/

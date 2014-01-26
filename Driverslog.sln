@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driverslog", "Driverslog\Driverslog.csproj", "{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driverslog.Tests.Unit", "Driverslog.Tests.Unit\Driverslog.Tests.Unit.csproj", "{455D0460-E641-4EFB-A55E-A97506BCDF60}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Victoria.Data", "lib\vfx\fx\Victoria.Data\Victoria.Data.csproj", "{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}"
 EndProject
 Global
@@ -61,30 +59,6 @@ Global
 		{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}.Release|x86.ActiveCfg = Release|x86
 		{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}.Release|x86.Build.0 = Release|x86
 		{CD899D20-17E6-413C-8FCA-6D4E50C66B0C}.Release|x86.Deploy.0 = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|ARM.ActiveCfg = Debug|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|ARM.Build.0 = Debug|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|x86.ActiveCfg = Debug|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Debug|x86.Build.0 = Debug|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|Any CPU.ActiveCfg = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|Any CPU.Build.0 = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|ARM.ActiveCfg = Release|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|ARM.Build.0 = Release|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|Mixed Platforms.ActiveCfg = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|Mixed Platforms.Build.0 = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|x86.ActiveCfg = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.IntegrationTest|x86.Build.0 = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|ARM.ActiveCfg = Release|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|ARM.Build.0 = Release|ARM
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|x86.ActiveCfg = Release|x86
-		{455D0460-E641-4EFB-A55E-A97506BCDF60}.Release|x86.Build.0 = Release|x86
 		{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D81EAB0-78FB-4D96-AFD4-767E661E9A6B}.Debug|ARM.ActiveCfg = Debug|ARM

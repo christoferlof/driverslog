@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="sv-SE" />
   </Languages>
-  <App xmlns="" ProductID="{669137ac-c4da-4ec4-94fd-2c6a90032959}" Title="Driver's log" RuntimeType="Silverlight" Version="2.0.1.0" Genre="apps.normal" Author="Löf &amp; Co" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Löf &amp; Co" PublisherID="{afec3f69-fd13-4000-9cc4-9833890a16ed}">
+  <App xmlns="" ProductID="{669137ac-c4da-4ec4-94fd-2c6a90032959}" Title="Driver's log" RuntimeType="Silverlight" Version="2.1.0.0" Genre="apps.normal" Author="Löf &amp; Co" Description="Keep track of your car travels and related expenses. Export through e-mail for easy import to Excel and similar applications." Publisher="Löf &amp; Co" PublisherID="{afec3f69-fd13-4000-9cc4-9833890a16ed}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

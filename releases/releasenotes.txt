@@ -13,6 +13,9 @@ Registrera dina bilresor och relaterade utgifter i journalen. Exportera din jour
 
 Versions
 ===========
+2.1
+- Autocomplete
+
 2.0.1
 - Fast app resume
 
